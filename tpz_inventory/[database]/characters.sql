@@ -1,0 +1,1 @@
+ALTER TABLE `characters` ADD COLUMN `inventory` longtext COLLATE utf8mb4_bin DEFAULT '[]';

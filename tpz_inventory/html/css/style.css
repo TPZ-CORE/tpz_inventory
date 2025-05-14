@@ -1,0 +1,856 @@
+@font-face {
+	font-family: crock;
+	src: url(../font/crock.ttf) format('truetype');
+}
+
+@font-face {
+	font-family: texat;
+	src: url(../font/texat.otf) format('opentype');
+}
+
+@font-face {
+	font-family: Kalam;
+	src: url(../font/Handwritten.woff) format('truetype');
+  }
+
+body {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+
+	overflow: hidden;
+	display: none;
+    text-align: center;
+	justify-content: center;
+	align-items: center;
+
+	margin-left: 5vw;
+	margin-top: 15vw;
+}
+
+#inventory {
+	position: absolute;
+
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: -5%;
+    text-align: left;
+
+	background-image: url(../img/main_inventory.png);
+    background-repeat: no-repeat;
+    background-size: 50vw 30vw;
+
+	overflow: hidden;
+
+	min-width: 50vw;
+    min-height: 30vw;
+
+	justify-content: center;
+
+	-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently */
+}
+
+#main_inventory_current_weight {
+	position: absolute;
+
+	color: rgb(179, 179, 179);
+	width: 3.5vw;
+	height: 1vw;
+
+	margin-top: 9.8%;
+	margin-left: 65.3%;
+
+	font-weight: bold;
+	text-align: center;
+	font-size: 0.60vw;
+
+}
+
+#main_inventory_current_money {
+	position: absolute;
+
+	font-family: "crock", crock, serif;
+	color: rgb(46, 46, 46);
+	width: 3.5vw;
+	height: 1vw;
+
+	margin-top: 38.9%;
+	margin-left: 21.60%;
+
+	text-align: left;
+	font-size: 0.8vw;
+
+}
+
+#main_inventory_current_gold {
+	position: absolute;
+
+	font-family: "crock", crock, serif;
+
+	color: rgb(46, 46, 46);
+	width: 3.5vw;
+	height: 1vw;
+
+	margin-top: 42.50%;
+	margin-left: 23.95%;
+
+	text-align: center;
+	font-size: 0.70vw;
+
+}
+
+#main_inventory_current_source_id {
+	position: absolute;
+
+	font-family: "crock", crock, serif;
+
+	color: rgb(49, 49, 182);
+	width: 1.5vw;
+	height: 1vw;
+
+	margin-top: 25.25%;
+	margin-left: 29.50%;
+
+	text-align: left;
+	font-size: 0.65vw;
+
+}
+
+#main_inventory_contents {
+	position: absolute;
+	display: flex;
+	flex-direction:row;
+
+	flex-wrap: wrap; 
+	
+	width: 16.70vw;
+	height: fit-content;
+	max-height: 15.0vw;
+
+	margin-left: 51.8%;
+	margin-top: 14%;
+  
+	border-radius: 1px;
+
+	overflow: hidden;
+	overflow-y: scroll;
+    overflow-x: hidden;
+
+	float: left;	
+
+}
+
+
+#main_inventory_item_image_display {
+	position: relative;
+  
+	display: inline-block;
+	height: 3.4vw;
+	width: 3.4vw;
+	
+	margin-top: 0.2vw;
+	background-color: #805a0265;
+
+	border-radius: 2%;
+
+	border: 2px solid rgba(71, 71, 71, 0.747);
+  
+}
+
+
+#main_inventory_item_image_display:hover{
+	opacity: 0.7;
+}
+
+  
+#main_inventory_item_durability_background {
+	position: absolute;
+	display: inline-block;
+	width: 20.3%;
+	max-width: 20.3%;
+	height: 0.29vw;
+
+	color: rgb(0, 0, 0);
+
+	text-align: center;
+
+	margin-left: -20.9%;
+	margin-top: 20.2%;
+
+	background-color: rgba(29, 29, 29, 0.747);
+
+	border: 1px solid rgba(71, 71, 71, 0.747);
+}
+
+
+#main_inventory_item_durability_progress {
+	position: absolute;
+	display: inline-block;
+	width: 20.3%;
+	max-width: 20.3%;
+	height: 0.29vw;
+
+	color: rgb(0, 0, 0);
+
+	text-align: center;
+
+	margin-left: -20.8%;
+	margin-top: 20.3%;
+
+	background-color: rgb(127, 118, 175);
+}
+
+#main_inventory_item_count{
+	position: absolute;
+	display: inline-block;
+
+	width: 1.25vw;
+	height: 1vw;
+
+	color: rgb(14, 14, 14);
+	font-size: 0.60vw;
+	font-weight: bold;
+	margin-left: -9.50%;
+	margin-top: 13.5%;
+	border-radius: 50%;
+
+	text-align: center;
+
+	padding-top: 2%;
+
+	background-color: rgba(255, 255, 255, 0.849);
+
+}
+
+#main_inventory_hovered_weapon_serial_number {
+	position: absolute;
+
+	color: #8a2626df;
+	width: 16vw;
+
+	font-family: "crock", crock, serif;
+	height: fit-content;
+
+	margin-top: 45.8%;
+	margin-left: 53.3%;
+
+	text-align: left;
+	font-size: 0.55vw;
+
+}
+
+#main_inventory_hovered_item_label {
+	position: absolute;
+
+	color: #ddc076bc;
+	width: 16vw;
+
+	font-family: "crock", crock, serif;
+	height: fit-content;
+
+	margin-top: 47%;
+	margin-left: 53.3%;
+
+	text-align: left;
+	font-size: 0.8vw;
+
+}
+
+#main_inventory_hovered_item_description {
+	position: absolute;
+
+	color: rgb(128, 128, 128);
+	width: 16vw;
+
+	font-family: "crock", crock, serif;
+	height: fit-content;
+
+	margin-top: 47.3%;
+	margin-left: 52.1%;
+
+	text-align: right;
+	font-size: 0.6vw;
+
+}
+
+.item {
+    position: relative;
+    float: left;
+    margin: 2px;
+    width: 100px;
+    height: 93px;
+    text-align: right;
+    background-size: 60px 60px;
+    background-color: rgba(26, 25, 25, 0.603);
+    border: 1px solid transparent;
+}
+
+.item.active,
+.item:hover {
+    background-color: rgba(26, 25, 25, 0.603);
+    border: 1px solid;
+
+}
+
+.item .count {
+    margin-left: 68px;
+    margin-top: 62px;
+    font-weight: 700;
+    margin-bottom: -5px;
+    color: rgb(0, 0, 0);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.877);
+    text-align:center;
+    font-size: 10px;
+    line-height: 30px;
+    
+}
+
+.item .text {
+    font-weight: 300;
+    bottom: 1px;
+    width: 100%;
+    margin-top: -10px;
+    background-color: transparent;
+    text-align: center;
+   
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 90px 90px;
+    font-size: 20px;
+}
+
+div[id^='primary_content'] {
+
+	padding-left: 0.4vw;
+}
+
+/* Second Inventory */
+
+#second_inventory {
+	position: absolute;
+
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: -5%;
+	margin-left: 60%;
+    text-align: left;
+
+	background-image: url(../img/secondary_inventory.png);
+    background-repeat: no-repeat;
+    background-size: 540px 864px;
+
+	overflow: hidden;
+
+    min-width: 540px;
+    min-height: 864px;
+
+	justify-content: center;
+
+	-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently */
+}
+
+#second_inventory_current_header {
+	position: absolute;
+
+	font-family: "crock", crock, serif;
+
+	color: rgb(75, 75, 75);
+	width: 8.5vw;
+	height: 1vw;
+
+	margin-top: 1.2vw;
+	margin-left: 6.3vw;
+
+	font-weight: bold;
+	text-align: center;
+	font-size: 0.90vw;
+
+}
+
+#second_inventory_current_weight {
+	position: absolute;
+
+	color: rgb(179, 179, 179);
+	width: 3.5vw;
+	height: 1vw;
+
+	margin-top: 31.4vw;
+	margin-left: 15.3vw;
+
+	font-weight: bold;
+	text-align: right;
+	font-size: 0.60vw;
+
+}
+
+
+#second_inventory_contents {
+	position: absolute;
+	display: flex;
+	flex-direction:row;
+
+	flex-wrap: wrap; 
+	
+	width: 16.70vw;
+	height: fit-content;
+	max-height: 16.0vw;
+
+	margin-left: 10.2%;
+	margin-top: 30%;
+  
+	border-radius: 1px;
+
+	padding-left: 0.5vw;
+	
+	overflow: hidden;
+	overflow-y: scroll;
+    overflow-x: hidden;
+
+	float: left;	
+
+}
+
+
+#second_inventory_item_image_display {
+	position: relative;
+  
+	display: inline-block;
+	height: 3.4vw;
+	width: 3.4vw;
+	
+	margin-top: 0.2vw;
+	background-color: #805a0265;
+
+	border-radius: 2%;
+
+	border: 2px solid rgba(71, 71, 71, 0.747);
+  
+}
+
+
+#second_inventory_item_image_display:hover{
+	opacity: 0.7;
+}
+
+  
+#second_inventory_item_durability_background {
+	position: absolute;
+	display: inline-block;
+	width: 20.3%;
+	max-width: 20.3%;
+	height: 0.29vw;
+
+	color: rgb(0, 0, 0);
+
+	text-align: center;
+
+	margin-left: -20.9%;
+	margin-top: 20.2%;
+
+	background-color: rgba(29, 29, 29, 0.747);
+
+	border: 1px solid rgba(71, 71, 71, 0.747);
+}
+
+
+#second_inventory_item_durability_progress {
+	position: absolute;
+	display: inline-block;
+	width: 20.3%;
+	max-width: 20.3%;
+	height: 0.29vw;
+
+	color: rgb(0, 0, 0);
+
+	text-align: center;
+
+	margin-left: -20.8%;
+	margin-top: 20.3%;
+
+	background-color: rgb(127, 118, 175);
+}
+
+#second_inventory_item_count{
+	position: absolute;
+	display: inline-block;
+
+	width: 1.25vw;
+	height: 1vw;
+
+	color: rgb(14, 14, 14);
+	font-size: 0.60vw;
+	font-weight: bold;
+	margin-left: -9.50%;
+	margin-top: 13.5%;
+	border-radius: 50%;
+
+	text-align: center;
+
+	padding-top: 2%;
+
+	background-color: rgba(255, 255, 255, 0.849);
+
+}
+
+#second_inventory_hovered_weapon_serial_number {
+	position: absolute;
+
+	color: #8a2626df;
+	width: 16vw;
+
+	font-family: "crock", crock, serif;
+	height: fit-content;
+
+	margin-top: 114%;
+	margin-left: 13%;
+
+	text-align: center;
+	font-size: 0.55vw;
+
+}
+
+#second_inventory_hovered_item_label {
+	position: absolute;
+
+	color: #ddc076bc;
+	width: 16vw;
+
+	font-family: "crock", crock, serif;
+	height: fit-content;
+
+	margin-top: 118%;
+	margin-left: 13%;
+
+	text-align: center;
+	font-size: 0.8vw;
+}
+
+#second_inventory_hovered_item_description {
+	position: absolute;
+
+	color: rgb(128, 128, 128);
+	width: 16vw;
+
+	font-family: "crock", crock, serif;
+	height: fit-content;
+
+	margin-top: 123%;
+	margin-left: 13%;
+
+	text-align: center;
+	font-size: 0.6vw;
+
+}
+
+.seconditem {
+    position: relative;
+    float: left;
+    margin: 2px;
+    width: 100px;
+    height: 93px;
+    text-align: right;
+    background-size: 60px 60px;
+    background-color: rgba(26, 25, 25, 0.603);
+    border: 1px solid transparent;
+}
+
+.seconditem.active,
+.seconditem:hover {
+    background-color: rgba(26, 25, 25, 0.603);
+    border: 1px solid;
+
+}
+
+.seconditem .count {
+    margin-left: 68px;
+    margin-top: 62px;
+    font-weight: 700;
+    margin-bottom: -5px;
+    color: rgb(0, 0, 0);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.877);
+    text-align:center;
+    font-size: 10px;
+    line-height: 30px;
+    
+}
+
+.seconditem .text {
+    font-weight: 300;
+    bottom: 1px;
+    width: 100%;
+    margin-top: -10px;
+    background-color: transparent;
+    text-align: center;
+   
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 90px 90px;
+    font-size: 20px;
+}
+
+div[id^='second_content'] {
+	padding-left: 0.4vw;
+}
+
+input[type=text] {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	font-size: 0.8vw;
+	width: 90%;
+	color: rgba(255, 255, 255, 0.719);
+	height: 50px;
+	text-align: center;
+	background-color: rgb(27, 27, 27, 0.719);
+	border-color: rgb(58, 58, 58, 0.719);
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+select[type=field] {
+	font-family: "Prototype", serif;
+	font-size: 0.8vw;
+	width: 90%;
+	color: rgba(255, 255, 255, 0.719);
+	height: 50px;
+	text-align: center;
+	background-color: rgb(27, 27, 27, 0.719);
+	border-color: rgb(58, 58, 58, 0.719);
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+button {
+	font-family: "Prototype", serif;
+	display: block;
+	margin-top: 0px;
+	padding: 10px;
+	background-color: #5f1f1fb9;
+	border: 0;
+	color: rgba(255, 255, 255, 0.719);
+	width: 90%;
+	margin-left: 5%;
+	margin-right: 5%;
+
+	font-size: 0.8vw;
+}
+
+button:hover{
+
+	cursor: pointer;
+	background-color: rgb(87, 0, 0);
+	box-shadow: 0px 0px 15px rgb(87, 0, 0);
+}
+
+#count {
+    border: none;
+    outline: none;
+    font-size: 0.9vw;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
+.hoverControl {
+    background-color: rgba(31, 31, 31, 0.589);
+	user-select: none;
+}
+
+
+
+.radio {
+	font-family: "Prototype", serif;
+	text-align: center;
+	font-size: 0.8vw;
+	color: rgba(255, 255, 255, 0.719);
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 0.5vw;
+	border-radius: 0.1vw;
+	height: 0.55vw;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: rgba(109, 87, 58, 0.589);
+	border-radius: 0.5vw;
+	height: 0.55vw;
+}
+
+*.unselectable {
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+ 
+	/*
+	  Introduced in Internet Explorer 10.
+	  See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+	*/
+	-ms-user-select: none;
+	user-select: none;
+}
+
+*[data-tooltip] {
+    position: absolute;
+}
+
+*[data-tooltip]::after {
+    content: attr(data-tooltip);
+
+    position: absolute;
+
+	font-family:Verdana, Geneva, Tahoma, sans-serif;
+	color: rgba(203, 216, 117, 0.719);
+
+	display: block;
+	text-align: left;
+    font-size: 0.5vw;
+
+    width: 8vw;
+	height: fit-content;
+
+    pointer-events: none;
+    opacity: 0;
+    -webkit-transition: opacity .15s ease-in-out;
+    -moz-transition: opacity .15s ease-in-out;
+    -ms-transition: opacity .15s ease-in-out;
+    -o-transition: opacity .15s ease-in-out;
+    transition: opacity .15s ease-in-out;
+
+    background: #000214f1;
+    padding: 2px 2px;
+    border: 1px solid rgb(156, 156, 156);
+    box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.4);
+}
+
+*[data-tooltip]:hover::after {
+    opacity: 1;
+}
+
+/* Resolution Fixes */
+
+@media (max-width:1920px){
+
+	#main_inventory_current_weight {
+		margin-top: 10.0%;
+		margin-left: 65.2%;
+	}
+	
+	#main_inventory_current_money {
+		margin-left: 22%;
+	}
+	
+	#main_inventory_current_gold {
+		margin-top: 42.67%;
+		margin-left: 23.94%;
+	}
+	
+	#main_inventory_current_source_id {
+		margin-top: 25.45%;
+	}
+
+	#main_inventory_contents {
+
+		width: 18.70vw;
+		height: fit-content;
+		max-height: 15.0vw;
+
+		margin-left: 51.4%;
+		margin-top: 14%;
+	}
+
+
+	#main_inventory_item_image_display {
+
+		height: 3.4vw;
+		width: 3.4vw;
+	
+	}
+
+
+}
+
+
+@media (max-width:1280px){
+
+	#main_inventory_current_weight {
+		margin-top: 10.0%;
+		margin-left: 65.2%;
+	}
+	
+	#main_inventory_current_money {
+		margin-left: 22%;
+	}
+	
+	#main_inventory_current_gold {
+		margin-top: 42.68%;
+		margin-left: 23.94%;
+	}
+	
+	#main_inventory_current_source_id {
+		margin-top: 25.45%;
+	}
+
+	#main_inventory_contents {
+
+		width: 18.70vw;
+		height: fit-content;
+		max-height: 15.0vw;
+
+		margin-left: 51.4%;
+		margin-top: 14%;
+
+		padding-left: 0.2vw;
+	}
+
+
+	#main_inventory_item_image_display {
+
+		height: 3.2vw;
+		width: 3.2vw;
+	
+	}
+
+	#main_inventory_item_count{
+
+		width: 1.25vw;
+		height: 0.9vw;
+	
+		font-size: 0.60vw;
+		font-weight: bold;
+
+		margin-left: -8.50%;
+		margin-top: 11.80%;
+		border-radius: 50%;
+	
+		padding-top: 1%;
+	}
+
+}
