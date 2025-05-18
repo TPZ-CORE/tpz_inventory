@@ -122,14 +122,9 @@ end
 --[[ Events  ]]--
 -----------------------------------------------------------
 
-local acc = 'TPZ-D27M02Y25@$'
-
 RegisterNetEvent('tpz_inventory:openInventoryContainerById')
-AddEventHandler("tpz_inventory:openInventoryContainerById", function(containerId, header, var)
-    if tostring(acc) == tostring(var) then
-        openInventoryContainerById(containerId, header, false, false)
-    end
-
+AddEventHandler("tpz_inventory:openInventoryContainerById", function(containerId, header)
+    openInventoryContainerById(containerId, header, false, false)
 end)
 
 RegisterNetEvent('tpz_inventory:onTransferItemUpdate')
