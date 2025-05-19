@@ -15,9 +15,9 @@
 
 | Command                                         | Description
 |-------------------------------------------------|------------------------------------------------------------------|
-| /additem [source] [itemName] [quantity]         | Gives an item quantity to the selected player source.            |
-| /addweapon [source] [weaponName] [serialNumber] | Gives a weapon to the selected player source.                    |
-| /clearinventory [source]                        | Clears all the inventory contents of the selected player source. |
+| additem [source] [itemName] [quantity]         | Gives an item quantity to the selected player source.            |
+| addweapon [source] [weaponName] [serialNumber] | Gives a weapon to the selected player source.                    |
+| clearinventory [source]                        | Clears all the inventory contents of the selected player source. |
 
 ## Screenshot Displays
 
