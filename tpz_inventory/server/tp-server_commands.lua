@@ -249,41 +249,21 @@ end, false)
 RegisterServerEvent("tpz_inventory:registerChatSuggestions")
 AddEventHandler("tpz_inventory:registerChatSuggestions", function()
     local _source = source
-    local xPlayer = TPZ.GetPlayer(_source)
-
-    while not xPlayer.loaded() do
-        Wait(1000)
-    end
-
-    local hasAddItemPermissions        = xPlayer.hasAdministratorPermissions(Config.Commands['additem'].Groups, Config.Commands['additem'].DiscordRoles)
-    local hasAddWeaponPermissions      = xPlayer.hasAdministratorPermissions(Config.Commands['addweapon'].Groups, Config.Commands['addweapon'].DiscordRoles)
-    local hasClearInventoryPermissions = xPlayer.hasAdministratorPermissions(Config.Commands['clearinventory'].Groups, Config.Commands['clearinventory'].DiscordRoles)
-
-    if hasAddItemPermissions then
-        TriggerClientEvent("chat:addSuggestion", _source, "/additem", Config.Commands['additem'].Suggestion, {
-            { name = "Id", help = 'Player ID' },
-            { name = "Item", help = 'Item' },
-            { name = "Quantity", help = 'Quantity' },
     
-        })
-    end    
+    TriggerClientEvent("chat:addSuggestion", _source, "/additem", Config.Commands['additem'].Suggestion, {
+        { name = "Id", help = 'Player ID' },
+        { name = "Item", help = 'Item' },
+        { name = "Quantity", help = 'Quantity' },
+    })
+        
+    TriggerClientEvent("chat:addSuggestion", _source, "/addweapon", Config.Commands['addweapon'].Suggestion, {
+        { name = "Id", help = 'Player ID' },
+        { name = "Weapon", help = 'Weapon Name' },
+        { name = "Serial Number", help = 'Serial Number ID (do not add spaces)' },
+    })
 
-    if hasAddWeaponPermissions then
+    TriggerClientEvent("chat:addSuggestion", _source, "/clearinventory", Config.Commands['clearinventory'].Suggestion, {
+        { name = "Id", help = 'Player ID' },
+    })
     
-        TriggerClientEvent("chat:addSuggestion", _source, "/addweapon", Config.Commands['addweapon'].Suggestion, {
-            { name = "Id", help = 'Player ID' },
-            { name = "Weapon", help = 'Weapon Name' },
-            { name = "Serial Number", help = 'Serial Number ID (do not add spaces)' },
-        })
-    
-    end
-
-    if hasClearInventoryPermissions then
-
-        TriggerClientEvent("chat:addSuggestion", _source, "/clearinventory", Config.Commands['clearinventory'].Suggestion, {
-            { name = "Id", help = 'Player ID' },
-        })
-    
-    end
-
 end)
