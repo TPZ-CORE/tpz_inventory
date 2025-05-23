@@ -34,9 +34,14 @@ RegisterCommand("additem", function(source, args, rawCommand)
     local _source = source
     local xPlayer = TPZ.GetPlayer(_source)
 
-    local hasAdministratorPermissions = xPlayer.hasAdministratorPermissions(Config.Commands['additem'].Groups, Config.Commands['additem'].DiscordRoles)
+    local hasAcePermissions           = xPlayer.hasAcePermissions("tpzcore.inventory.additem")
+    local hasAdministratorPermissions = hasAcePermissions
 
-    if hasAdministratorPermissions then
+    if not hasAcePermissions then
+        hasAdministratorPermissions = xPlayer.hasAdministratorPermissions(Config.Commands['additem'].Groups, Config.Commands['additem'].DiscordRoles)
+    end
+
+    if hasAcePermissions or hasAdministratorPermissions then
 
         local target, item, quantity = args[1], args[2], args[3]
 
@@ -101,9 +106,14 @@ RegisterCommand("addweapon", function(source, args, rawCommand)
     local _source = source
     local xPlayer = TPZ.GetPlayer(_source)
 
-    local hasAdministratorPermissions = xPlayer.hasAdministratorPermissions(Config.Commands['addweapon'].Groups, Config.Commands['addweapon'].DiscordRoles)
+    local hasAcePermissions           = xPlayer.hasAcePermissions("tpzcore.inventory.addweapon")
+    local hasAdministratorPermissions = hasAcePermissions
 
-    if hasAdministratorPermissions then
+    if not hasAcePermissions then
+        hasAdministratorPermissions = xPlayer.hasAdministratorPermissions(Config.Commands['addweapon'].Groups, Config.Commands['addweapon'].DiscordRoles)
+    end
+
+    if hasAcePermissions or hasAdministratorPermissions then
 
         local target, weaponName, serialId = args[1], args[2], args[3]
 
@@ -167,9 +177,14 @@ RegisterCommand("clearinventory", function(source, args, rawCommand)
     local _source = source
     local xPlayer = TPZ.GetPlayer(_source)
 
-    local hasAdministratorPermissions = xPlayer.hasAdministratorPermissions(Config.Commands['clearinventory'].Groups, Config.Commands['clearinventory'].DiscordRoles)
+    local hasAcePermissions           = xPlayer.hasAcePermissions("tpzcore.inventory.clearinventory")
+    local hasAdministratorPermissions = hasAcePermissions
 
-    if hasAdministratorPermissions then
+    if not hasAcePermissions then
+        hasAdministratorPermissions = xPlayer.hasAdministratorPermissions(Config.Commands['clearinventory'].Groups, Config.Commands['clearinventory'].DiscordRoles)
+    end
+
+    if hasAcePermissions or hasAdministratorPermissions then
 
         local target = args[1]
 
