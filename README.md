@@ -25,5 +25,5 @@
 
 ## Screenshot Displays
 
-![image](https://github.com/TPZ-CORE/tpz_inventory/assets/152554963/aa7f9722-b340-44ee-953d-36dedaff863a)
-![image](https://github.com/TPZ-CORE/tpz_inventory/assets/152554963/e496a663-aba9-42bd-98e2-eef67eb5e962)
+![image](https://github.com/user-attachments/assets/d647b613-22d6-4bab-98ef-0acc605496d0)
+![image](https://github.com/user-attachments/assets/e32f629e-ac67-40fa-be69-51696708b9e9)
