@@ -34,7 +34,7 @@ RegisterCommand("additem", function(source, args, rawCommand)
     local _source = source
     local xPlayer = TPZ.GetPlayer(_source)
 
-    local hasAcePermissions           = xPlayer.hasAcePermissions("tpzcore.inventory.additem")
+    local hasAcePermissions           = xPlayer.hasPermissionsByAce("tpzcore.inventory.additem")
     local hasAdministratorPermissions = hasAcePermissions
 
     if not hasAcePermissions then
@@ -106,7 +106,7 @@ RegisterCommand("addweapon", function(source, args, rawCommand)
     local _source = source
     local xPlayer = TPZ.GetPlayer(_source)
 
-    local hasAcePermissions           = xPlayer.hasAcePermissions("tpzcore.inventory.addweapon")
+    local hasAcePermissions           = xPlayer.hasPermissionsByAce("tpzcore.inventory.addweapon")
     local hasAdministratorPermissions = hasAcePermissions
 
     if not hasAcePermissions then
@@ -177,7 +177,7 @@ RegisterCommand("clearinventory", function(source, args, rawCommand)
     local _source = source
     local xPlayer = TPZ.GetPlayer(_source)
 
-    local hasAcePermissions           = xPlayer.hasAcePermissions("tpzcore.inventory.clearinventory")
+    local hasAcePermissions           = xPlayer.hasPermissionsByAce("tpzcore.inventory.clearinventory")
     local hasAdministratorPermissions = hasAcePermissions
 
     if not hasAcePermissions then
