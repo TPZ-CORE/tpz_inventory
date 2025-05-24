@@ -27,3 +27,5 @@
 
 ![image](https://github.com/user-attachments/assets/d647b613-22d6-4bab-98ef-0acc605496d0)
 ![image](https://github.com/user-attachments/assets/e32f629e-ac67-40fa-be69-51696708b9e9)
+
+**IN CASE YOU ARE INTERESTED FOR THE IMAGES, CONTACT US!**
