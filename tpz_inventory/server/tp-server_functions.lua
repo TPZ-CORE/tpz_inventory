@@ -186,6 +186,10 @@ function addItem(source, item, quantity, metadata, itemId)
             if Config.HideDurabilityFromItems[item] then
                 metadata.durability = -1
             end
+
+            if metadata.itemId then
+                itemId = metadata.itemId
+            end
   
             if tonumber(itemData.stackable) == 0 then
 
