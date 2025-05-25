@@ -405,11 +405,11 @@ function removeItemById(source, itemId)
         if exist then
             TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], true, false)
         else
-            print(string.format(Locales['WARN_ITEM_DOES_NOT_EXIST_INV'], item))
+            print(string.format(Locales['WARN_ITEM_DOES_NOT_EXIST_INV'], itemId))
         end
 
     else
-        print(string.format(Locales['ERROR_ITEM_DOES_NOT_EXIST_CONFIG'], item))
+        print(string.format(Locales['ERROR_ITEM_DOES_NOT_EXIST_CONFIG'], itemId))
     end
 end
 
@@ -576,7 +576,7 @@ function removeWeaponById(source, weaponId)
     if exist then
         TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], true, false)
     else
-        print(string.format(Locales['WARN_WEAPON_DOES_NOT_EXIST_INV'], _weapon))
+        print(string.format(Locales['WARN_WEAPON_DOES_NOT_EXIST_INV'], weaponId))
     end
 
 end
