@@ -393,7 +393,7 @@ function removeItemById(source, itemId)
 
         for index, content in pairs (inventory) do 
 
-            if itemId and tonumber(content.itemId) == tonumber(itemId) then
+            if itemId and tostring(content.itemId) == tostring(itemId) then
 
                 table.remove(inventory, index)
                 
