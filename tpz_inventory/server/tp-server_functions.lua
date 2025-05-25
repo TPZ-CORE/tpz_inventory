@@ -382,6 +382,37 @@ function removeItem(source, item, quantity, itemId)
     end
 end
 
+function removeItemById(source, itemId)
+    local _source   = source
+    local exist     = false
+
+    local inventory = PlayerInventory[_source].inventory
+    local inventoryLength = GetTableLength(inventory)
+
+    if inventoryLength > 0 then
+
+        for index, content in pairs (inventory) do 
+
+            if itemId and tonumber(content.itemId) == tonumber(itemId) then
+
+                table.remove(inventory, index)
+                
+                exist = true
+            end
+                
+        end
+
+        if exist then
+            TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], true, false)
+        else
+            print(string.format(Locales['WARN_ITEM_DOES_NOT_EXIST_INV'], item))
+        end
+
+    else
+        print(string.format(Locales['ERROR_ITEM_DOES_NOT_EXIST_CONFIG'], item))
+    end
+end
+
 function addWeapon(source, weaponName, weaponItemId, metadata)
     local _source   = source
 
