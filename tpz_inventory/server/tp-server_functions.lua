@@ -549,6 +549,38 @@ function removeWeapon(source, weapon, weaponId)
 
 end
 
+function removeWeaponById(source, weaponId)
+    local _source   = source
+    local exist     = false
+
+    local inventory = PlayerInventory[_source].inventory
+    
+    if inventory and GetTableLength(inventory) > 0 then
+
+        for index, content in pairs (inventory) do 
+
+            if content.type == "weapon" then
+
+                if tostring(content.itemId) == tostring(weaponId) then
+        
+                    table.remove(inventory, index)
+                    exist = true
+                end
+    
+            end
+
+        end
+
+    end
+
+    if exist then
+        TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], true, false)
+    else
+        print(string.format(Locales['WARN_WEAPON_DOES_NOT_EXIST_INV'], _weapon))
+    end
+
+end
+
 function canCarryWeapon(source, weaponName)
     local _source       = source
 
