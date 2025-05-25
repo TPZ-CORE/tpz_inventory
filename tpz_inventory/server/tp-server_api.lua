@@ -357,6 +357,10 @@ exports('getInventoryAPI', function()
         removeWeapon(source, weapon, weaponId)
     end
 
+    self.removeWeaponById = function(source, weaponId)
+        removeWeaponById(source, weaponId)
+    end
+
     self.addWeaponDurability = function(source, weaponName, value, weaponId)
         local _source = source
         local exist   = false
