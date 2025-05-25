@@ -108,6 +108,10 @@ exports('getInventoryAPI', function()
         removeItem(source, item, quantity, itemId)
     end
 
+    self.removeItemById = function(source, itemId)
+        removeItemById(source, itemId)
+    end
+
     self.getItemData = function(item)
 
         if SharedItems[item] then
