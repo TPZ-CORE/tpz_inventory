@@ -22,6 +22,7 @@
 | clearinventory [source]                        | tpzcore.inventory.clearinventory | Clears all the inventory contents of the selected player source. |
 
 - The ace permission: `tpzcore.all` Gives permissioms to all commands and actions (FOR ALL OFFICIAL PUBLISHED FREE SCRIPTS).
+- The ace permission: `tpzcore.inventory.all` Gives permissions to all commands ONLY for this script.
 
 ## Screenshot Displays
 
