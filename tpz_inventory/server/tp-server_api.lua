@@ -12,6 +12,10 @@ exports('getInventoryAPI', function()
 
     -- containers
 
+    self.getContainerIdByName = function(containerName)
+        return GetContainerIdByName(containerName)
+    end
+
     self.getContainerInventoryContents = function (containerId)
 
         if Containers[containerId] == nil then
