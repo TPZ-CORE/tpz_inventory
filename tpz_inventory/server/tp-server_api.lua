@@ -16,6 +16,20 @@ exports('getInventoryAPI', function()
         return GetContainerIdByName(containerName)
     end
 
+    -- @returns
+    -- @param .name, .maxWeight, .inventory, .busy
+    self.getContainerData = function(containerId)
+        containerId = tonumber(containerId)
+
+        if Containers[containerId] == nil then
+            print(string.format("getContainerData is not valid for the specified container. The container id (%s) does not exist.", containerId))
+            return nil
+        end
+
+        return Containers[containerId]
+        
+    end
+
     self.getContainerInventoryContents = function (containerId)
 
         if Containers[containerId] == nil then
