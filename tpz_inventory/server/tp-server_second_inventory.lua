@@ -3,6 +3,25 @@
 Containers = {}
 
 -----------------------------------------------------------
+--[[ Functions ]]--
+-----------------------------------------------------------
+
+function GetContainerIdByName(containerName)
+
+    for index, container in pairs (Containers) do
+
+        if containerName == container.name then
+            return tonumber(container.id) -- getting first result with the input container name. 
+        end
+
+    end
+
+    -- in case the container does not exist or not found, we return nil. 
+    return nil
+
+end
+
+-----------------------------------------------------------
 --[[ Base Events ]]--
 -----------------------------------------------------------
 
