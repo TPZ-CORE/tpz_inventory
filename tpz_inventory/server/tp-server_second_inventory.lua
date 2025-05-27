@@ -216,11 +216,6 @@ AddEventHandler("tpz_inventory:setBusyState", function(containerId, state)
     
 end)
 
-local GetInventoryItemQuantity = function(item)
-
-
-end
-
 -----------------------------------------------------------
 --[[ Events  ]]--
 -----------------------------------------------------------
