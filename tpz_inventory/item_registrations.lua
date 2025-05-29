@@ -2841,4 +2841,126 @@ SharedItems = {
         droppable = 1,
         closeInventory = 0 
     },
+
+    ['miner_hat'] = {
+        label = "Miner's Hat",
+        weight = 0.7,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['natives_arrow_pouch_bag'] = {
+        label = "Natives Arrows Pouch Bag",
+        weight = 0.7,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['natives_backshield'] = {
+        label = "Natives Backshield",
+        weight = 0.7,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['natives_chief_hat'] = {
+        label = "Natives Chief Hat",
+        weight = 0.7,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['Headband1'] = {
+        label = "Natives Headband #1",
+        weight = 0.7,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['Headband2'] = {
+        label = "Natives Headband #2",
+        weight = 0.7,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['Headband3'] = {
+        label = "Natives Headband #3",
+        weight = 0.7,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['Headband4'] = {
+        label = "Natives Headband #4",
+        weight = 0.7,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['Headband5'] = {
+        label = "Natives Headband #5",
+        weight = 0.7,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['Headband6'] = {
+        label = "Natives Headband #6",
+        weight = 0.7,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+    
+    ['BeltLantern'] = {
+        label = "Lantern Belt",
+        weight = 0.7,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
 }
