@@ -329,7 +329,7 @@ SharedItems = {
         weight = 0.1,
         remove = 0,
         description = 'Vegetable',
-        action = 'NONE',
+        action = 'USABLE', -- USABLE FOR HORSES
         stackable = 1,
         droppable = 1,
         closeInventory = 0
@@ -351,7 +351,7 @@ SharedItems = {
         weight = 0.1,
         remove = 0,
         description = 'Vegetable',
-        action = 'NONE',
+        action = 'USABLE', -- USABLE FOR HORSES
         stackable = 1,
         droppable = 1,
         closeInventory = 0
@@ -2963,4 +2963,49 @@ SharedItems = {
         closeInventory = 0 
     },
 
+    -- Horses
+
+    ['horse_adrenaline_shot'] = {
+        label = "Horse Adrenaline Shot",
+        weight = 0.3,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['unique_brad_horsesugar'] = {
+        label = "Brad Horse Sugar",
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['consumable_haycube'] = {
+        label = "Horse Adrenaline Shot",
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['horsemeal'] = {
+        label = "Horse Adrenaline Shot",
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
 }
