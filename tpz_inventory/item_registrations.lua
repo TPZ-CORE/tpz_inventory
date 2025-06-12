@@ -3008,4 +3008,15 @@ SharedItems = {
         droppable = 1,
         closeInventory = 0 
     },
+
+    ['horsebrush'] = {
+        label = "Horse Brush",
+        weight = 0.3,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 0, -- BRUSH HAS DURABILITY FOR ITS USES BY DEFAULT
+        droppable = 1,
+        closeInventory = 0 
+    },
 }
