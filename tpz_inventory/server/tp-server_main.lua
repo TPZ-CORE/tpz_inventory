@@ -37,7 +37,7 @@ AddEventHandler("tpz_inventory:startEatablesTimeRemoval", function()
 
     Citizen.CreateThread(function()
         while true do
-            Wait(60000 * Config.Eatables.DurabilityRemovalTimer)
+           Wait(60000 * Config.Eatables.DurabilityRemovalTimer)
     
             if GetPlayerName(_source) == nil or PlayerInventory[_source] == nil then
                 break
@@ -54,17 +54,21 @@ AddEventHandler("tpz_inventory:startEatablesTimeRemoval", function()
 
                     local ItemData = Config.Eatables.Items[content.item]
 
-                    if ItemData and tonumber(content.stackable) == 0 and content.metadata.durability > 0 then
+                    if ItemData and tonumber(content.stackable) == 0 then
 
-                        local removeValue = tonumber(ItemData.removeValue[1])
+                        if content.metadata.durability > 0 then
 
-                        if ItemData.removeValue[2] then
-                            local randomRemoveValue = math.random(ItemData.removeValue[1], ItemData.removeValue[2])
-                            removeValue = tonumber(randomRemoveValue)
+                            local removeValue = tonumber(ItemData.removeValue[1])
+
+                            if ItemData.removeValue[2] then
+                                local randomRemoveValue = math.random(ItemData.removeValue[1], ItemData.removeValue[2])
+                                removeValue = tonumber(randomRemoveValue)
+                            end
+    
+                            content.metadata.durability = tonumber(content.metadata.durability) - removeValue
+    
                         end
 
-                        content.metadata.durability = tonumber(content.metadata.durability) - removeValue
-    
                         if content.metadata.durability <= 0 then
 
                             content.metadata.durability = 0 
