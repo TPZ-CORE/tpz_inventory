@@ -1,3 +1,5 @@
+local TPZ = exports.tpz_core:getCoreAPI()
+
 local DroppedItems = {}
 
 
@@ -17,7 +19,7 @@ AddEventHandler('onResourceStop', function(resourceName)
     local droppedItemsList = DroppedItems
 
     -- We check first the size of the dropped items table, if the list is not empty, then we run the following code to remove all the objects.
-    if #droppedItemsList > 0 then
+    if TPZ.GetTableLength(droppedItemsList) > 0 then
 
         for index, droppedData in pairs (droppedItemsList) do
 
@@ -99,7 +101,8 @@ Citizen.CreateThread(function()
 
         local player = PlayerPedId()
 
-        if #DroppedItems > 0 then
+        if TPZ.GetTableLength(DroppedItems) > 0 then
+
             local coords    = GetEntityCoords(player)
             local coordsDist = vector3(coords.x, coords.y, coords.z)
             
@@ -107,7 +110,7 @@ Citizen.CreateThread(function()
     
                 local coordsDroppedObject = vector3(droppedData.coords.x, droppedData.coords.y, droppedData.coords.z)
                 local distance = #(coordsDist - coordsDroppedObject)
-    
+
                 if droppedData.object and distance > Config.Droppables.RenderDistance then
                     DeleteEntity(droppedData.object)
                     SetEntityAsNoLongerNeeded(droppedData.object)
@@ -152,7 +155,7 @@ Citizen.CreateThread(function()
 
         local PlayerData  = GetPlayerData()
 
-        if #DroppedItems > 0 and not PlayerData.IsPickingUp then
+        if TPZ.GetTableLength(DroppedItems) > 0 and not PlayerData.IsPickingUp then
 
             local coords    = GetEntityCoords(player)
             local coordsDist = vector3(coords.x, coords.y, coords.z)
