@@ -82,10 +82,11 @@ AddEventHandler("tpz_inventory:startEatablesTimeRemoval", function()
                                 end
 
                             end
-    
+                                    
+                            updated  = true
+                                    
                         end
                         
-                        updated  = true
                     end
     
                 end
