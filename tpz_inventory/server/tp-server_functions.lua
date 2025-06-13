@@ -158,7 +158,7 @@ function getItemQuantity(source, item)
     return tonumber(totalQuantity)
 end
 
-function addItem(source, item, quantity, metadata, itemId)
+function addItem(source, item, quantity, metadata, itemId, preventRefresh)
     local _source   = source
     local inventory = PlayerInventory[_source].inventory
 
@@ -205,7 +205,6 @@ function addItem(source, item, quantity, metadata, itemId)
                     end
 
                     local ItemParameters = {
-                     --   id = tonumber(itemData.id), 
                         item = item, 
                         itemId = itemId,
                         quantity = 1,
@@ -225,8 +224,10 @@ function addItem(source, item, quantity, metadata, itemId)
                     itemId = nil
                 end
 
-                Wait(250)
-                TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], true, false)
+                if not preventRefresh then
+                    Wait(250)
+                    TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], true, false)
+                end
 
             else
 
@@ -278,11 +279,15 @@ function addItem(source, item, quantity, metadata, itemId)
                     }
     
                     table.insert(PlayerInventory[_source].inventory, ItemParameters)
-                    TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], true, false)
-   
-                else
 
-                    TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], true, false)
+                    if not preventRefresh then
+                        TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], true, false)
+                    end
+
+                else
+                    if not preventRefresh then
+                        TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], true, false)
+                    end
 
                 end
 
@@ -296,7 +301,7 @@ function addItem(source, item, quantity, metadata, itemId)
     end
 end
 
-function removeItem(source, item, quantity, itemId)
+function removeItem(source, item, quantity, itemId, preventRefresh)
     local _source   = source
     local exist     = false
     local count     = 0
@@ -374,7 +379,10 @@ function removeItem(source, item, quantity, itemId)
     
             end
 
-            TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], true, false)
+            if not preventRefresh then
+                TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], true, false)
+            end
+            
         else
             print(string.format(Locales['WARN_ITEM_DOES_NOT_EXIST_INV'], item))
         end
@@ -384,7 +392,7 @@ function removeItem(source, item, quantity, itemId)
     end
 end
 
-function removeItemById(source, itemId)
+function removeItemById(source, itemId, preventRefresh)
     local _source   = source
     local exist     = false
 
@@ -405,7 +413,11 @@ function removeItemById(source, itemId)
         end
 
         if exist then
-            TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], true, false)
+
+            if not preventRefresh then
+                TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], true, false)
+            end
+            
         else
             print(string.format(Locales['WARN_ITEM_DOES_NOT_EXIST_INV'], itemId))
         end
