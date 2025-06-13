@@ -93,7 +93,7 @@ AddEventHandler("tpz_inventory:startEatablesTimeRemoval", function()
             end
 
             if updated then
-                TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], false, false)
+                TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], true, false)
             end
 
         end
