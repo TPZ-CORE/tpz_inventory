@@ -221,6 +221,8 @@ function addItem(source, item, quantity, metadata, itemId)
                     }
 
                     table.insert(PlayerInventory[_source].inventory, ItemParameters)
+
+                    itemId = nil
                 end
 
                 Wait(250)
