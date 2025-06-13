@@ -37,14 +37,14 @@ AddEventHandler("tpz_inventory:startEatablesTimeRemoval", function()
 
     Citizen.CreateThread(function()
         while true do
-           Wait(2000)
+            Wait(60000 * Config.Eatables.DurabilityRemovalTimer)
     
             if GetPlayerName(_source) == nil or PlayerInventory[_source] == nil then
                 break
             end
 
             local inventoryData = PlayerInventory[_source].inventory
-            local updated       = false
+            local updated, refresh  = false, false
 
             local inventoryLength = GetTableLength(inventoryData)
 
@@ -73,14 +73,16 @@ AddEventHandler("tpz_inventory:startEatablesTimeRemoval", function()
 
                             content.metadata.durability = 0 
     
-                            removeItem(_source, content.item, 1, content.itemId)
+                            removeItem(_source, content.item, 1, content.itemId, true) -- true : preventing inv refresh so we can refresh it only once below.
 
                             if ItemData.newItem then
 
                                 if canCarryItem(_source, ItemData.newItem, 1) then
-                                    addItem(_source, ItemData.newItem, 1)
+                                    addItem(_source, ItemData.newItem, 1, nil, nil, true) -- true : preventing inv refresh so we can refresh it only once below.
                                 end
                             end
+
+                            refresh = true
     
                         end
                        
@@ -93,7 +95,7 @@ AddEventHandler("tpz_inventory:startEatablesTimeRemoval", function()
             end
 
             if updated then
-                TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], false, false)
+                TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], refresh, false)
             end
 
         end
