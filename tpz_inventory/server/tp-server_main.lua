@@ -73,7 +73,7 @@ AddEventHandler("tpz_inventory:startEatablesTimeRemoval", function()
 
                             content.metadata.durability = 0 
     
-                            removeItem(_source, content.item, 1, content.itemId, true) -- true : preventing inv refresh so we can refresh it only once below.
+                            removeItemById(_source, content.itemId, true) -- true : preventing inv refresh so we can refresh it only once below.
 
                             if ItemData.newItem then
 
