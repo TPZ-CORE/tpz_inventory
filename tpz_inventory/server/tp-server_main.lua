@@ -44,7 +44,7 @@ AddEventHandler("tpz_inventory:startEatablesTimeRemoval", function()
             end
 
             local inventoryData = PlayerInventory[_source].inventory
-            local updated  = false
+            local updated, refresh  = false, false
 
             local inventoryLength = GetTableLength(inventoryData)
 
@@ -81,12 +81,14 @@ AddEventHandler("tpz_inventory:startEatablesTimeRemoval", function()
                                     addItem(_source, ItemData.newItem, 1)
                                 end
 
+                                refresh = true
                             end
-                                    
-                            updated  = true
-                                    
+    
+                            refresh = true
                         end
-                        
+                       
+                        updated = true
+
                     end
     
                 end
@@ -94,7 +96,7 @@ AddEventHandler("tpz_inventory:startEatablesTimeRemoval", function()
             end
 
             if updated then
-                TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], true, false)
+                TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], refresh, false)
             end
 
         end
