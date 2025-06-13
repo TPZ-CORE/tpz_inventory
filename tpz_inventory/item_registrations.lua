@@ -2962,7 +2962,117 @@ SharedItems = {
         droppable = 1,
         closeInventory = 0 
     },
+    
+    ['pocket_watch'] = {
+        label = "Pocket Watch",
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
 
+    ['pocket_watch_silver'] = {
+        label = "Silver Pocket Watch",
+        weight = 0.2,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['pocket_watch_gold'] = {
+        label = "Golden Pocket Watch",
+        weight = 0.25,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['pocket_watch_platinum'] = {
+        label = "Platinum Pocket Watch",
+        weight = 0.30,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['pocket_watch_antique'] = {
+        label = "Antique Pocket Watch",
+        weight = 0.2,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['pocket_watch_reutlinger'] = {
+        label = "Reutlinger Pocket Watch",
+        weight = 0.25,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['hairpomade'] = {
+        label = "Hair Pomade",
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['cigarette'] = {
+        label = "Cigarette",
+        weight = 0.01,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['cigar'] = {
+        label = "Cigar",
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 0, -- UNIQUE ITEM FOR HAVING DURABILITY ON ITS USE.
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['matches'] = {
+        label = "Matches",
+        weight = 0.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+    
     -- Horses
 
     ['horse_adrenaline_shot'] = {
