@@ -2962,7 +2962,7 @@ SharedItems = {
         droppable = 1,
         closeInventory = 0 
     },
-    
+
     ['pocket_watch'] = {
         label = "Pocket Watch",
         weight = 0.1,
@@ -3051,6 +3051,28 @@ SharedItems = {
         closeInventory = 0 
     },
 
+    ['pipepeace'] = {
+        label = "Pipe Of Peace",
+        weight = 0.2,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE', -- UNIQUE ITEM FOR HAVING DURABILITY ON ITS USE.
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['pipe'] = {
+        label = "Smoking Pipe",
+        weight = 0.2,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE', -- UNIQUE ITEM FOR HAVING DURABILITY ON ITS USE.
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
     ['cigar'] = {
         label = "Cigar",
         weight = 0.1,
@@ -3072,7 +3094,7 @@ SharedItems = {
         droppable = 1,
         closeInventory = 0 
     },
-    
+
     -- Horses
 
     ['horse_adrenaline_shot'] = {
@@ -3129,4 +3151,6 @@ SharedItems = {
         droppable = 1,
         closeInventory = 0 
     },
+
+    
 }
