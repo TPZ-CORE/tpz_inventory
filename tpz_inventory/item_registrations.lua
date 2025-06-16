@@ -2489,14 +2489,13 @@ SharedItems = {
         closeInventory = 0
     },
 
-    -- PASSPORTS
-    ['identitycard'] = {
-        label = 'Identity Card',
+    ['passport'] = {
+        label = 'Passport',
         weight = 0.0,
         remove = 0,
         description = 'nothing',
         action = 'USABLE',
-        stackable = 0,
+        stackable = 0, -- NOT STACKABLE, PASSPORT IS UNIQUE!
         droppable = 1,
         closeInventory = 0
     },
@@ -2622,8 +2621,8 @@ SharedItems = {
         closeInventory = 0
     },
 
-    ['ironhorseshoe'] = {
-        label = 'Iron Horse Shoe',
+    ['regular_horseshoes'] = {
+        label = 'Regular Horse Shoes',
         weight = 0.7,
         remove = 0,
         description = 'nothing',
@@ -2633,8 +2632,8 @@ SharedItems = {
         closeInventory = 0
     },
 
-    ['silverhorseshoe'] = {
-        label = 'Silved Horse Shoe',
+    ['improved_horseshoes'] = {
+        label = 'Improved Horse Shoes',
         weight = 1.0,
         remove = 0,
         description = 'nothing',
@@ -2644,8 +2643,8 @@ SharedItems = {
         closeInventory = 0
     },
 
-    ['goldhorseshoe'] = {
-        label = 'Iron Horse Shoe',
+    ['premium_horseshoes'] = {
+        label = 'Premium Horse Shoes',
         weight = 1.0,
         remove = 0,
         description = 'nothing',
