@@ -212,6 +212,7 @@ function addItem(source, item, quantity, metadata, itemId, preventRefresh)
                         weight = tonumber(itemData.weight), 
                         remove = tonumber(itemData.remove), 
                         type = "item", 
+                        description = metadata.description, 
                         metadata = metadata,
                         action = itemData.action,
                         stackable = itemData.stackable,
