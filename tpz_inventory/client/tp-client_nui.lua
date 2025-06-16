@@ -80,16 +80,15 @@ OpenPlayerInventory = function(refresh)
                 if content.type == 'item' and not Config.UseDatabaseItems then
 
                     content.label          = SharedItems[content.item].label
-                    content.description    = SharedItems[content.item].description
                     content.weight         = SharedItems[content.item].weight
                     content.remove         = SharedItems[content.item].remove
                     content.action         = SharedItems[content.item].action
                     content.stackable      = SharedItems[content.item].stackable
                     content.droppable      = SharedItems[content.item].droppable
                     content.closeInventory = SharedItems[content.item].closeInventory
-                else
-                    content.description = content.metadata.description
                 end
+
+                content.description = content.metadata.description
 
                 content.durability  = content.metadata.durability
                 content.usedType    = 0
