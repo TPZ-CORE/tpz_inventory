@@ -120,7 +120,6 @@ Config.HideDurabilityFromItems = {
     ['crafting_book']            = true,
     ['job_application_document'] = true,
     ['warehousekeys']            = true,
-    ['passport']                 = true,
 }
 
 ---------------------------------------------------------------
