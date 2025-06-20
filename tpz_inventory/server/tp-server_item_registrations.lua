@@ -29,7 +29,7 @@ AddEventHandler("tpz_inventory:useItem", function(itemId, id, item, label, weigh
     local inventoryData = PlayerInventory[_source].inventory
 
     if SharedItems[item] == nil then
-        print("The following item {" .. item .. "} does not exist in the item_registrations.lua")
+        print("The following item {" .. item .. "} does not exist.")
         return
     end
 
