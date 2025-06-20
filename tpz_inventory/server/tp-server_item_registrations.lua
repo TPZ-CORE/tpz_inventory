@@ -39,6 +39,7 @@ AddEventHandler("tpz_inventory:useItem", function(itemId, id, item, label, weigh
             source     = _source, 
 
             name       = item, 
+            item       = item,
             itemId     = itemId, 
             id         = id, 
             label      = label, 
