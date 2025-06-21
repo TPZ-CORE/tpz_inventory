@@ -9,7 +9,9 @@ exports('getInventoryAPI', function()
         unRegisterUsableItem(name)
     end
 
-
+    self.getConfig = function()
+        return Config
+    end
     -- containers
 
     self.getContainerIdByName = function(containerName)
