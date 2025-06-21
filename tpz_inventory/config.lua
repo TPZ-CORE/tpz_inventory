@@ -23,8 +23,8 @@ Config.DisplayMoney      = true
 Config.DisplayBlackMoney = false
 Config.DisplayGold       = true
 
-Config.InventoryMaxWeight      = 40 -- Default is 40KG to carry on the player's inventory.
-Config.InventoryMaxWeightLabel = "40KG"
+Config.InventoryDefaultWeight = 40 -- Default is 40KG to carry on the player's inventory.
+Config.InventoryWeightLabel   = "KG"
 
 -- What would be the distance to check for near players to trade?
 Config.NearPlayersTradeDistance = 2.5
