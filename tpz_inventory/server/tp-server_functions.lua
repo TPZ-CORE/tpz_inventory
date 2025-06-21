@@ -42,7 +42,8 @@ end
 
 function canCarryWeight(source, totalWeight)
 
-    local maxInventoryWeight = Config.InventoryMaxWeight
+    local TPZ                = exports.tpz_core:getCoreAPI()
+    local maxInventoryWeight = TPZ.GetPlayer(source).getInventoryWeightCapacity()
     local currentWeight      = getWeight(source)
 
     if (currentWeight + totalWeight) > maxInventoryWeight then 
