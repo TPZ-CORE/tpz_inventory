@@ -199,7 +199,7 @@ AddEventHandler("tpz_inventory:onTransferItemUpdate", function(inventoryType, it
         SendNUIMessage({ action = "setupPlayerInventoryContents", inventory = PlayerData.Inventory })
     
         local currentWeight = getWeight()
-        SendNUIMessage({ action = "updatePlayerInventoryWeight", weight = round(currentWeight, 3), maxWeight = Config.InventoryMaxWeightLabel })
+        SendNUIMessage({ action = "updatePlayerInventoryWeight", weight = round(currentWeight, 3), maxWeight = PlayerData.InventoryMaxWeight .. Config.InventoryWeightLabel })
 
         -- Setup secondary inventory contents and weight.
         local containerInventoryContents  = containerData.inventory
