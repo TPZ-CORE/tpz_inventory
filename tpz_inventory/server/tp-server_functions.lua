@@ -58,7 +58,9 @@ function canCarryItem(source, item, quantity)
     if SharedItems[item] then
         local itemWeight         = SharedItems[item].weight * quantity
 
-        local maxInventoryWeight = Config.InventoryMaxWeight
+        local TPZ                = exports.tpz_core:getCoreAPI()
+        local maxInventoryWeight = TPZ.GetPlayer(source).getInventoryWeightCapacity()
+
         local currentWeight      = getWeight(source)
     
         if (currentWeight + itemWeight) > maxInventoryWeight then 
@@ -604,7 +606,8 @@ function canCarryWeapon(source, weaponName)
 
         local WeaponData = SharedWeapons.Weapons[string.upper(weaponName)]
 
-        local maxInventoryWeight = Config.InventoryMaxWeight
+        local TPZ                = exports.tpz_core:getCoreAPI()
+        local maxInventoryWeight = TPZ.GetPlayer(source).getInventoryWeightCapacity()
         local currentWeight      = getWeight(_source)
     
         if (currentWeight + WeaponData.weight) > maxInventoryWeight then return false else return true end
