@@ -86,8 +86,9 @@ exports('getInventoryAPI', function()
         return getWeight(source)
     end
 
-    self.getInventoryMaxWeight = function()
-        return Config.InventoryMaxWeight
+    self.getInventoryMaxWeight = function(source)
+        local TPZ = exports.tpz_core:getCoreAPI()
+        return TPZ.GetPlayer(source).getInventoryWeightCapacity()
     end
 
     self.getItemQuantity = function(source, item)
