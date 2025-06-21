@@ -38,7 +38,7 @@ AddEventHandler("tpz_core:isPlayerReady", function(newChar)
         return
     end
 
-    PlayerData.InventoryMaxWeight = data.inventoryWeight
+    PlayerData.InventoryMaxWeight = data.inventoryMaxWeight
 
     TriggerServerEvent("tpz_inventory:requestPlayerInventoryContents", newChar)
     PlayerData.IsReady = true
@@ -88,7 +88,7 @@ if Config.DevMode then
             return
         end
 
-        PlayerData.InventoryMaxWeight = data.inventoryWeight
+        PlayerData.InventoryMaxWeight = data.inventoryMaxWeight
 
         CreatePrompts()
         
