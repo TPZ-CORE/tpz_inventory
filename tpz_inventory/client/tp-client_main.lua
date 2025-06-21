@@ -7,6 +7,7 @@ local PlayerData = {
     IsSecondaryInventoryOpen = false,
     IsPickingUp              = false,
     Inventory                = {},
+    InventoryMaxWeight       = 0,
 }
 
 -----------------------------------------------------------
@@ -30,6 +31,14 @@ AddEventHandler("tpz_core:isPlayerReady", function(newChar)
     if Config.DevMode then
         return
     end
+
+    local data = exports.tpz_core:getCoreAPI().GetPlayerClientData()
+
+    if data == nil then
+        return
+    end
+
+    PlayerData.InventoryMaxWeight = data.inventoryWeight
 
     TriggerServerEvent("tpz_inventory:requestPlayerInventoryContents", newChar)
     PlayerData.IsReady = true
@@ -72,6 +81,15 @@ end)
 if Config.DevMode then
         
     Citizen.CreateThread(function()
+
+        local data = exports.tpz_core:getCoreAPI().GetPlayerClientData()
+
+        if data == nil then
+            return
+        end
+
+        PlayerData.InventoryMaxWeight = data.inventoryWeight
+
         CreatePrompts()
         
         SetNuiFocus(false, false)
