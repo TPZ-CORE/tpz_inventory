@@ -154,7 +154,7 @@ OpenPlayerInventory = function(refresh)
     
         local currentWeight = getWeight()
 
-        SendNUIMessage({ action = "updatePlayerInventoryWeight", weight = round(currentWeight, 3), maxWeight = Config.InventoryMaxWeightLabel })
+        SendNUIMessage({ action = "updatePlayerInventoryWeight", weight = round(currentWeight, 3), maxWeight = account.inventoryWeight .. Config.InventoryWeightLabel })
 
         if not refresh then
 
