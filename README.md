@@ -15,11 +15,11 @@
 
 @param [source] : The online Player ID
 
-| Command                                        | Ace Permission                   | Description
-|------------------------------------------------|----------------------------------|----------------------------------------------|
-| additem [source] [itemName] [quantity]         | tpzcore.inventory.additem        | Gives an item quantity to the selected player source.            |
-| addweapon [source] [weaponName] [serialNumber] | tpzcore.inventory.addweapon      | Gives a weapon to the selected player source.                    |
-| clearinventory [source]                        | tpzcore.inventory.clearinventory | Clears all the inventory contents of the selected player source. |
+| Command                                        | Ace Permission                   | Description                                                      | Console / TXAdmin Console Support |
+|------------------------------------------------|----------------------------------|------------------------------------------------------------------|------------------------------------|
+| additem [source] [itemName] [quantity]         | tpzcore.inventory.additem        | Gives an item quantity to the selected player source.            | Yes |
+| addweapon [source] [weaponName] [serialNumber] | tpzcore.inventory.addweapon      | Gives a weapon to the selected player source.                    | Yes |
+| clearinventory [source]                        | tpzcore.inventory.clearinventory | Clears all the inventory contents of the selected player source. | Yes |
 
 - The ace permission: `tpzcore.all` Gives permissioms to all commands and actions (FOR ALL OFFICIAL PUBLISHED FREE SCRIPTS).
 - The ace permission: `tpzcore.inventory.all` Gives permissions to all commands ONLY for this script.
