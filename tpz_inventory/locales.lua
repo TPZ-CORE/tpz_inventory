@@ -2,6 +2,9 @@ Locales = {}
 
 
 Locales = {
+
+    ['INCORRECT_SYNTAX']                      = "~e~ERROR: Use Correct Syntax",
+    
     ['INVENTORY_ACCOUNT_MONEY']               = "Money",
     ['INVENTORY_ACCOUNT_MONEY_DESC']          = "You have $%s Dollars.",
 
