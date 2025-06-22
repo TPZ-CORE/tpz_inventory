@@ -194,3 +194,31 @@ Config.Webhooks = {
     },
 
 }
+
+-----------------------------------------------------------
+--[[ Notification Functions ]]--
+-----------------------------------------------------------
+
+-- @param source : The source always null when called from client.
+-- @param source : The source (0) is called from txadmin.
+-- @param source : The source if not null and not (0), is a player object.
+
+-- @param type   : returns "error", "success", "info"
+-- @param duration : the notification duration in milliseconds
+function SendCommandNotification(source, message, type, duration) -- ONLY RELATED TO COMMANDS.
+
+	if not duration then
+		duration = 3000
+	end
+
+    if source == nil then -- CLIENT SIDE
+        TriggerEvent('tpz_core:sendBottomTipNotification', message, duration)
+
+    elseif source == 0 then -- CONSOLE - NO DURATION SUPPORT OR TYPE.
+        print(message:gsub("~e~", '^1') .. '^0')
+
+    elseif source and source ~= 0 then -- PLAYER OBJECT
+        TriggerClientEvent('tpz_core:sendBottomTipNotification', source, message, duration)
+    end
+  
+end
