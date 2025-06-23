@@ -2201,6 +2201,39 @@ SharedItems = {
         closeInventory = 0 
     },
 
+    ['indian_tobacco'] = { 
+        label = 'Indian Tobacco Leafs',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['tobacco'] = { 
+        label = 'Tobacco Leafs',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['leaf'] = { 
+        label = 'Leafs',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
     -- BEEKEEPING
     ['apiary_bee_house_gk_1'] = {
         label = 'Apiary',
