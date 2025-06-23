@@ -2687,9 +2687,9 @@ SharedItems = {
         closeInventory = 0
     },
 
-    ['weapon_screws'] = {
+['weapon_screws'] = {
         label = 'Weapon Screw',
-        weight = 0.01,
+        weight = 0.05,
         remove = 0,
         description = 'nothing',
         action = 'NONE',
@@ -2700,7 +2700,7 @@ SharedItems = {
 
     ['weapon_spring'] = {
         label = 'Weapon Spring',
-        weight = 0.01,
+        weight = 0.3,
         remove = 0,
         description = 'nothing',
         action = 'NONE',
@@ -2711,7 +2711,40 @@ SharedItems = {
 
     ['weapon_trigger'] = {
         label = 'Weapon Trigger',
-        weight = 0.01,
+        weight = 0.3,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['weapon_cylinder'] = {
+        label = 'Weapon Cylinder',
+        weight = 0.7,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['weapon_barrel'] = {
+        label = 'Weapon Barrel',
+        weight = 1.5,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['weapon_stock'] = {
+        label = 'Weapon Stock',
+        weight = 1.0,
         remove = 0,
         description = 'nothing',
         action = 'NONE',
