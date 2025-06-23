@@ -1747,6 +1747,17 @@ SharedItems = {
         closeInventory = 0 
     },
 
+    ['a_c_crawfish_01'] = { 
+        label = 'Crawfish',                       
+        weight = 0.2,  
+        remove = 1, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
     -- FARMING GENERAL ITEMS
     ['fertilizer'] = { 
         label = 'Fertilizer',                       
@@ -2200,7 +2211,7 @@ SharedItems = {
         droppable = 1, 
         closeInventory = 0 
     },
-
+    
     ['indian_tobacco'] = { 
         label = 'Indian Tobacco Leafs',                       
         weight = 0.01,  
@@ -2232,6 +2243,74 @@ SharedItems = {
         stackable = 1, 
         droppable = 1, 
         closeInventory = 0 
+    },
+
+    ['flour'] = {
+        label = 'Flour',                       
+        weight = 0.3,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    -- TRAPS
+
+    ['trap_crab'] = {
+        label = 'Crabs Trap',
+        weight = 1.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['trap_fish'] = {
+        label = 'Fishes Trap',
+        weight = 1.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['trap_bird'] = {
+        label = 'Birds Trap',
+        weight = 1.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['trap_smallanimal'] = {
+        label = 'Small Animals Trap',
+        weight = 1.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['trap_reptile'] = {
+        label = 'Reptiles Trap',
+        weight = 1.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
     },
 
     -- BEEKEEPING
@@ -2642,6 +2721,18 @@ SharedItems = {
         droppable = 1,
         closeInventory = 0
     },
+    
+    ['wooden_nails'] = {
+        label = 'Wooden Nails',
+        weight = 0.05,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
 
     ['wrench'] = {
         label = 'Wrench',
@@ -2687,7 +2778,7 @@ SharedItems = {
         closeInventory = 0
     },
 
-['weapon_screws'] = {
+    ['weapon_screws'] = {
         label = 'Weapon Screw',
         weight = 0.05,
         remove = 0,
