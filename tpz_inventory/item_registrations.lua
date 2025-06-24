@@ -1449,6 +1449,1079 @@ SharedItems = {
         closeInventory = 1 
     },
 
+    -- ANIMAL MODELS (ANIMAL MODELS BY DEFAULT ARE NOT USABLE ITEMS, THEY ARE MOSTLY FOR CRAFTING RECIPES OR SELLING TO BUTCHER?)
+
+    -- start of frogs
+
+    ['a_c_toad_01'] = { 
+        label = 'Toad',                       
+        weight = 0.2,  
+        remove = 1, 
+        description = 'Amphibia', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_toad_01-0'] = { 
+        label = 'Toad',                       
+        weight = 0.2,  
+        remove = 1, 
+        description = 'Amphibia', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_toad_01-1'] = { 
+        label = 'Poisonous Toad',                       
+        weight = 0.2,  
+        remove = 1, 
+        description = 'Amphibia', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_frogbull_01'] = { 
+        label = 'Frogbull',                       
+        weight = 0.2,  
+        remove = 1, 
+        description = 'Amphibia', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_frogbull_01-0'] = { 
+        label = 'Frogbull',                       
+        weight = 0.2,  
+        remove = 1, 
+        description = 'Amphibia', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_frogbull_01-1'] = { 
+        label = 'Poisonous Frogbull',                       
+        weight = 0.2,  
+        remove = 1, 
+        description = 'Amphibia', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    }, -- end of frogs
+
+    -- start of snakes
+
+    ['a_c_snake_01'] = { 
+        label = 'Diamondback Rattlesnake',                       
+        weight = 1.2,  
+        remove = 1, 
+        description = 'Reptile', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_snake_01-0'] = { 
+        label = 'Diamondback Rattlesnake',                       
+        weight = 1.2,  
+        remove = 1, 
+        description = 'Reptile', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    
+    ['a_c_snake_01-1'] = { 
+        label = 'Diamondback Rattlesnake',                       
+        weight = 1.2,  
+        remove = 1, 
+        description = 'Reptile', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_snake_01-2'] = { 
+        label = 'Timber Rattlesnake',                       
+        weight = 1.2,  
+        remove = 1, 
+        description = 'Reptile', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_snakewater_01'] = { 
+        label = 'Midland Water Snake',                       
+        weight = 0.3,  
+        remove = 1, 
+        description = 'Reptile', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+
+    ['a_c_snakewater_01-0'] = { 
+        label = 'Midland Water Snake',                       
+        weight = 0.3,  
+        remove = 1, 
+        description = 'Reptile', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_snakewater_01-1'] = { 
+        label = 'Cottonmouth Water Snake',                       
+        weight = 0.3,  
+        remove = 1, 
+        description = 'Reptile', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    
+    ['a_c_snakewater_01-2'] = { 
+        label = 'Northern Water Snake',                       
+        weight = 0.3,  
+        remove = 1, 
+        description = 'Reptile', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_snakewater_01-2'] = { 
+        label = 'Northern Water Snake',                       
+        weight = 0.3,  
+        remove = 1, 
+        description = 'Reptile', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_snakewater_01-2'] = { 
+        label = 'Northern Water Snake',                       
+        weight = 0.3,  
+        remove = 1, 
+        description = 'Reptile', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_snakeredboa_01'] = { 
+        label = 'Red Tailed Boa',                       
+        weight = 4.0,  
+        remove = 1, 
+        description = 'Reptile', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_snakeredboa_01-0'] = { 
+        label = 'Red Tailed Boa',                       
+        weight = 4.0,  
+        remove = 1, 
+        description = 'Reptile', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+    
+    ['a_c_snakeredboa_01-1'] = { 
+        label = 'Sunglow Boa',                       
+        weight = 4.0,  
+        remove = 1, 
+        description = 'Reptile', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_snakeredboa_01-2'] = { 
+        label = 'Rainbow Boa',                       
+        weight = 4.0,  
+        remove = 1, 
+        description = 'Reptile', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_snakeferdelance_01'] = { 
+        label = 'Fer-de-lance Copperhead Snake',                       
+        weight = 0.3,  
+        remove = 1, 
+        description = 'Reptile', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_snakeferdelance_01-0'] = { 
+        label = 'Fer-de-lance Copperhead Snake',                       
+        weight = 0.3,  
+        remove = 1, 
+        description = 'Reptile', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_snakeferdelance_01-1'] = { 
+        label = 'Southern Copperhead Snake',                       
+        weight = 0.3,  
+        remove = 1, 
+        description = 'Reptile', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_snakeferdelance_01-2'] = { 
+        label = 'Northern Copperhead Snake',                       
+        weight = 0.3,  
+        remove = 1, 
+        description = 'Reptile', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_snakeblacktailrattle_01'] = { 
+        label = 'Black-Tailed Rattlesnake',                       
+        weight = 3.0,  
+        remove = 1, 
+        description = 'Reptile', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_snakeblacktailrattle_01-0'] = { 
+        label = 'Black-Tailed Rattlesnake',                       
+        weight = 3.0,  
+        remove = 1, 
+        description = 'Reptile', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_snakeblacktailrattle_01-1'] = { 
+        label = 'Black-Tailed Rattlesnake',                       
+        weight = 3.0,    
+        remove = 1, 
+        description = 'Reptile', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    }, -- end of snakes
+
+    -- start of mammals.
+
+    ['a_c_squirrel_01'] = { 
+        label = 'Gray Squirrel',                       
+        weight = 0.3,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_squirrel_01-0'] = { 
+        label = 'Gray Squirrel',                       
+        weight = 0.3,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_squirrel_01-1'] = { 
+        label = 'Gray Squirrel',                       
+        weight = 0.3,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_squirrel_01-2'] = { 
+        label = 'Gray Squirrel',                       
+        weight = 0.3,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_squirrel_01-3'] = { 
+        label = 'Black Squirrel',                       
+        weight = 0.3,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_squirrel_01-4'] = { 
+        label = 'Red Squirrel',                       
+        weight = 0.3,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_badger_01'] = { 
+        label = 'Gray Badger',                       
+        weight = 4.0,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_badger_01-0'] = { 
+        label = 'Gray Badger',                       
+        weight = 4.0,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_badger_01-1'] = { 
+        label = 'American Badger',                       
+        weight = 4.0,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    }, 
+
+    ['a_c_possum_01'] = { 
+        label = 'Opossum',                       
+        weight = 1.5,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_possum_01-0'] = { 
+        label = 'Opossum',                       
+        weight = 1.5,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_possum_01-1'] = { 
+        label = 'Opossum',                       
+        weight = 1.5,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_possum_01-2'] = { 
+        label = 'Opossum',                       
+        weight = 1.5,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    }, 
+
+    ['a_c_rabbit_01'] = { 
+        label = 'Rabbit',                       
+        weight = 1.5,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_rabbit_01-0'] = { 
+        label = 'Rabbit',                       
+        weight = 1.5,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_rabbit_01-1'] = { 
+        label = 'Rabbit',                       
+        weight = 1.2,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_rabbit_01-2'] = { 
+        label = 'Rabbit',                       
+        weight = 1.2,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_rabbit_01-3'] = { 
+        label = 'Rabbit',                       
+        weight = 1.2,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    }, 
+
+    ['a_c_raccoon_01'] = { 
+        label = 'Raccoon',                       
+        weight = 4.0,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_raccoon_01-0'] = { 
+        label = 'Raccoon',                       
+        weight = 4.0,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_raccoon_01-1'] = { 
+        label = 'Raccoon',                       
+        weight = 4.0,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_raccoon_01-2'] = { 
+        label = 'Raccoon',                       
+        weight = 4.0,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_raccoon_01-3'] = { 
+        label = 'Raccoon',                       
+        weight = 4.0,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    }, 
+
+    ['a_c_muskrat_01'] = { 
+        label = 'American Muskrat',                       
+        weight = 0.8,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_muskrat_01-0'] = { 
+        label = 'American Muskrat',                       
+        weight = 0.8,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+    
+    ['a_c_muskrat_01-1'] = { 
+        label = 'American Muskrat',                       
+        weight = 0.8,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    }, 
+    ['a_c_skunk_01'] = { 
+        label = 'Skunk',                       
+        weight = 0.8,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+
+    ['a_c_skunk_01-0'] = { 
+        label = 'Skunk',                       
+        weight = 0.8,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_skunk_01-0'] = { 
+        label = 'Skunk',                       
+        weight = 0.8,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_chipmunk_01'] = { 
+        label = 'Chipmunk',                       
+        weight = 0.6,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    }, 
+
+    ['a_c_rat_01'] = { 
+        label = 'Rat',                       
+        weight = 0.4,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_rat_01-0'] = { 
+        label = 'Rat',                       
+        weight = 0.4,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_rat_01-1'] = { 
+        label = 'Gray Rat',                       
+        weight = 0.4,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    
+    ['a_c_rat_01-2'] = { 
+        label = 'Mangy Rat',                       
+        weight = 0.4,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    
+    ['a_c_rat_01-3'] = { 
+        label = 'Brown Rat',                       
+        weight = 0.4,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_rat_01-4'] = { 
+        label = 'Black Rat',                       
+        weight = 0.4,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    }, 
+
+    ['a_c_armadillo_01'] = { 
+        label = 'Armadillo',                       
+        weight = 10.0,  
+        remove = 1, 
+        description = 'Mammals', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    }, 
+    
+    -- end of mammals
+
+    -- start of Aves
+
+    ['a_c_cedarwaxwing_01'] = { 
+        label = 'Cedar Waxwing',                       
+        weight = 0.032,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_cedarwaxwing_01-0'] = { 
+        label = 'Cedar Waxwing',                       
+        weight = 0.032,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_cedarwaxwing_01-1'] = { 
+        label = 'Cedar Waxwing',                       
+        weight = 0.032,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_cedarwaxwing_01-2'] = { 
+        label = 'Cedar Waxwing',                       
+        weight = 0.032,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_cardinal_01'] = { 
+        label = 'Cardinal',                       
+        weight = 0.032,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_cardinal_01-0'] = { 
+        label = 'Cardinal',                       
+        weight = 0.032,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_cardinal_01-1'] = { 
+        label = 'Cardinal',                       
+        weight = 0.032,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_cardinal_01-2'] = { 
+        label = 'Cardinal',                       
+        weight = 0.032,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_bluejay_01'] = { 
+        label = 'Bluejay',                       
+        weight = 0.032,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_bluejay_01-0'] = { 
+        label = 'Bluejay',                       
+        weight = 0.032,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_bluejay_01-1'] = { 
+        label = 'Bluejay',                       
+        weight = 0.032,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_carolinaparakeet_01'] = { 
+        label = 'Carolina Parakeet',                       
+        weight = 0.032,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_oriole_01'] = { 
+        label = 'Hooded Oriole',                       
+        weight = 0.032,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_oriole_01-0'] = { 
+        label = 'Hooded Oriole',                       
+        weight = 0.032,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_oriole_01-1'] = { 
+        label = 'Baltimore Oriole',                       
+        weight = 0.032,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_pigeon'] = { 
+        label = 'Pigeon',                       
+        weight = 0.032,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_pigeon-0'] = { 
+        label = 'Pigeon',                       
+        weight = 0.032,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_robin_01'] = { 
+        label = 'Robin',                       
+        weight = 0.032,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_robin_01-0'] = { 
+        label = 'Robin',                       
+        weight = 0.032,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_woodpecker_01'] = { 
+        label = 'Woodpecker',                       
+        weight = 0.1,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_woodpecker_01-0'] = { 
+        label = 'Woodpecker',                       
+        weight = 0.1,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_woodpecker_02'] = { 
+        label = 'Woodpecker',                       
+        weight = 0.1,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_woodpecker_02-0'] = { 
+        label = 'Woodpecker',                       
+        weight = 0.1,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_sparrow_01'] = { 
+        label = 'Sparrow',                       
+        weight = 0.1,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_sparrow_01-0'] = { 
+        label = 'Sparrow',                       
+        weight = 0.03,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_sparrow_01-1'] = { 
+        label = 'Sparrow',                       
+        weight = 0.03,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_sparrow_01-2'] = { 
+        label = 'Sparrow',                       
+        weight = 0.03,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_songbird_01'] = { 
+        label = 'Songbird',                       
+        weight = 0.1,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_songbird_01-0'] = { 
+        label = 'Songbird',                       
+        weight = 0.03,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_songbird_01-1'] = { 
+        label = 'Songbird',                       
+        weight = 0.03,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_crow_01'] = { 
+        label = 'Crow',                       
+        weight = 0.65,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['a_c_crow_01-0'] = { 
+        label = 'Crow',                       
+        weight = 0.65,  
+        remove = 1, 
+        description = 'Aves', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
     -- FISH MODELS (FISHES BY DEFAULT ARE NOT USABLE ITEMS, THEY ARE MOSTLY REQUIRED FOR CRAFTING RECIPES, IF YOU WANT YOUR PLAYER TO EAT THEM, CHANGE THE ACTION TO EATABLE)
     ['a_c_fishbluegil_01_ms'] = { 
         label = 'Blue Gil (Medium)',                       
@@ -2645,6 +3718,64 @@ SharedItems = {
         closeInventory = 0
     },
 
+    
+    -- Horses
+
+    ['horse_adrenaline_shot'] = {
+        label = "Horse Adrenaline Shot",
+        weight = 0.3,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['unique_brad_horsesugar'] = {
+        label = "Brad Horse Sugar",
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['consumable_haycube'] = {
+        label = "Horse Adrenaline Shot",
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['horsemeal'] = {
+        label = "Horse Adrenaline Shot",
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['horsebrush'] = {
+        label = "Horse Brush",
+        weight = 0.3,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 0, -- BRUSH HAS DURABILITY FOR ITS USES BY DEFAULT
+        droppable = 1,
+        closeInventory = 0 
+    },
+
     -- OTHER
     ['crafting_book'] = {
         label = 'Crafting Book',
@@ -3251,62 +4382,80 @@ SharedItems = {
         closeInventory = 0 
     },
 
-    -- Horses
-
-    ['horse_adrenaline_shot'] = {
-        label = "Horse Adrenaline Shot",
-        weight = 0.3,
-        remove = 0,
-        description = 'nothing',
-        action = 'USABLE',
-        stackable = 1,
-        droppable = 1,
-        closeInventory = 0 
-    },
-
-    ['unique_brad_horsesugar'] = {
-        label = "Brad Horse Sugar",
+    ['warehousekeys'] = {
+        label = 'Warehouse Keys',
         weight = 0.1,
         remove = 0,
         description = 'nothing',
-        action = 'USABLE',
-        stackable = 1,
+        action = 'NONE',
+        stackable = 0,
         droppable = 1,
-        closeInventory = 0 
+        closeInventory = 0
     },
 
-    ['consumable_haycube'] = {
-        label = "Horse Adrenaline Shot",
+    ['motelkeys'] = {
+        label = 'Motel Keys',
         weight = 0.1,
         remove = 0,
         description = 'nothing',
-        action = 'USABLE',
-        stackable = 1,
+        action = 'NONE',
+        stackable = 0,
         droppable = 1,
-        closeInventory = 0 
+        closeInventory = 0
     },
 
-    ['horsemeal'] = {
-        label = "Horse Adrenaline Shot",
+    ['goldbracelet'] = {
+        label = 'Golden Bracelet',
+        weight = 0.05,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['goldnecklace'] = {
+        label = 'Golden Necklace',
+        weight = 0.15,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['goldring'] = {
+        label = 'Golden Ring',
         weight = 0.1,
         remove = 0,
         description = 'nothing',
-        action = 'USABLE',
+        action = 'NONE',
         stackable = 1,
         droppable = 1,
-        closeInventory = 0 
+        closeInventory = 0
     },
-
-    ['horsebrush'] = {
-        label = "Horse Brush",
-        weight = 0.3,
-        remove = 0,
-        description = 'nothing',
-        action = 'USABLE',
-        stackable = 0, -- BRUSH HAS DURABILITY FOR ITS USES BY DEFAULT
-        droppable = 1,
-        closeInventory = 0 
-    },
-
     
+    ['goldtooth'] = {
+        label = 'Golden Tooth',
+        weight = 0.03,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['goldcoin'] = {
+        label = 'Golden Coin',
+        weight = 0.3,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
 }
