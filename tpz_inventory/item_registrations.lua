@@ -280,6 +280,7 @@ SharedItems = {
     },
 
 -- [ VEG & FRUITS - NOT EATABLES ]
+
     ['consumable_tomato'] = {
         label = 'Tomato',
         weight = 0.1,
@@ -356,6 +357,458 @@ SharedItems = {
         droppable = 1,
         closeInventory = 0
     },
+
+    ['opium'] = {
+        label = 'Opium',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['indian_tobacco'] = { 
+        label = 'Indian Tobacco Leafs',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['tobacco'] = { 
+        label = 'Tobacco Leafs',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['milk_weed'] = { 
+        label = 'Milk Weed',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['alaskan_ginseng'] = { 
+        label = 'Alaskan Ginseng',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['wild_mint'] = { 
+        label = 'Wild Mint',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['creekplum'] = { 
+        label = 'Creekplum',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['creeking_thyme'] = { 
+        label = 'Creeking Thyme',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['oregano'] = { 
+        label = 'Oregano',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['chanterelles'] = { 
+        label = 'Chanterelles',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['agarita'] = { 
+        label = 'Agarita',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['hummingbird_sage'] = { 
+        label = 'Hummingbird Sage',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['prairie_poppy'] = { 
+        label = 'Prairie Poppy',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['black_berry'] = { 
+        label = 'Black Berry',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['violet_snowdrop'] = { 
+        label = 'Violet Snowdrop',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['red_raspberry'] = { 
+        label = 'Red Raspberry',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['yarrow'] = { 
+        label = 'Yarrow',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['wild_rhubarb'] = { 
+        label = 'Wild Rhubarb',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['english_mace'] = { 
+        label = 'English Mace',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['bulrush'] = { 
+        label = 'Bulrush',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['cardinal_flower'] = { 
+        label = 'Cardinal Flower',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['wintergreen_berry'] = { 
+        label = 'Wintergreen Berry',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['blood_flower'] = { 
+        label = 'Blood Flower',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['rams_head'] = { 
+        label = 'Rams Head',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['wisteria'] = { 
+        label = 'Wisteria',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['red_sage'] = { 
+        label = 'Red Sage',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['bay_bolete'] = { 
+        label = 'Bay Bolete',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['evergreen_huckleberry'] = { 
+        label = 'Evergreen Huckleberry',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['harrietum_officinalis'] = { 
+        label = 'Harrietum Officinalis',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['bitter_weed'] = { 
+        label = 'Bitter Weed',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['wild_feverfew'] = { 
+        label = 'Wild Feverfew',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['parasol_mushroom'] = { 
+        label = 'Parasol Mushroom',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['american_ginseng'] = { 
+        label = 'American Ginseng',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['choc_daisy'] = { 
+        label = 'Choc Daisy',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['oleander_sage'] = { 
+        label = 'Oleander Sage',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['desert_sage'] = { 
+        label = 'Desert Sage',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+    
+    ['golden_currant'] = { 
+        label = 'Golden Currant',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['black_currant'] = { 
+        label = 'Black Currant',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['texas_bonnet'] = { 
+        label = 'Texas Bonnet',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['leaf'] = { 
+        label = 'Leafs',                       
+        weight = 0.0,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['flour'] = {
+        label = 'Flour',                       
+        weight = 0.3,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
 
     -- [ DRINKABLES ]
     ['consumable_water_bottle'] = {
@@ -3280,50 +3733,6 @@ SharedItems = {
         remove = 0, 
         description = 'Seeds', 
         action = 'USABLE', 
-        stackable = 1, 
-        droppable = 1, 
-        closeInventory = 0 
-    },
-    
-    ['indian_tobacco'] = { 
-        label = 'Indian Tobacco Leafs',                       
-        weight = 0.01,  
-        remove = 0, 
-        description = 'nothing', 
-        action = 'NONE', 
-        stackable = 1, 
-        droppable = 1, 
-        closeInventory = 0 
-    },
-
-    ['tobacco'] = { 
-        label = 'Tobacco Leafs',                       
-        weight = 0.01,  
-        remove = 0, 
-        description = 'nothing', 
-        action = 'NONE', 
-        stackable = 1, 
-        droppable = 1, 
-        closeInventory = 0 
-    },
-
-    ['leaf'] = { 
-        label = 'Leafs',                       
-        weight = 0.01,  
-        remove = 0, 
-        description = 'nothing', 
-        action = 'NONE', 
-        stackable = 1, 
-        droppable = 1, 
-        closeInventory = 0 
-    },
-
-    ['flour'] = {
-        label = 'Flour',                       
-        weight = 0.3,  
-        remove = 0, 
-        description = 'nothing', 
-        action = 'NONE', 
         stackable = 1, 
         droppable = 1, 
         closeInventory = 0 
