@@ -1,12 +1,12 @@
 exports('getInventoryAPI', function()
     local self = {}
 
-    self.registerUsableItem = function(name, script, cb) 
-        registerUsableItem(name, script, cb)
+    self.registerUsableItem = function(item, script, cb) 
+        registerUsableItem(item, script, cb)
     end
 
-    self.unRegisterUsableItem = function(name) 
-        unRegisterUsableItem(name)
+    self.unRegisterUsableItem = function(item) 
+        unRegisterUsableItem(item)
     end
 
     self.getConfig = function()
