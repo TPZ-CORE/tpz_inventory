@@ -208,10 +208,14 @@ function addItem(source, item, quantity, metadata, itemId, preventRefresh)
                     end
 
                     local ItemParameters = {
+                        id = itemId,
                         item = item, 
                         itemId = itemId,
                         quantity = 1,
+                        count = 1,
+                        amount = 1,
                         label = itemData.label, 
+                        name = itemData.label,
                         weight = tonumber(itemData.weight), 
                         remove = tonumber(itemData.remove), 
                         type = "item", 
@@ -243,6 +247,8 @@ function addItem(source, item, quantity, metadata, itemId, preventRefresh)
                         if tostring(content.item) == tostring(item) then
     
                             content.quantity = content.quantity + quantity
+                            content.count    = content.quantity
+                            content.amount   = content.quantity
     
                             finished = true
                             exist    = true
@@ -266,11 +272,14 @@ function addItem(source, item, quantity, metadata, itemId, preventRefresh)
                 if not exist then
 
                     local ItemParameters = {
-                        --id = tonumber(itemData.id), 
+                        id = 0, 
                         item = item, 
                         itemId = 0,
                         quantity = tonumber(quantity),
+                        count = tonumber(quantity),
+                        amount = tonumber(quantity),
                         label = itemData.label, 
+                        name = itemData.label,
                         weight = tonumber(itemData.weight), 
                         remove = tonumber(itemData.remove), 
                         type = "item", 
@@ -345,6 +354,8 @@ function removeItem(source, item, quantity, itemId, preventRefresh)
                     if tonumber(itemData.stackable) == 1 then -- If the item is stackable, we remove the quantity from that item.
     
                         content.quantity = content.quantity - quantity
+                        content.count    = content.quantity
+                        content.amount   = content.quantity
      
                         if content.quantity <= 0 then
                             table.remove(inventory, index)
@@ -482,11 +493,14 @@ function addWeapon(source, weaponName, weaponItemId, metadata)
            -- end
 
             local ItemParameters = {
-                id             = 0, 
+                id             = weaponItemId,
                 item           = string.lower(weaponName), 
                 itemId         = weaponItemId,
                 quantity       = 1,
+                count          = 1,
+                amount         = 1,
                 label          = WeaponData.label, 
+                name           = WeaponData.label,
                 weight         = WeaponData.weight, 
                 remove         = 0, 
                 type           = "weapon", 
