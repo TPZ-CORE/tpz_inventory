@@ -78,10 +78,12 @@ function LoadPlayerInventoryContents(source, identifier, charId, newChar)
             
             if tonumber(newChar) == 1 then
 
-                local hasStartItems, hasStartWeapons = exports.tpz_core:rServerAPI().HasStartItems(), exports.tpz_core:rServerAPI().HasStartWeapons()
+                local CoreConfig = exports.tpz_core:getCoreAPI().GetConfig().NewCharacter
+
+                local hasStartItems, hasStartWeapons = CoreConfig.StartItems.Enabled, CoreConfig.StartWeapons.Enabled
     
                 if hasStartItems then
-                    local startItemsList = exports.tpz_core:rServerAPI().GetStartItemsList()
+                    local startItemsList = CoreConfig.StartItems.Items
  
                     for item, quantity in pairs (startItemsList) do
                         addItem(_source, item, quantity)
@@ -90,7 +92,7 @@ function LoadPlayerInventoryContents(source, identifier, charId, newChar)
                 end
     
                 if hasStartWeapons then
-                    local startWeaponsList = exports.tpz_core:rServerAPI().GetStartWeaponsList()
+                    local startWeaponsList = CoreConfig.StartWeapons.Weapons
     
                     for _, weaponName in pairs (startWeaponsList) do
                         addWeapon(_source, weaponName)
