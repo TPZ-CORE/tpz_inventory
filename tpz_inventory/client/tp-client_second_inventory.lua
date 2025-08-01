@@ -129,7 +129,7 @@ end)
 
 RegisterNetEvent('tpz_inventory:onTransferItemUpdate')
 AddEventHandler("tpz_inventory:onTransferItemUpdate", function(inventoryType, item)
-
+	local WeaponAPI  = exports.tpz_weapons:getWeaponsAPI()
     local content    = item
     local PlayerData = GetPlayerData()
 
@@ -161,8 +161,8 @@ AddEventHandler("tpz_inventory:onTransferItemUpdate", function(inventoryType, it
             if not SharedWeapons.Weapons[string.upper(content.item)].displayDurability then
                 content.durability  = -1
             end
-
-            local WeaponData = GetUsedWeaponData()
+                    
+            local WeaponData = WeaponAPI.getUsedWeaponData()
 
             if WeaponData.weaponId == content.itemId then
                 content.usedType = 1
@@ -188,7 +188,7 @@ AddEventHandler("tpz_inventory:onTransferItemUpdate", function(inventoryType, it
 
             if content.type == "weapon" then
                     
-                local WeaponData = GetUsedWeaponData()
+                local WeaponData = WeaponAPI.getUsedWeaponData()
 
                 if WeaponData.weaponId == content.itemId then
                     content.usedType = 1
@@ -238,3 +238,4 @@ RegisterNUICallback('nui:transferItem', function(data)
 
     TriggerServerEvent("tpz_inventory:transferContainerItem", CURRENT_CONTAINER_ID, inventoryType, item, quantity)
 end)
+
