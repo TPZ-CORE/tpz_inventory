@@ -34,7 +34,7 @@ RegisterNUICallback('setAmmoType', function(data)
 
 	local ammo = GetAmmoInPedWeapon(PlayerPedId(), GetHashKey(UsedWeapon.hash))
 
-	if ammo ~= 0 then
+	if ammo <= 1 then
 		TriggerEvent('tpz_core:sendBottomTipNotification', Locales['CANNOT_CHANGE_TYPE'], 4000)
 		return
 	end
@@ -80,3 +80,4 @@ RegisterNUICallback('setAmmoType', function(data)
 	end)
 
 end)
+
