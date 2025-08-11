@@ -25,9 +25,9 @@ end
 -- You dont have to worry about DevTools and injections, its literally impossible for someone
 -- to find the weapon name and the weaponId to remove.
 RegisterServerEvent("tpz_inventory:removeWeaponByWeaponId")
-AddEventHandler("tpz_inventory:removeWeaponByWeaponId", function(weaponName, weaponId)
+AddEventHandler("tpz_inventory:removeWeaponByWeaponId", function(weaponId)
     local _source = source
-    removeWeapon(_source, weapon, weaponId)
+    removeWeaponById(_source, weaponId)
 end)
 
 -- We don't mind the specified event to be triggered through devtools or injection, it does not cause anything.
@@ -167,5 +167,31 @@ AddEventHandler("tpz_inventory:setWeaponMetadata", function(weaponId, type, valu
         TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], false, false)
     end
     
+end)
+
+RegisterServerEvent("tpz_inventory:onThrowableWeaponAmmoAmbientPickup")
+AddEventHandler("tpz_inventory:onThrowableWeaponAmmoAmbientPickup", function(pickedType)
+    local _source = source
+
+    pickedType = string.gsub(pickedType, "PICKUP_", "")
+
+    local isThrowable = false
+
+    -- If picked up was a weapon throwable.
+    if SharedWeapons.Weapons[pickedType] then
+
+        addWeapon(_source, pickedType)
+
+    else -- is ammo throwable (arrow, etc.) - AMMO ALWAYS AN ITEM.
+
+        local data = SharedWeapons.Ammo[pickedType]
+
+        if data then
+            local item = SharedWeapons.Ammo[pickedType].item
+            addItem(_source, item, 1)
+        end
+
+    end
+
 end)
 
