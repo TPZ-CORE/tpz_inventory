@@ -100,7 +100,7 @@ RegisterCommand("additem", function(source, args, rawCommand)
                 local getItemData = SharedItems[item]
 
                 if getItemData == nil then
-                    TriggerClientEvent('tpz_core:sendRightTipNotification', _source, string.format("~e~The specified item: %s does not exist.", item), 3000)
+                    SendCommandNotification(tonumber(_source), string.format("~e~The specified item: %s does not exist.", item), 3000)
                     return
                 end
 
@@ -192,7 +192,7 @@ RegisterCommand("addweapon", function(source, args, rawCommand)
             if tPlayer.loaded() then
 
                 if SharedWeapons.Weapons[string.upper(weaponName)] == nil then
-                    TriggerClientEvent('tpz_core:sendRightTipNotification', _source, Locales['WEAPON_DOES_NOT_EXIST'], 3000)
+                                        SendCommandNotification(tonumber(_source), Locales['WEAPON_DOES_NOT_EXIST'], 3000)
                     return
                 end
 
@@ -333,3 +333,4 @@ AddEventHandler("tpz_inventory:registerChatSuggestions", function()
     })
     
 end)
+
