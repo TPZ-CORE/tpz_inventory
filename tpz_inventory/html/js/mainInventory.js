@@ -12,6 +12,11 @@ function initMainInventoryHandlers(inventory){
                     let serialDisplay = item.itemId == 'N/A' ? '' : "Serial Number: (" + item.itemId  + ")";
 
                     $("#main_inventory_hovered_weapon_serial_number").text(serialDisplay);
+
+                }else if (item.type == 'item' && item.itemId != 0 && item.itemId != 'N/A' && item.action != 'EATABLE') {
+
+                    let serialDisplay = item.itemId == 'N/A' ? '' : "Item Id: (" + item.itemId  + ")";
+                    $("#main_inventory_hovered_weapon_serial_number").text(serialDisplay);
                 }
 
                 $("#main_inventory_hovered_item_label").text(item.label);
@@ -273,4 +278,5 @@ function initMainInventoryHandlers(inventory){
             }
         }
     })
+
 }
