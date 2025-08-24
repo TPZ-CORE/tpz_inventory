@@ -101,7 +101,7 @@ function doesPlayerHaveWeapon(source, item, itemId)
 
         for index, content in pairs (inventory) do
 
-            if content.type == 'weapon' and content.item == item and content.itemId == itemId then
+            if content.type == 'weapon' and string.upper(content.item) == string.upper(item) and content.itemId == itemId then
                 return true
             end
 
@@ -1045,5 +1045,6 @@ function GetTableLength(T)
     for _ in pairs(T) do count = count + 1 end
     return count
 end
+
 
 
