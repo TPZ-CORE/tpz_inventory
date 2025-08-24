@@ -94,7 +94,11 @@ exports('getInventoryAPI', function()
     self.getItemQuantity = function(source, item)
         return getItemQuantity(source, item)
     end
-
+        
+    self.doesPlayerHaveItemId = function(source, item, itemId)
+        return doesPlayerHaveItemId(source, item, itemId)
+    end
+        
     self.getItemWeight = function(item)
         return getItemWeight(item)
     end
@@ -518,3 +522,4 @@ exports('getInventoryAPI', function()
 
     return self
 end)
+
