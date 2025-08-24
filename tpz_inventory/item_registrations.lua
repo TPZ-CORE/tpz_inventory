@@ -281,6 +281,17 @@ SharedItems = {
 
 -- [ VEG & FRUITS - NOT EATABLES ]
 
+    ['butter'] = {
+        label = 'Butter',
+        weight = 0.01,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+    },
+
     ['consumable_tomato'] = {
         label = 'Tomato',
         weight = 0.1,
@@ -363,7 +374,29 @@ SharedItems = {
         weight = 0.1,
         remove = 0,
         description = 'nothing',
-        action = 'NONE',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['drug_mushroom'] = {
+        label = 'Mushroom Drug',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['drug_joint'] = {
+        label = 'Mushroom Drug',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
         stackable = 1,
         droppable = 1,
         closeInventory = 0
@@ -1717,6 +1750,17 @@ SharedItems = {
     },
 
     -- [OTHER]
+    ['oilbottle'] = {
+        label = 'Bottle Of Oil',
+        weight = 0.3,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
     ['wooden_sticks'] = {
         label = 'Wooden Sticks',
         weight = 0.1,
@@ -2976,6 +3020,7 @@ SharedItems = {
     },
 
     -- FISH MODELS (FISHES BY DEFAULT ARE NOT USABLE ITEMS, THEY ARE MOSTLY REQUIRED FOR CRAFTING RECIPES, IF YOU WANT YOUR PLAYER TO EAT THEM, CHANGE THE ACTION TO EATABLE)
+    
     ['a_c_fishbluegil_01_ms'] = { 
         label = 'Blue Gil (Medium)',                       
         weight = 0.5,  
@@ -3276,6 +3321,17 @@ SharedItems = {
     ['a_c_crawfish_01'] = { 
         label = 'Crawfish',                       
         weight = 0.2,  
+        remove = 1, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 0, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['fish_bone'] = { 
+        label = 'Fish Bones',                       
+        weight = 0.1,  
         remove = 1, 
         description = 'nothing', 
         action = 'NONE', 
@@ -3818,17 +3874,6 @@ SharedItems = {
         closeInventory = 0
     },
 
-    ['pipepeace'] = {
-        label = 'Pipe Of Peace',
-        weight = 0.5,
-        remove = 0,
-        description = 'nothing',
-        action = 'SMOKABLE',
-        stackable = 1,
-        droppable = 1,
-        closeInventory = 0
-    },
-
     ['empty_jar'] = {
         label = 'Empty Jar',
         weight = 0.25,
@@ -3987,6 +4032,17 @@ SharedItems = {
     ['heart_bear'] = {
         label = 'Bear Heart',
         weight = 1.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['claws_bear'] = {
+        label = 'Bear Claws',
+        weight = 0.1,
         remove = 0,
         description = 'nothing',
         action = 'NONE',
@@ -4582,7 +4638,7 @@ SharedItems = {
         closeInventory = 0 
     },
 
-    ['Headband1'] = {
+    ['headband1'] = {
         label = "Natives Headband #1",
         weight = 0.7,
         remove = 0,
@@ -4593,7 +4649,7 @@ SharedItems = {
         closeInventory = 0 
     },
 
-    ['Headband2'] = {
+    ['headband2'] = {
         label = "Natives Headband #2",
         weight = 0.7,
         remove = 0,
@@ -4604,7 +4660,7 @@ SharedItems = {
         closeInventory = 0 
     },
 
-    ['Headband3'] = {
+    ['headband3'] = {
         label = "Natives Headband #3",
         weight = 0.7,
         remove = 0,
@@ -4615,7 +4671,7 @@ SharedItems = {
         closeInventory = 0 
     },
 
-    ['Headband4'] = {
+    ['headband4'] = {
         label = "Natives Headband #4",
         weight = 0.7,
         remove = 0,
@@ -4626,7 +4682,7 @@ SharedItems = {
         closeInventory = 0 
     },
 
-    ['Headband5'] = {
+    ['headband5'] = {
         label = "Natives Headband #5",
         weight = 0.7,
         remove = 0,
@@ -4637,7 +4693,7 @@ SharedItems = {
         closeInventory = 0 
     },
 
-    ['Headband6'] = {
+    ['heaband6'] = {
         label = "Natives Headband #6",
         weight = 0.7,
         remove = 0,
@@ -4648,7 +4704,7 @@ SharedItems = {
         closeInventory = 0 
     },
     
-    ['BeltLantern'] = {
+    ['belt_lantern'] = {
         label = "Lantern Belt",
         weight = 0.7,
         remove = 0,
@@ -4736,6 +4792,17 @@ SharedItems = {
         closeInventory = 0 
     },
 
+    ['cigarettepack'] = {
+        label = "Cigarettes Pack",
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
     ['cigarette'] = {
         label = "Cigarette",
         weight = 0.01,
@@ -4783,6 +4850,28 @@ SharedItems = {
     ['matches'] = {
         label = "Matches",
         weight = 0.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['rollingpaper'] = {
+        label = "Rolling Paper",
+        weight = 0.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['matches_box'] = {
+        label = "Matches Box",
+        weight = 0.1,
         remove = 0,
         description = 'nothing',
         action = 'NONE',
