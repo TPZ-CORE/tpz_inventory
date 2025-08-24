@@ -112,6 +112,32 @@ function doesPlayerHaveWeapon(source, item, itemId)
     return false
 end
 
+function doesPlayerHaveItemId(source, item, itemId)
+    local inventory     = PlayerInventory[source].inventory
+    local finished      = false
+    local totalQuantity = 0
+
+    if next(inventory) == nil or #inventory <= 0 then
+        return totalQuantity
+    end
+
+    local inventoryLength = GetTableLength(inventory)
+
+    if inventoryLength > 0 then
+
+        for index, content in pairs (inventory) do
+
+            if content.type == 'item' and content.item == item and content.itemId == itemId then
+                return true
+            end
+
+        end
+
+    end
+
+    return false
+end
+
 function getItemQuantity(source, item)
 
     local inventory     = PlayerInventory[source].inventory
@@ -1019,4 +1045,5 @@ function GetTableLength(T)
     for _ in pairs(T) do count = count + 1 end
     return count
 end
+
 
