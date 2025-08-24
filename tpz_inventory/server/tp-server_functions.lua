@@ -399,7 +399,7 @@ function removeItem(source, item, quantity, itemId, preventRefresh)
             end
             
         else
-            print(string.format(Locales['WARN_ITEM_DOES_NOT_EXIST_INV'], item))
+            --print(string.format(Locales['WARN_ITEM_DOES_NOT_EXIST_INV'], item))
         end
 
     else
@@ -434,7 +434,7 @@ function removeItemById(source, itemId, preventRefresh)
             end
             
         else
-            print(string.format(Locales['WARN_ITEM_DOES_NOT_EXIST_INV'], itemId))
+            --print(string.format(Locales['WARN_ITEM_DOES_NOT_EXIST_INV'], itemId))
         end
 
     else
@@ -1019,3 +1019,4 @@ function GetTableLength(T)
     for _ in pairs(T) do count = count + 1 end
     return count
 end
+
