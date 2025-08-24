@@ -4874,7 +4874,7 @@ SharedItems = {
         weight = 0.1,
         remove = 0,
         description = 'nothing',
-        action = 'NONE',
+        action = 'USABLE',
         stackable = 1,
         droppable = 1,
         closeInventory = 0 
@@ -4957,3 +4957,4 @@ SharedItems = {
         closeInventory = 0
     },
 }
+
