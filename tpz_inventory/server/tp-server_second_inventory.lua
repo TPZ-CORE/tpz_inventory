@@ -439,14 +439,16 @@ if Config.Eatables.Enabled and Config.Eatables.RemoveDurabilityOnContainers then
                             if content.metadata.durability <= 0 then
 
                                 content.metadata.durability = 0 
-    
-                                --removeItemById(_source, content.itemId, true) -- true : preventing inv refresh so we can refresh it only once below.
+
+                                removeContainerItem(container.id, content.item, 1, content.itemId)
 
                                 if ItemData.newItem then
 
-                                    --if canCarryItem(_source, ItemData.newItem, 1) then
-                                        --addItem(_source, ItemData.newItem, 1, nil, nil, true) -- true : preventing inv refresh so we can refresh it only once below.
-                                    --end
+                                    local canCarry = canCarryContainerItem(container.id, ItemData.newItem, 1)
+
+                                    if canCarry then
+                                        addContainerItem(container.id, ItemData.newItem, nil, 1)
+                                    end
                                 end
     
                             end
