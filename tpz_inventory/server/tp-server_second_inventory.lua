@@ -21,6 +21,68 @@ function GetContainerIdByName(containerName)
 
 end
 
+LoadContainerInventories = function()
+    
+    exports["ghmattimysql"]:execute("SELECT * FROM containers", {}, function(result)
+
+        if result == nil or result[1] == nil then
+			return
+		end
+
+        local loadCount                 = 0
+
+        for _, res in pairs (result) do
+
+            local container             = {}
+
+            container.id                = tonumber(res.id)
+            container.name              = res.name
+            container.maxWeight         = tonumber(res.weight)
+
+            if Config.UseDatabaseItems then
+                
+                container.inventory  = {}
+
+                local decodedInventoryContents  = json.decode(res.items)
+   
+                for index, content in pairs (decodedInventoryContents) do
+    
+                    if content.type ~= "weapon" then
+
+                        if SharedItems[content.item] then -- We are re-modifying important data on existing items if there were changes from items table.
+                            content.weight         = SharedItems[content.item].weight
+                            content.label          = SharedItems[content.item].label
+                            content.remove         = SharedItems[content.item].remove
+                            content.stackable      = SharedItems[content.item].stackable
+                            content.droppable      = SharedItems[content.item].droppable
+                            content.closeInventory = SharedItems[content.item].closeInventory
+                        end
+
+                    end
+    
+                    table.insert(container.inventory, content)
+
+                end
+
+            else
+                container.inventory = json.decode(res.items)
+            end
+
+            Containers[tonumber(res.id)] = container
+
+            loadCount = loadCount + 1
+
+        end
+
+        if Config.Debug then
+            print("Successfully loaded {" .. loadCount .. "} containers.")
+        end
+
+    end)
+
+
+end
+
 -----------------------------------------------------------
 --[[ Base Events ]]--
 -----------------------------------------------------------
@@ -339,72 +401,10 @@ AddEventHandler("tpz_inventory:transferContainerItem", function(containerId, inv
 end)
 
 -----------------------------------------------------------
---[[ Functions  ]]--
+--[[ Threads  ]]--
 -----------------------------------------------------------
 
-LoadContainerInventories = function()
-    
-    exports["ghmattimysql"]:execute("SELECT * FROM containers", {}, function(result)
-
-        if result == nil or result[1] == nil then
-			return
-		end
-
-        local loadCount                 = 0
-
-        for _, res in pairs (result) do
-
-            local container             = {}
-
-            container.id                = tonumber(res.id)
-            container.name              = res.name
-            container.maxWeight         = tonumber(res.weight)
-
-            if Config.UseDatabaseItems then
-                
-                container.inventory  = {}
-
-                local decodedInventoryContents  = json.decode(res.items)
-   
-                for index, content in pairs (decodedInventoryContents) do
-    
-                    if content.type ~= "weapon" then
-
-                        if SharedItems[content.item] then -- We are re-modifying important data on existing items if there were changes from items table.
-                            content.weight         = SharedItems[content.item].weight
-                            content.label          = SharedItems[content.item].label
-                            content.remove         = SharedItems[content.item].remove
-                            content.stackable      = SharedItems[content.item].stackable
-                            content.droppable      = SharedItems[content.item].droppable
-                            content.closeInventory = SharedItems[content.item].closeInventory
-                        end
-
-                    end
-    
-                    table.insert(container.inventory, content)
-
-                end
-
-            else
-                container.inventory = json.decode(res.items)
-            end
-
-            Containers[tonumber(res.id)] = container
-
-            loadCount = loadCount + 1
-
-        end
-
-        if Config.Debug then
-            print("Successfully loaded {" .. loadCount .. "} containers.")
-        end
-
-    end)
-
-
-end
-
-if Config.Eatables.Enabled then 
+if Config.Eatables.Enabled and Config.Eatables.RemoveDurabilityOnContainers then 
 
     Citizen.CreateThread(function()
         while true do
