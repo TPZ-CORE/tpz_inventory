@@ -53,6 +53,10 @@ Config.Droppables = {
 -- The time is in minutes, every x minutes, all the items in the player inventory which are eatables (food), will be losing durability to become spoiled.
 Config.Eatables = {
     Enabled = true,
+
+    -- Set to false if you dont want the food to expire while placed on storage containers.
+    RemoveDurabilityOnContainers = true,
+
     DurabilityRemovalTimer = 3, -- The time in minutes, every 3 minutes by default we removing (X%) durability (3 minutes = 5 hours for an item to be removed when removeValue equals to 1)
 
     Items = {
