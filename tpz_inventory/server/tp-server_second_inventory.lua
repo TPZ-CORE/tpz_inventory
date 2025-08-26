@@ -404,6 +404,66 @@ LoadContainerInventories = function()
 
 end
 
+if Config.Eatables.Enabled then 
+
+    Citizen.CreateThread(function()
+        while true do
+            Wait(60000 * Config.Eatables.DurabilityRemovalTimer)
+    
+            for _, container in pairs (Containers) do 
+
+                local inventoryData   = container.inventory
+                local inventoryLength = GetTableLength(inventoryData)
+
+                if inventoryLength > 0 then
+
+                    for index, content in pairs (inventoryData) do
+
+                        local ItemData = Config.Eatables.Items[content.item]
+
+                        if ItemData and tonumber(content.stackable) == 0 then
+
+                            if content.metadata.durability > 0 then
+
+                                local removeValue = tonumber(ItemData.removeValue[1])
+
+                                if ItemData.removeValue[2] then
+                                    local randomRemoveValue = math.random(ItemData.removeValue[1], ItemData.removeValue[2])
+                                    removeValue = tonumber(randomRemoveValue)
+                                end
+    
+                                content.metadata.durability = tonumber(content.metadata.durability) - removeValue
+    
+                            end
+
+                            if content.metadata.durability <= 0 then
+
+                                content.metadata.durability = 0 
+    
+                                --removeItemById(_source, content.itemId, true) -- true : preventing inv refresh so we can refresh it only once below.
+
+                                if ItemData.newItem then
+
+                                    --if canCarryItem(_source, ItemData.newItem, 1) then
+                                        --addItem(_source, ItemData.newItem, 1, nil, nil, true) -- true : preventing inv refresh so we can refresh it only once below.
+                                    --end
+                                end
+    
+                            end
+
+                        end
+    
+                    end
+
+                end
+
+            end
+
+        end
+
+    end)
+
+end
 
 -----------------------------------------------------------
 --[[ Callbacks  ]]--
