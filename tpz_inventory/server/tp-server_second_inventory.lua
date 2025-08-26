@@ -21,7 +21,7 @@ function GetContainerIdByName(containerName)
 
 end
 
-LoadContainerInventories = function()
+function LoadContainerInventories()
     
     exports["ghmattimysql"]:execute("SELECT * FROM containers", {}, function(result)
 
