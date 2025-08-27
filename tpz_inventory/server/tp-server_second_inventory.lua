@@ -412,7 +412,8 @@ if Config.Eatables.Enabled and Config.Eatables.RemoveDurabilityOnContainers then
     Citizen.CreateThread(function()
         while true do
 
-            Wait(60000 * 10)
+            local delay = (Config.Eatables.DurabilityRemovalTimer * 2) + 1
+            Wait(60000 * delay)
 
             for _, container in pairs (Containers) do
 
