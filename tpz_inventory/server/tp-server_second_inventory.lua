@@ -406,6 +406,32 @@ end)
 
 if Config.Eatables.Enabled and Config.Eatables.RemoveDurabilityOnContainers then 
 
+    -- Incase @RemoveDurabilityOnContainers is enabled, we are forcing the system
+    -- to save every 10 minutes the containers for the durability updates. 
+    -- This system is not requirement when @RemoveDurabilityOnContainers is not enabled. 
+    Citizen.CreateThread(function()
+        while true do
+
+            Wait(60000 * 10)
+
+            for _, container in pairs (Containers) do
+
+                if not container.busy and not Config.Eatables.AllowlistedContainers[container.id] then
+
+                    local Parameters = { 
+                        ['id']     = tonumber(container.id),
+                        ['items']  = json.encode(container.inventory), 
+                    }
+
+                    exports.ghmattimysql:execute("UPDATE `containers` SET `items` = @items WHERE `id` = @id", Parameters)
+                end
+
+            end
+
+        end
+
+    end)
+
     Citizen.CreateThread(function()
         while true do
             Wait(60000 * Config.Eatables.DurabilityRemovalTimer)
