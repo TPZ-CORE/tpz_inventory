@@ -417,14 +417,34 @@ if Config.Eatables.Enabled and Config.Eatables.RemoveDurabilityOnContainers then
 
             for _, container in pairs (Containers) do
 
-                if not container.busy and not Config.Eatables.AllowlistedContainers[container.id] then
+                local inventoryData   = container.inventory
+                local inventoryLength = GetTableLength(inventoryData)
 
-                    local Parameters = { 
-                        ['id']     = tonumber(container.id),
-                        ['items']  = json.encode(container.inventory), 
-                    }
+                if not container.busy and not Config.Eatables.AllowlistedContainers[container.id] and inventoryLength > 0 then
 
-                    exports.ghmattimysql:execute("UPDATE `containers` SET `items` = @items WHERE `id` = @id", Parameters)
+                    local contains = false
+
+                    -- to update a container we check if this container contains items with durability and if an item
+                    -- is an expirable item. 
+                    for index, content in pairs (inventoryData) do
+
+                        local ItemData = Config.Eatables.Items[content.item]
+
+                        if ItemData and tonumber(content.stackable) == 0 then
+                            contains = true
+                        end
+                    end
+
+                    if contains then
+                         
+                        local Parameters = { 
+                            ['id']     = tonumber(container.id),
+                            ['items']  = json.encode(container.inventory), 
+                        }
+
+                        exports.ghmattimysql:execute("UPDATE `containers` SET `items` = @items WHERE `id` = @id", Parameters)
+                    end
+
                 end
 
             end
