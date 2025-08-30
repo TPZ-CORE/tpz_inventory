@@ -89,7 +89,7 @@ RegisterCommand("additem", function(source, args, rawCommand)
             
             end
 
-            SendToDiscordWebhook(webhookData.Url, title, message, webhookData.Color)
+            TPZ.SendToDiscordWebhook(webhookData.Url, title, message, webhookData.Color)
         end
 
         if targetSteamName then
@@ -183,7 +183,7 @@ RegisterCommand("addweapon", function(source, args, rawCommand)
             
             end
 
-            SendToDiscordWebhook(webhookData.Url, title, message, webhookData.Color)
+            TPZ.SendToDiscordWebhook(webhookData.Url, title, message, webhookData.Color)
         end
 
         if targetSteamName then
@@ -275,7 +275,7 @@ RegisterCommand("clearinventory", function(source, args, rawCommand)
                 message = "**Steam name: **`" .. steamName .. " (" .. xPlayer.getGroup() .. ")`**\nIdentifier**`" .. identifier .. "` \n**Discord:** <@" .. discordId .. ">**\nIP: **`" .. ip .. "`\n **Action:** `Used Clear Inventory Command`"
             end
             
-            SendToDiscordWebhook(webhookData.Url, title, message, webhookData.Color)
+            TPZ.SendToDiscordWebhook(webhookData.Url, title, message, webhookData.Color)
         end
 
         if targetSteamName then
@@ -333,4 +333,5 @@ AddEventHandler("tpz_inventory:registerChatSuggestions", function()
     })
     
 end)
+
 
