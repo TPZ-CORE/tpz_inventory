@@ -36,6 +36,17 @@ SharedItems = {
         closeInventory = 1
     },
 
+    ['consumable_coconut'] = {
+        label = 'Coconut',
+        weight = 0.1,
+        remove = 0,
+        description = 'Fruit',
+        action = 'NONE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
     ['consumable_avocado'] = {
         label = 'Avocado',
         weight = 0.15,
@@ -80,6 +91,17 @@ SharedItems = {
         closeInventory = 1
     },
 
+    ['consumable_milk_chocolate'] = {
+        label = 'Hersheys Milk Chocolate',
+        weight = 0.17,
+        remove = 0,
+        description = 'Chocolate',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
     ['consumable_pear'] = {
         label = 'Pear',
         weight = 0.16,
@@ -96,7 +118,7 @@ SharedItems = {
         weight = 0.01,
         remove = 0,
         description = 'Fruit',
-        action = 'EATABLE',
+        action = 'NONE',
         stackable = 0,
         droppable = 1,
         closeInventory = 1
@@ -118,7 +140,7 @@ SharedItems = {
         weight = 0.01,
         remove = 0,
         description = 'Fruit',
-        action = 'EATABLE',
+        action = 'NONE',
         stackable = 0,
         droppable = 1,
         closeInventory = 1
@@ -135,7 +157,251 @@ SharedItems = {
         closeInventory = 1
     },
 
+    ['consumable_honey_pancake'] = {
+        label = 'Honey Pancakes',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['consumable_strawberry_pancake'] = {
+        label = 'Strawberry Pancakes',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+    
+    ['consumable_autumn_soup'] = {
+        label = 'Autumn Soup',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['consumable_meat_canneloni'] = {
+        label = 'Canneloni',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['consumable_bruschetta'] = {
+        label = 'Bruschetta',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['consumable_steak_florentine'] = {
+        label = 'Florentine Steak',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['consumable_cooked_fish_n_potatoes'] = {
+        label = 'Cooked Fish With Potatoes',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['consumable_winedmeat'] = {
+        label = 'Cooked Wined Meat',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['consumable_cooked_salmon_n_potatoes'] = {
+        label = 'Cooked Salmon With Potatoes',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['consumable_breakfast'] = {
+        label = 'English Breakfast',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['consumable_crabsalad'] = {
+        label = 'Crab Salad',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['consumable_steakeggs'] = {
+        label = 'Steak With Eggs',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['consumable_vegstew'] = {
+        label = 'Vegetables Soup',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+    
+    ['consumable_smoked_salmon'] = {
+        label = 'Smoked Salmon Piece',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+    
+    ['consumable_egg_roll'] = {
+        label = 'Egg Rolls',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['consumable_potato_boat'] = {
+        label = 'Potato Boat',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['consumable_yogurt_n_berries'] = {
+        label = 'Yogurt With Berries',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    
+    ['consumable_charred_egg'] = {
+        label = 'Charred Egg',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['consumable_honeybread'] = {
+        label = 'Honeybread',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['consumable_bread_n_meat'] = {
+        label = 'Bread With Meat',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+    
+    ['consumable_cooked_crab'] = {
+        label = 'Cooked Crab',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
     -- replace inventory items from stackables to not if they change it again.
+
+    ['a_c_fishsalmonsockeye_01_fillet'] = {
+        label = 'Fish Meat',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
     ['fish_meat'] = {
         label = 'Fish Meat',
         weight = 0.2,
@@ -743,6 +1009,17 @@ SharedItems = {
         closeInventory = 0 
     },
 
+    ['hop'] = { 
+        label = 'Hop',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
     ['american_ginseng'] = { 
         label = 'American Ginseng',                       
         weight = 0.01,  
@@ -833,7 +1110,7 @@ SharedItems = {
 
     ['flour'] = {
         label = 'Flour',                       
-        weight = 0.3,  
+        weight = 0.1,  
         remove = 0, 
         description = 'nothing', 
         action = 'NONE', 
@@ -842,6 +1119,82 @@ SharedItems = {
         closeInventory = 0 
     },
 
+    ['sugar'] = {
+        label = 'Sugar',                       
+        weight = 0.0,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['pumpkin'] = {
+        label = 'Pumpkin',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['eggs'] = {
+        label = 'Eggs',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['cheese'] = {
+        label = 'Cheese',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['cream'] = {
+        label = 'Milk Cream',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['butter'] = {
+        label = 'Butter',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+    },
+    
+    ['yogurt'] = {
+        label = 'Yogurt',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+    },
 
     -- [ DRINKABLES ]
     ['consumable_water_bottle'] = {
@@ -921,6 +1274,17 @@ SharedItems = {
         closeInventory = 1
     },
 
+    ['consumable_irish_whiskey'] = {
+        label = 'Irish Whiskey',
+        weight = 1.2,
+        remove = 0,
+        description = 'Drinkables',
+        action = 'DRINKABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+    },
+    
     ['consumable_tenn_whiskey'] = {
         label = 'Tenn Whiskey',
         weight = 1.2,
@@ -933,7 +1297,7 @@ SharedItems = {
     },
 
     ['consumable_whiskey'] = {
-        label = 'Whiskey',
+        label = 'Jack Daniels Whiskey',
         weight = 1.2,
         remove = 0,
         description = 'Drinkables',
@@ -966,8 +1330,8 @@ SharedItems = {
     },
 
     ['consumable_milk_bottle'] = {
-        label = 'Milk Bottle',
-        weight = 1.0,
+        label = 'Bottle Of Milk',
+        weight = 0.4,
         remove = 0,
         description = 'Drinkables',
         action = 'DRINKABLE',
@@ -979,6 +1343,28 @@ SharedItems = {
     ['consumable_antibiotics'] = {
         label = 'Antibiotics',
         weight = 0.01,
+        remove = 0,
+        description = 'Drinkables',
+        action = 'DRINKABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['consumable_bearspirit'] = {
+        label = 'Bear Spirit',
+        weight = 0.4,
+        remove = 0,
+        description = 'Drinkables',
+        action = 'DRINKABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['consumable_wolfspirit'] = {
+        label = 'Wolf Spirit',
+        weight = 0.4,
         remove = 0,
         description = 'Drinkables',
         action = 'DRINKABLE',
@@ -3783,6 +4169,17 @@ SharedItems = {
         closeInventory = 0 
     },
 
+    ['cannabis_leafs'] = { 
+        label = 'Cannabis Leafs',                       
+        weight = 0.0,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
     ['seeds_bitter_weed'] = { 
         label = 'Bitter Weed Seeds',                       
         weight = 0.01,  
@@ -4253,6 +4650,17 @@ SharedItems = {
         closeInventory = 0
     },
 
+    ['alert_book_archives'] = {
+        label = 'Job Alerts Book',
+        weight = 1.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
     ['campfire'] = {
         label = 'Campfire',
         weight = 2.0,
@@ -4299,6 +4707,17 @@ SharedItems = {
     ['emptybottle'] = {
         label = 'Empty Bottle',
         weight = 0.25,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['milk'] = {
+        label = 'Clean Milk Bottle',
+        weight = 0.3,
         remove = 0,
         description = 'nothing',
         action = 'NONE',
@@ -4520,6 +4939,17 @@ SharedItems = {
     ['lock'] = {
         label = 'Master Lock',
         weight = 0.3,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['hearingtool'] = {
+        label = 'Hearing Tool',
+        weight = 0.2,
         remove = 0,
         description = 'nothing',
         action = 'NONE',
@@ -4957,4 +5387,3 @@ SharedItems = {
         closeInventory = 0
     },
 }
-
