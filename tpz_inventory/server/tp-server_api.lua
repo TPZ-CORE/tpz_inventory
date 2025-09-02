@@ -179,7 +179,38 @@ exports('getInventoryAPI', function()
         end
 
     end
+        
+    self.setItemDurability = function(source, item, durability, itemId)
+        local _source           = source
+        local exist             = false
+        local currentDurability = 100
 
+        if SharedItems[item] then
+
+            local inventory = PlayerInventory[_source].inventory
+
+            for index, content in pairs (inventory) do
+    
+                if content.item == item and tonumber(content.itemId) == tonumber(itemId) then
+
+                    content.metadata.durability = durability
+                    exist = true
+                end
+       
+            end
+    
+            if exist then
+
+                TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], false, false)
+            else
+                print(string.format(Locales['WARN_ITEM_DOES_NOT_EXIST_INV'], item))
+            end
+
+        else
+            print(string.format(Locales['ERROR_ITEM_DOES_NOT_EXIST_CONFIG'], item))
+        end
+    end
+        
     self.addItemDurability = function(source, item, durability, itemId)
         local _source           = source
         local exist             = false
@@ -522,4 +553,5 @@ exports('getInventoryAPI', function()
 
     return self
 end)
+
 
