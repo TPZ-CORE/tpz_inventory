@@ -75,7 +75,6 @@ $(function() {
 
 					if ($(".seconditem-" + prod_item.item + "-" + prod_item.itemId)[0]){
 
-						print('added ' + prod_item.item, prod_item.itemId);
 						let quantity = Number($(".seconditem-count-" + prod_item.item + "-" + prod_item.itemId).text()) + prod_item.transfer_quantity;
 						
 						$(".seconditem-count-" + prod_item.item + "-" + prod_item.itemId).text(quantity);
