@@ -259,22 +259,36 @@ exports('getInventoryAPI', function()
                 if content.item == item and tonumber(content.itemId) == tonumber(itemId) then
                     content.metadata.durability = tonumber(content.metadata.durability) - durability
 
-                    if content.metadata.durability <= 0 and remove then
-                        removeItem(_source, item, 1, tonumber(itemId))
+                    if content.metadata.durability <= 0 then
+                        
+                        content.metadata.durability = 0 
+                        
+                        if remove then
+                            removeItem(_source, item, 1, tonumber(itemId))
+                        end
+
                     end
 
                     exist = true
+                    break
                 end
 
                 if content.item == item and itemId == nil then
 
                     content.metadata.durability = tonumber(content.metadata.durability) - durability
 
-                    if content.metadata.durability <= 0 and remove then
-                        removeItem(_source, item, 1, tonumber(itemId))
+                    if content.metadata.durability <= 0 then
+                        
+                        content.metadata.durability = 0 
+                        
+                        if remove then
+                            removeItem(_source, item, 1, tonumber(itemId))
+                        end
+
                     end
 
                     exist = true
+                    break
                 end
 
             end
@@ -290,7 +304,7 @@ exports('getInventoryAPI', function()
             print(string.format(Locales['ERROR_ITEM_DOES_NOT_EXIST_CONFIG'], item))
         end
     end
-
+        
     self.getItemDurability = function(source, item, itemId)
 
         local _source           = source
@@ -553,5 +567,6 @@ exports('getInventoryAPI', function()
 
     return self
 end)
+
 
 
