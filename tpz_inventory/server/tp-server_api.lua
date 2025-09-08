@@ -191,7 +191,7 @@ exports('getInventoryAPI', function()
 
             for index, content in pairs (inventory) do
     
-                if content.item == item and tonumber(content.itemId) == tonumber(itemId) then
+                if content.item == item and tostring(content.itemId) == tostring(itemId) then
 
                     content.metadata.durability = durability
                     exist = true
@@ -210,7 +210,7 @@ exports('getInventoryAPI', function()
             print(string.format(Locales['ERROR_ITEM_DOES_NOT_EXIST_CONFIG'], item))
         end
     end
-        
+
     self.addItemDurability = function(source, item, durability, itemId)
         local _source           = source
         local exist             = false
@@ -222,7 +222,7 @@ exports('getInventoryAPI', function()
 
             for index, content in pairs (inventory) do
     
-                if content.item == item and tonumber(content.itemId) == tonumber(itemId) then
+                if content.item == item and tostring(content.itemId) == tostring(itemId) then
                     currentDurability = tonumber(content.metadata.durability) + durability
 
                     if currentDurability >= 100 then
@@ -256,7 +256,7 @@ exports('getInventoryAPI', function()
 
             for index, content in pairs (inventory) do
     
-                if content.item == item and tonumber(content.itemId) == tonumber(itemId) then
+                if content.item == item and tostring(content.itemId) == tostring(itemId) then
                     content.metadata.durability = tonumber(content.metadata.durability) - durability
 
                     if content.metadata.durability <= 0 then
@@ -280,7 +280,7 @@ exports('getInventoryAPI', function()
                     if content.metadata.durability <= 0 then
                         
                         content.metadata.durability = 0 
-                        
+
                         if remove then
                             removeItem(_source, item, 1, tonumber(itemId))
                         end
@@ -304,7 +304,7 @@ exports('getInventoryAPI', function()
             print(string.format(Locales['ERROR_ITEM_DOES_NOT_EXIST_CONFIG'], item))
         end
     end
-        
+
     self.getItemDurability = function(source, item, itemId)
 
         local _source           = source
@@ -317,7 +317,7 @@ exports('getInventoryAPI', function()
 
             for index, content in pairs (inventory) do
     
-                if content.item == item and tonumber(content.itemId) == tonumber(itemId) then
+                if content.item == item and tostring(content.itemId) == tostring(itemId) then
                     currentDurability = content.metadata.durability
                     exist = true
                 end
@@ -350,7 +350,7 @@ exports('getInventoryAPI', function()
 
             for index, content in pairs (inventory) do
     
-                if content.item == item and tonumber(content.itemId) == tonumber(itemId) then
+                if content.item == item and tostring(content.itemId) == tostring(itemId) then
                     currentMetadata = content.metadata
                     exist = true
                 end
@@ -383,7 +383,7 @@ exports('getInventoryAPI', function()
 
             for index, content in pairs (inventory) do
     
-                if content.item == item and tonumber(content.itemId) == tonumber(itemId) then
+                if content.item == item and tostring(content.itemId) == tostring(itemId) then
                     table.insert(content.metadata, metadata)
                     exist = true
                 end
@@ -567,6 +567,7 @@ exports('getInventoryAPI', function()
 
     return self
 end)
+
 
 
 
