@@ -56,7 +56,8 @@ function openInventoryContainerById(containerId, header, isTarget, disable)
 
         local PlayerData = GetPlayerData()
         PlayerData.IsSecondaryInventoryOpen = true
-
+        TriggerEvent('tpz_inventory:setSecondaryInventoryOpenState', true)
+			
         local inventoryContents  = data.inventory
         local inventoryMaxWeight = data.maxWeight
 
@@ -121,6 +122,12 @@ end
 -----------------------------------------------------------
 --[[ Events  ]]--
 -----------------------------------------------------------
+
+-- The specified event is used to not only use exports but events instead which are better for tasks performance.
+RegisterNetEvent('tpz_inventory:setSecondaryInventoryOpenState')
+AddEventHandler("tpz_inventory:setSecondaryInventoryOpenState", function(cb)
+    -- todo nothing
+end)
 
 RegisterNetEvent('tpz_inventory:openInventoryContainerById')
 AddEventHandler("tpz_inventory:openInventoryContainerById", function(containerId, header)
@@ -238,4 +245,5 @@ RegisterNUICallback('nui:transferItem', function(data)
 
     TriggerServerEvent("tpz_inventory:transferContainerItem", CURRENT_CONTAINER_ID, inventoryType, item, quantity)
 end)
+
 
