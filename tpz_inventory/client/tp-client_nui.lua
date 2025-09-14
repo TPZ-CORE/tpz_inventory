@@ -197,6 +197,7 @@ SetNUIFocusStatus = function(state)
         TriggerServerEvent("tpz_inventory:onContainerInventoryClose", GetCurrentContainerId() )
 
         PlayerData.IsSecondaryInventoryOpen = false
+		TriggerEvent('tpz_inventory:setSecondaryInventoryOpenState', false)
         SendNUIMessage({ action = "setSecondInventoryState", enable = false })
 
         TriggerServerEvent("tp_containers:server:setBusyState",  GetCurrentContainerId(), false)
@@ -452,4 +453,5 @@ Citizen.CreateThread(function()
 
     end
 end)
+
 
