@@ -147,17 +147,19 @@ end)
 Citizen.CreateThread(function()
     
     while true do
-        Wait(0)
 
         local player = PlayerPedId()
-        local sleep  = true
+        local sleep  = 1500
 
         local PlayerData  = GetPlayerData()
 
-        if TPZ.GetTableLength(DroppedItems) > 0 and not PlayerData.IsPickingUp then
+        if PlayerData.IsPickingUp or IsEntityDead(player) or IsPedOnMount(player) or IsPedInAnyVehicle(playerPed, false) or IsPedSwimming(player) or IsPedLassoed(player) then
+            goto END
+        end
 
-            local coords    = GetEntityCoords(player)
-            local coordsDist = vector3(coords.x, coords.y, coords.z)
+        if TPZ.GetTableLength(DroppedItems) > 0 then
+
+            local coords = GetEntityCoords(player)
             
             for index, droppedData in pairs (DroppedItems) do
 
@@ -166,10 +168,10 @@ Citizen.CreateThread(function()
                     local droppedCoords       = GetEntityCoords(droppedData.object)
 
                     local coordsDroppedObject = vector3(droppedCoords.x, droppedCoords.y, droppedCoords.z)
-                    local distance = #(coordsDist - coordsDroppedObject)
+                    local distance = #(coords - coordsDroppedObject)
 
                     if distance <= Config.Droppables.ActionDistance then
-                        sleep = false
+                        sleep = 0
     
                         local droppedDisplay = "X" .. droppedData.quantity .. " " .. droppedData.label
 
@@ -234,9 +236,8 @@ Citizen.CreateThread(function()
 
         end
 
-        if sleep then
-            Citizen.Wait(1200)
-        end
+        ::END::
+        Wait(sleep)
 
     end
 end)
