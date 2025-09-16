@@ -1,4 +1,5 @@
 
+local ItemUseSpamCooldown = 0
 
 -----------------------------------------------------------
 --[[ Functions  ]]--
@@ -262,18 +263,12 @@ RegisterNUICallback('closePlayerInventory', function()
     SetNUIFocusStatus(false)
 end)
 
-local itemUseCooldown = 0
-
 -- add item use cooldown
 RegisterNUICallback('useItem', function(data)
 
-    if itemUseCooldown > 0 then
-        itemUseCooldown = itemUseCooldown + 2
-    end
+    if ItemUseSpamCooldown == 0 then
 
-    if itemUseCooldown == 0 then
-
-        itemUseCooldown = itemUseCooldown + 2
+        ItemUseSpamCooldown = 2 -- adding (2) seconds of cooldown. 
 
         if tonumber(data.closeInventory) == 1 or data.type == "weapon" then
             ClosePlayerInventory()
@@ -292,6 +287,9 @@ RegisterNUICallback('useItem', function(data)
             EquipWeapon(data.primary, data.itemId, data.item, data.ammoType, data.ammo, data.label, data.durability, data.metadata)
 
         end
+
+        Wait(1000 * ItemUseSpamCooldown)
+        ItemSpamCooldown = 0
 
     else
         TriggerEvent('tpz_core:sendRightTipNotification', Locales['USABLE_ITEM_CLICK_SPAM'], 3000)
@@ -432,26 +430,3 @@ RegisterNUICallback('give', function(data)
 
     exports.tpz_inventory_trade:StartTradingProcess(playerid, _data, _data.quantity)
 end)
------------------------------------------------------------
---[[ Threads  ]]--
------------------------------------------------------------
-
--- System to prevent spamming usable items (Cooldown Time is increasing on every usable spam action).
-Citizen.CreateThread(function()
-    while true do
-
-        Wait(1000)
-
-        if itemUseCooldown > 0 then
-
-            itemUseCooldown = itemUseCooldown - 1
-
-            if itemUseCooldown <= 0 then 
-                itemUseCooldown = 0 
-            end
-        end
-
-    end
-end)
-
-
