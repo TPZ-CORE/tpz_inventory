@@ -153,7 +153,7 @@ Citizen.CreateThread(function()
 
         local PlayerData  = GetPlayerData()
 
-        if PlayerData.IsPickingUp or IsEntityDead(player) or IsPedOnMount(player) or IsPedInAnyVehicle(playerPed, false) or IsPedSwimming(player) or IsPedLassoed(player) then
+        if PlayerData.IsPickingUp or IsEntityDead(player) or IsPedOnMount(player) or IsPedInAnyVehicle(player, false) or IsPedSwimming(player) or IsPedLassoed(player) then
             goto END
         end
 
