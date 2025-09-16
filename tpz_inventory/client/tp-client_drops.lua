@@ -87,7 +87,7 @@ PlayPickupAnimation = function()
     PlaySoundFrontend("CHECKPOINT_PERFECT", "HUD_MINI_GAME_SOUNDSET", true, 1)
     Wait(1000)
     ClearPedTasks(PlayerPedId())
-    
+    RemoveAnimDict(dict)
 end
 
 -----------------------------------------------------------
@@ -97,49 +97,48 @@ end
 -- The following thread is for loading / unloading dropped items when close to the player location.
 Citizen.CreateThread(function()
     while true do
-        Wait(1200)
 
         local player = PlayerPedId()
+        local sleep  = 1500
 
-        if TPZ.GetTableLength(DroppedItems) > 0 then
+        if TPZ.GetTableLength(DroppedItems) <= 0 then
+            goto END
+        end
 
-            local coords    = GetEntityCoords(player)
-            local coordsDist = vector3(coords.x, coords.y, coords.z)
-            
-            for index, droppedData in pairs (DroppedItems) do
+        for index, droppedData in pairs (DroppedItems) do
     
-                local coordsDroppedObject = vector3(droppedData.coords.x, droppedData.coords.y, droppedData.coords.z)
-                local distance = #(coordsDist - coordsDroppedObject)
+            local coordsDroppedObject = vector3(droppedData.coords.x, droppedData.coords.y, droppedData.coords.z)
+            local distance = #(GetEntityCoords(player) - coordsDroppedObject)
 
-                if droppedData.object and distance > Config.Droppables.RenderDistance then
-                    DeleteEntity(droppedData.object)
-                    SetEntityAsNoLongerNeeded(droppedData.object)
+            if droppedData.object and distance > Config.Droppables.RenderDistance then
+                DeleteEntity(droppedData.object)
+                SetEntityAsNoLongerNeeded(droppedData.object)
     
-                    droppedData.object = nil
-                end
+                droppedData.object = nil
+            end
     
-                if droppedData.object == nil and distance <= Config.Droppables.RenderDistance then
+            if droppedData.object == nil and distance <= Config.Droppables.RenderDistance then
 
-                    local model       = Config.Droppables.Types[droppedData.type]
-                    local objectModel = GetHashKey(model)
+                local model       = Config.Droppables.Types[droppedData.type]
+                local objectModel = GetHashKey(model)
     
-                    RequestModel(objectModel)
+                RequestModel(objectModel)
         
-                    while not HasModelLoaded(objectModel) do Citizen.Wait(0) end
+                while not HasModelLoaded(objectModel) do Citizen.Wait(0) end
     
-                    droppedData.object = CreateObject(objectModel, droppedData.coords.x, droppedData.coords.y, droppedData.coords.z, false, false)
-                    Citizen.InvokeNative(0x58A850EAEE20FAA3, droppedData.object)              -- PlaceObjectOnGroundProperly
-                    Citizen.InvokeNative(0xDC19C288082E586E, droppedData.object, true, false) -- SetEntityAsMissionEntity
-                    Citizen.InvokeNative(0x7D9EFB7AD6B19754, droppedData.object, true)        -- FreezeEntityPosition
-                    Citizen.InvokeNative(0x7DFB49BCDB73089A, droppedData.object, true)        -- SetPickupLight
-                    Citizen.InvokeNative(0xF66F820909453B8C, droppedData.object, false, true) -- SetEntityCollision
-    
-                end
+                droppedData.object = CreateObject(objectModel, droppedData.coords.x, droppedData.coords.y, droppedData.coords.z, false, false)
+                Citizen.InvokeNative(0x58A850EAEE20FAA3, droppedData.object)              -- PlaceObjectOnGroundProperly
+                Citizen.InvokeNative(0xDC19C288082E586E, droppedData.object, true, false) -- SetEntityAsMissionEntity
+                Citizen.InvokeNative(0x7D9EFB7AD6B19754, droppedData.object, true)        -- FreezeEntityPosition
+                Citizen.InvokeNative(0x7DFB49BCDB73089A, droppedData.object, true)        -- SetPickupLight
+                Citizen.InvokeNative(0xF66F820909453B8C, droppedData.object, false, true) -- SetEntityCollision
     
             end
     
         end
 
+        ::END::
+        Wait(sleep)
     end
 
 end)
