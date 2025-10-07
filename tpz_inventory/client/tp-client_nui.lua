@@ -1,5 +1,5 @@
 
-local ItemUseSpamCooldown = 0
+local ItemUseCooldown = 0
 
 -----------------------------------------------------------
 --[[ Functions  ]]--
@@ -266,9 +266,9 @@ end)
 -- add item use cooldown
 RegisterNUICallback('useItem', function(data)
 
-    if ItemUseSpamCooldown == 0 then
+    if ItemUseCooldown == 0 then
 
-        ItemUseSpamCooldown = 2 -- adding (2) seconds of cooldown. 
+        ItemUseCooldown = 2 -- adding (2) seconds of cooldown. 
 
         if tonumber(data.closeInventory) == 1 or data.type == "weapon" then
             ClosePlayerInventory()
@@ -288,8 +288,8 @@ RegisterNUICallback('useItem', function(data)
 
         end
 
-        Wait(1000 * ItemUseSpamCooldown)
-        ItemSpamCooldown = 0
+        Wait(1000 * ItemUseCooldown)
+        ItemUseCooldown = 0
 
     else
         TriggerEvent('tpz_core:sendRightTipNotification', Locales['USABLE_ITEM_CLICK_SPAM'], 3000)
