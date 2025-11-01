@@ -121,6 +121,11 @@ OpenPlayerInventory = function(refresh)
                     if content.metadata.ammoType == nil then
 
                         local weaponGroup = GetWeapontypeGroup(GetHashKey(string.upper(content.item)))
+
+                        if string.upper(content.item) == "WEAPON_RIFLE_VARMINT" then 
+                            weaponGroup = tostring(weaponGroup) .. '1'
+                        end
+
                         local getAmmoType = SharedWeapons.AmmoTypes[tostring(weaponGroup)]
 
                         if getAmmoType then
@@ -430,3 +435,4 @@ RegisterNUICallback('give', function(data)
 
     exports.tpz_inventory_trade:StartTradingProcess(playerid, _data, _data.quantity)
 end)
+
