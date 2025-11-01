@@ -134,8 +134,8 @@ SharedWeapons = {
     ['AMMO_RIFLE_HIGH_VELOCITY']         = {item = "ammoriflevelocity",      maxAmmo = 90, label = 'Rifle Ammo H* Velocity' },  
     ['AMMO_RIFLE_SPLIT_POINT']           = {item = "ammoriflesplitpoint",    maxAmmo = 90, label = 'Rifle Ammo Split Point' },
 
-    ['AMMO_22']                          = {item = "", maxAmmo = 80, label = '22 Ammo' },
-    ['AMMO_22_TRANQUILIZER']             = {item = "", maxAmmo = 80, label = '22 Ammo Tranquilizer' },
+    ['AMMO_22']                          = {item = "ammovarmint", maxAmmo = 80, label = 'Varmint Ammo' },
+    ['AMMO_22_TRANQUILIZER']             = {item = "ammovarmint", maxAmmo = 80, label = 'Varmint Ammo Tranquilizer' },
 
     ['AMMO_SHOTGUN']                     = {item = "ammoshotgunnormal",      maxAmmo = 80, label = 'Shotgun Ammo' },
     ['AMMO_SHOTGUN_BUCKSHOT_INCENDIARY'] = {item = "ammoshotgunincendiary",  maxAmmo = 80, label = 'Shotgun Ammo Buckshot Incendiary' },
@@ -158,6 +158,7 @@ SharedWeapons = {
     ["-594562071"]  = {"AMMO_REPEATER","AMMO_REPEATER_EXPRESS","AMMO_REPEATER_EXPRESS_EXPLOSIVE","AMMO_REPEATER_HIGH_VELOCITY","AMMO_REPEATER_SPLIT_POINT"},
     ["-1101297303"] = {"AMMO_REVOLVER","AMMO_REVOLVER_EXPRESS","AMMO_REVOLVER_EXPRESS_EXPLOSIVE","AMMO_REVOLVER_HIGH_VELOCITY","AMMO_REVOLVER_SPLIT_POINT","AMMO_SHOTGUN","AMMO_SHOTGUN_BUCKSHOT_INCENDIARY","AMMO_SHOTGUN_EXPRESS_EXPLOSIVE","AMMO_SHOTGUN_SLUG"},
     ["970310034"]   = {"AMMO_RIFLE","AMMO_RIFLE_ELEPHANT","AMMO_RIFLE_EXPRESS","AMMO_RIFLE_EXPRESS_EXPLOSIVE","AMMO_RIFLE_HIGH_VELOCITY","AMMO_RIFLE_SPLIT_POINT","AMMO_22","AMMO_22_TRANQUILIZER"},
+    ["9703100341"]  = {"AMMO_22","AMMO_22_TRANQUILIZER"}, -- VARMINT RIFLE
     ["-1212426201"] = {"AMMO_RIFLE","AMMO_RIFLE_EXPRESS","AMMO_RIFLE_EXPRESS_EXPLOSIVE","AMMO_RIFLE_HIGH_VELOCITY","AMMO_RIFLE_SPLIT_POINT"},
     ["860033945"]   = {"AMMO_SHOTGUN","AMMO_SHOTGUN_BUCKSHOT_INCENDIARY","AMMO_SHOTGUN_EXPRESS_EXPLOSIVE","AMMO_SHOTGUN_SLUG"},
     ["-1241684019"] = {"AMMO_ARROW","AMMO_ARROW_DYNAMITE","AMMO_ARROW_FIRE","AMMO_ARROW_IMPROVED","AMMO_ARROW_SMALL_GAME","AMMO_ARROW_POISON"},
@@ -168,3 +169,4 @@ SharedWeapons = {
   },
 
 }
+
