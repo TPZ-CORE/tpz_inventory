@@ -40,6 +40,11 @@ RegisterNUICallback('setAmmoType', function(data)
 	end
 
 	local weaponGroup      = GetWeapontypeGroup(GetHashKey(UsedWeapon.hash))
+
+	if UsedWeapon.hash == "WEAPON_RIFLE_VARMINT" then 
+		weaponGroup = tostring(weaponGroup) .. '1'
+	end
+
 	local getAmmoTypes     = SharedWeapons.AmmoTypes[tostring(weaponGroup)]
 
 	local elements         = {}
@@ -80,5 +85,6 @@ RegisterNUICallback('setAmmoType', function(data)
 	end)
 
 end)
+
 
 
