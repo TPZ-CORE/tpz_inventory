@@ -327,8 +327,8 @@ RegisterCommand("openinventory", function(source, args, rawCommand)
         await = false
 
     else
-        hasPermissions = false -- CONSOLE HAS PERMISSIONS.
-        await = false
+        print(Locales['COMMAND_NOT_PERMITTED_ON_CONSOLE'])
+        return
     end
     
     while await do
@@ -446,5 +446,6 @@ AddEventHandler("tpz_inventory:registerChatSuggestions", function()
     })
     
 end)
+
 
 
