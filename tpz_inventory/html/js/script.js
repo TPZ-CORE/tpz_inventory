@@ -64,8 +64,30 @@ $(function() {
 
 		else if (item.action == 'clearContainerInventoryContents'){
 			$("#second_inventory_contents").html('');
-
 		}
+
+		else if (item.action == 'updateAccount') {
+			var prod_item = event.data.item_data;
+			
+
+			if (prod_item.type == "0") {
+
+				let money = Number($("#main_inventory_current_money").text().replace('$', ''));
+				let new_money = money + Number(prod_item.transfer_quantity.toFixed(2));
+
+				$("#main_inventory_current_money").text("$" + new_money);
+
+			} else if (prod_item.type == "1") {
+
+				let gold = Number($("#main_inventory_current_gold").text());
+				let new_gold = gold + Number(prod_item.transfer_quantity.toFixed(2));
+
+				$("#main_inventory_current_gold").text(new_gold);
+
+			}
+		
+		}
+
 		else if (item.action == 'updateSecondInventoryContents'){
 			var prod_item = event.data.item_data;
 
