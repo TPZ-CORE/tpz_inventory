@@ -203,16 +203,25 @@ SetNUIFocusStatus = function(state)
         TriggerServerEvent("tpz_inventory:onContainerInventoryClose", GetCurrentContainerId() )
 
         PlayerData.IsSecondaryInventoryOpen = false
-		TriggerEvent('tpz_inventory:setSecondaryInventoryOpenState', false)
-        SendNUIMessage({ action = "setSecondInventoryState", enable = false })
 
-        TriggerServerEvent("tp_containers:server:setBusyState",  GetCurrentContainerId(), false)
+        TriggerEvent('tpz_inventory:setSecondaryInventoryOpenState', false)
         
-        ClearCurrentContainerId()
+        if not PlayerData.IsPlayerInventoryOpen then
+
+            SendNUIMessage({ action = "setSecondInventoryState", enable = false })
+    
+            TriggerServerEvent("tp_containers:server:setBusyState",  GetCurrentContainerId(), false)
+            
+            ClearCurrentContainerId()
+        end
+
+        PlayerData.IsPlayerInventoryOpen = false 
+        PlayerData.PlayerInventoryId = 0
+
     end
+    
 
-end
-
+end 
 -----------------------------------------------------------
 --[[ Local Functions  ]]--
 -----------------------------------------------------------
@@ -435,4 +444,5 @@ RegisterNUICallback('give', function(data)
 
     exports.tpz_inventory_trade:StartTradingProcess(playerid, _data, _data.quantity)
 end)
+
 
