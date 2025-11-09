@@ -5,6 +5,9 @@ local PlayerData = {
     IsInventoryOpen          = false,
     HasShortcutsActive       = false,
     IsSecondaryInventoryOpen = false,
+    IsPlayerInventoryOpen    = false,
+    PlayerInventoryId        = 0,
+    PlayerInventoryRetrieveDataEvent = "",
     IsPickingUp              = false,
     Inventory                = {},
     InventoryMaxWeight       = 0,
@@ -144,4 +147,5 @@ Citizen.CreateThread(function()
     end
     
 end)
+
 
