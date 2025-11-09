@@ -1,7 +1,7 @@
 
+local TPZ = exports.tpz_core:getCoreAPI()
 
 Containers = {}
-
 -----------------------------------------------------------
 --[[ Functions ]]--
 -----------------------------------------------------------
@@ -518,6 +518,7 @@ end
 --[[ Callbacks  ]]--
 -----------------------------------------------------------
 
+
 -- @param id
 exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:getContainerDataById", function(source, cb, data)
     local containerId = tonumber(data.id)
@@ -529,6 +530,22 @@ exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:getContainerDataById
         return cb( { name = container.name, inventory = container.inventory,  maxWeight = tonumber(container.maxWeight), busy = container.busy } ) 
     end
 
-    return nil
+    return cb(nil)
+
+end)
+
+exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:getPlayerInventoryData", function(source, cb, data)
+
+    local target  = tonumber(data.target)
+    local tPlayer = TPZ.GetPlayer(tonumber(target))
+
+    local data = {
+        name = tonumber(target),
+        inventory = PlayerInventory[tonumber(target)].inventory,
+        maxWeight = tPlayer.getInventoryWeightCapacity(),
+        busy      = false,
+    }
+
+    return cb(data)
 
 end)
