@@ -307,6 +307,7 @@ RegisterCommand("clearinventory", function(source, args, rawCommand)
 
 end, false)
 
+
 --[[ Open Inventory Contents Command ]] --
 RegisterCommand("openinventory", function(source, args, rawCommand)
     local _source = source
@@ -373,14 +374,34 @@ RegisterCommand("openinventory", function(source, args, rawCommand)
 
             if tPlayer.loaded() then
 
+                local new_contents = {}
+
+                local cash, gold, blackmoney = tPlayer.getAccount(0), tPlayer.getAccount(1), tPlayer.getAccount(2)
+
+                if cash > 0 then
+                    table.insert(new_contents, { type = 0, item = 'cash', label = Locales['CURRENCY_MONEY'], quantity = tPlayer.getAccount(0), weight = 0.0, metadata = {} })   
+                end
+
+                if gold > 0 then
+                    table.insert(new_contents, { type = 1, item = 'gold', label = Locales['CURRENCY_GOLD'], quantity = tPlayer.getAccount(1), weight = 0.0, metadata = {} })
+                end
+                
+                if blackmoney > 0 then
+                    table.insert(new_contents, { type = 2, item = 'blackmoney', label = Locales['CURRENCY_BLACKMONEY'], quantity = tPlayer.getAccount(2), weight = 0.0, metadata = {} })
+                end
+
+                for _, content in pairs (PlayerInventory[tonumber(target)].inventory) do 
+                    table.insert(new_contents, content)
+                end
+
                 local data = {
                     name = tonumber(target),
-                    inventory = PlayerInventory[tonumber(target)].inventory,
+                    inventory = new_contents,
                     maxWeight = tPlayer.getInventoryWeightCapacity(),
                     busy      = false,
                 }
 
-                TriggerClientEvent('tpz_inventory:openInventoryContainerByPlayerTarget', tonumber(target), tonumber(target), data, GetPlayerName(tonumber(target)), false)
+                TriggerClientEvent('tpz_inventory:openInventoryContainerByPlayerTarget', _source, tonumber(target), data, GetPlayerName(tonumber(target)), false, "tpz_inventory:getPlayerInventoryData")
 
             else
                 SendCommandNotification(_source, Locales['PLAYER_NOT_ONLINE'], 'error', 3000)
@@ -395,7 +416,6 @@ RegisterCommand("openinventory", function(source, args, rawCommand)
     end
 
 end, false)
-
 
 --[[ ------------------------------------------------
    Chat Suggestions Registration
@@ -426,4 +446,5 @@ AddEventHandler("tpz_inventory:registerChatSuggestions", function()
     })
     
 end)
+
 
