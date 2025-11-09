@@ -278,9 +278,123 @@ AddEventHandler("tpz_inventory:setBusyState", function(containerId, state)
     
 end)
 
------------------------------------------------------------
---[[ Events  ]]--
------------------------------------------------------------
+RegisterServerEvent("tpz_inventory:transferPlayerInventoryItem")
+AddEventHandler("tpz_inventory:transferPlayerInventoryItem", function(targetPlayerId, inventory, item, quantity, event)
+    local _source  = source
+    local _tsource = tonumber(targetPlayerId)
+    local _item    = item
+
+    if inventory == 'main' then
+        item.quantity = getItemQuantity(_source, item.item)
+
+    elseif inventory == 'container' then 
+        item.quantity = getItemQuantity(_tsource, item.item)
+    end
+
+    if item.quantity == 0 then
+        item.quantity = 1
+    end
+
+    if (quantity > item.quantity) and (tostring(item.type) ~= '0' and tostring(item.type) ~= '1' and tostring(item.type) ~= '2') then
+        TriggerClientEvent('tpz_core:sendRightTipNotification', _source, Locales['NOT_PERMITTED_TO_WITHDRAW_QUANTITY'], 3000)
+        return
+    end
+
+    if inventory == "main" then
+
+        if item.type == "item" then
+
+            local canCarry = canCarryItem(_tsource, item.item, tonumber(quantity))
+
+            if canCarry then
+
+                removeItem(_source, item.item, tonumber(quantity), item.itemId)
+                addItem(_tsource, item.item, tonumber(quantity), item.metadata, item.itemId)
+
+                item.transfer_quantity = tonumber(quantity)
+                TriggerClientEvent('tpz_inventory:onTransferItemUpdate', _source, inventory, item, event)
+
+            else
+                TriggerClientEvent('tpz_core:sendRightTipNotification', _source, Locales['CANNOT_CARRY_ITEM_CONTAINER'], 3000)
+            end
+
+        elseif item.type == "weapon" then
+
+            local canCarry = canCarryWeapon(_tsource, item.item)
+            
+            if canCarry then
+
+                removeWeapon(_source, item.item, item.itemId)
+
+                addWeapon(_tsource, item.item, item.itemId, item.metadata)
+                
+                item.transfer_quantity = 1
+                TriggerClientEvent('tpz_inventory:onTransferItemUpdate', _source, inventory, item, event)
+
+            else
+                TriggerClientEvent('tpz_core:sendRightTipNotification', _source, Locales['CANNOT_CARRY_WEAPON_CONTAINER'], 3000)
+            end
+
+        end
+
+    else 
+
+        if item.type == "item" then
+
+            local canCarry = canCarryItem(_source, item.item, tonumber(quantity))
+
+            if canCarry then
+
+                removeItem(_tsource, item.item, tonumber(quantity), item.itemId)
+                addItem(_source, item.item, tonumber(quantity), item.metadata, item.itemId)
+
+                item.transfer_quantity = tonumber(quantity)
+                TriggerClientEvent('tpz_inventory:onTransferItemUpdate', _source, inventory, item, event)
+
+            else
+                TriggerClientEvent('tpz_core:sendRightTipNotification', _source, Locales['CANNOT_CARRY_ITEM_CONTAINER'], 3000)
+            end
+
+        elseif item.type == "weapon" then
+
+            local canCarry = canCarryWeapon(_source, item.item)
+            
+            if canCarry then
+
+                removeWeapon(_tsource, item.item, item.itemId)
+
+                addWeapon(_source, item.item, item.itemId, item.metadata)
+                
+                item.transfer_quantity = 1
+                TriggerClientEvent('tpz_inventory:onTransferItemUpdate', _source, inventory, item, event)
+
+            else
+                TriggerClientEvent('tpz_core:sendRightTipNotification', _source, Locales['CANNOT_CARRY_WEAPON_CONTAINER'], 3000)
+            end
+
+        else
+
+            local xPlayer = TPZ.GetPlayer(tonumber(_source))
+            local tPlayer = TPZ.GetPlayer(tonumber(_tsource))
+
+            local money = tPlayer.getAccount(tonumber(item.type))
+
+            if quantity > money then 
+                TriggerClientEvent('tpz_core:sendRightTipNotification', _source, Locales['NOT_PERMITTED_TO_WITHDRAW_MONEY'], 3000)
+                return 
+            end
+
+            tPlayer.removeAccount(tonumber(item.type), quantity)
+            xPlayer.addAccount(tonumber(item.type), quantity)
+
+            item.transfer_quantity = quantity
+            TriggerClientEvent('tpz_inventory:onTransferItemUpdate', _source, inventory, item, event)
+        end
+
+    end
+
+
+end)
 
 RegisterServerEvent("tpz_inventory:transferContainerItem")
 AddEventHandler("tpz_inventory:transferContainerItem", function(containerId, inventory, item, quantity, cb)
@@ -534,14 +648,35 @@ exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:getContainerDataById
 
 end)
 
+
 exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:getPlayerInventoryData", function(source, cb, data)
 
     local target  = tonumber(data.target)
     local tPlayer = TPZ.GetPlayer(tonumber(target))
 
+    local new_contents = {}
+
+    local cash, gold, blackmoney = tPlayer.getAccount(0), tPlayer.getAccount(1), tPlayer.getAccount(2)
+
+    if cash > 0 then
+        table.insert(new_contents, { type = 0, item = 'cash', label = Locales['CURRENCY_MONEY'], quantity = tPlayer.getAccount(0), weight = 0.0, metadata = {} })   
+    end
+
+    if gold > 0 then
+        table.insert(new_contents, { type = 1, item = 'gold', label = Locales['CURRENCY_GOLD'], quantity = tPlayer.getAccount(1), weight = 0.0, metadata = {} })
+    end
+    
+    if blackmoney > 0 then
+        table.insert(new_contents, { type = 2, item = 'blackmoney', label = Locales['CURRENCY_BLACKMONEY'], quantity = tPlayer.getAccount(2), weight = 0.0, metadata = {} })
+    end
+
+    for _, content in pairs (PlayerInventory[tonumber(target)].inventory) do 
+        table.insert(new_contents, content)
+    end
+
     local data = {
         name = tonumber(target),
-        inventory = PlayerInventory[tonumber(target)].inventory,
+        inventory = new_contents,
         maxWeight = tPlayer.getInventoryWeightCapacity(),
         busy      = false,
     }
@@ -549,3 +684,4 @@ exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:getPlayerInventoryDa
     return cb(data)
 
 end)
+
