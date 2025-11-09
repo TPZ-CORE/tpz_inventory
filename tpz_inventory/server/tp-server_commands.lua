@@ -307,6 +307,95 @@ RegisterCommand("clearinventory", function(source, args, rawCommand)
 
 end, false)
 
+--[[ Open Inventory Contents Command ]] --
+RegisterCommand("openinventory", function(source, args, rawCommand)
+    local _source = source
+
+    local hasPermissions, await = false, true
+   
+    if _source ~= 0 then
+
+        local xPlayer = TPZ.GetPlayer(_source)
+
+        hasPermissions = xPlayer.hasPermissionsByAce("tpzcore.inventory.openinventory") or xPlayer.hasPermissionsByAce("tpzcore.inventory.all")
+
+        if not hasPermissions then
+            hasPermissions = xPlayer.hasAdministratorPermissions(Config.Commands['openinventory'].Groups, Config.Commands['openinventory'].DiscordRoles)
+        end
+    
+        await = false
+
+    else
+        hasPermissions = true -- CONSOLE HAS PERMISSIONS.
+        await = false
+    end
+    
+    while await do
+        Wait(100)
+    end
+
+    if hasPermissions then
+
+        local target = args[1]
+
+        if target == nil or target == '' or tonumber(target) == nil then
+            SendCommandNotification(_source, Locales['INCORRECT_SYNTAX'], 'error', 3000)
+            return
+        end
+        
+        local targetSteamName = GetPlayerName(tonumber(target))
+
+        local webhookData = Config.Commands['openinventory'].Webhook
+    
+        if webhookData.Enabled then
+            local title   = "📋` /openinventory ".. target .. "`"
+            local message = 'The specified command has been executed from the console (txadmin?).'
+
+            if _source ~= 0 then
+
+                local xPlayer         = TPZ.GetPlayer(_source)
+                local identifier      = xPlayer.getIdentifier()
+
+                local ip              = GetPlayerEndpoint(_source)
+            
+                local discordIdentity = GetIdentity(_source, "discord")
+                local discordId       = string.sub(discordIdentity, 9)
+
+                local steamName       = GetPlayerName(_source)
+                message = "**Steam name: **`" .. steamName .. " (" .. xPlayer.getGroup() .. ")`**\nIdentifier**`" .. identifier .. "` \n**Discord:** <@" .. discordId .. ">**\nIP: **`" .. ip .. "`\n **Action:** `Used Clear Inventory Command`"
+            end
+            
+            TPZ.SendToDiscord(webhookData.Url, title, message, webhookData.Color)
+        end
+
+        if targetSteamName then
+            local tPlayer = TPZ.GetPlayer(tonumber(target))
+
+            if tPlayer.loaded() then
+
+                local data = {
+                    name = tonumber(target),
+                    inventory = PlayerInventory[tonumber(target)].inventory,
+                    maxWeight = tPlayer.getInventoryWeightCapacity(),
+                    busy      = false,
+                }
+
+                TriggerClientEvent('tpz_inventory:openInventoryContainerByPlayerTarget', tonumber(target), tonumber(target), data, GetPlayerName(tonumber(target)), false)
+
+            else
+                SendCommandNotification(_source, Locales['PLAYER_NOT_ONLINE'], 'error', 3000)
+            end
+
+        else
+            SendCommandNotification(_source, Locales['PLAYER_NOT_ONLINE'], 'error', 3000)
+        end
+
+    else
+        SendCommandNotification(_source, Locales['NO_PERMISSIONS'], 'error', 3000)
+    end
+
+end, false)
+
 
 --[[ ------------------------------------------------
    Chat Suggestions Registration
@@ -331,5 +420,10 @@ AddEventHandler("tpz_inventory:registerChatSuggestions", function()
     TriggerClientEvent("chat:addSuggestion", _source, "/clearinventory", Config.Commands['clearinventory'].Suggestion, {
         { name = "Id", help = 'Player ID' },
     })
+        
+    TriggerClientEvent("chat:addSuggestion", _source, "/openinventory", Config.Commands['openinventory'].Suggestion, {
+        { name = "Id", help = 'Player ID' },
+    })
     
 end)
+
