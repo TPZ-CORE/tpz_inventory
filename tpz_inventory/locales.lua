@@ -88,5 +88,8 @@ Locales = {
 
     ['ERROR_WEAPON_DOES_NOT_EXIST']           = '[Error] - The following weapon {%s} does not exist on the weapons configuration file.',
     ['WARN_WEAPON_DOES_NOT_EXIST_INV']        = '[Warn] - The following weapon {%s} does not exist in inventory.',
+    ['COMMAND_NOT_PERMITTED_ON_CONSOLE']      = '^1This command is not permitted to be used on console.^0',
+
 }
+
 
