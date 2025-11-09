@@ -327,7 +327,7 @@ RegisterCommand("openinventory", function(source, args, rawCommand)
         await = false
 
     else
-        hasPermissions = true -- CONSOLE HAS PERMISSIONS.
+        hasPermissions = false -- CONSOLE HAS PERMISSIONS.
         await = false
     end
     
