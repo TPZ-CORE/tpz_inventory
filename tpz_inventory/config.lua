@@ -180,7 +180,22 @@ Config.Commands = {
         Groups  = { 'admin', 'mod' },
         DiscordRoles  = { 670899926783361024 },
     },
-    
+
+	
+    ['openinventory'] = { 
+
+        Suggestion = "Perform this command to open the inventory contents of the selected user.",
+
+        Webhook = { 
+            Enabled = false, 
+            Url = "", 
+            Color = 10038562,
+        },
+        
+        Groups  = { 'admin', 'mod' },
+        DiscordRoles  = { 670899926783361024 },
+    },
+	
 }
 
 ---------------------------------------------------------------
@@ -232,3 +247,4 @@ function SendCommandNotification(source, message, type, duration) -- ONLY RELATE
     end
   
 end
+
