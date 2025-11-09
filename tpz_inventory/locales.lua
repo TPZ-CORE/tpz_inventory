@@ -23,7 +23,8 @@ Locales = {
 
     ['CANNOT_CARRY_ITEM_CONTAINER']           = "~e~There's not enough storage to transfer this item.",
     ['CANNOT_CARRY_WEAPON_CONTAINER']         = "~e~There's not enough storage to transfer this weapon.",
-
+    ['NOT_PERMITTED_TO_WITHDRAW_MONEY']       = "You can't withdraw more than the available quantity.",
+    
     ['USABLE_ITEM_CLICK_SPAM']                = "~e~Do not spam the usable item action.",
     ['KG']                                    = "KG",
     ['INVENTORY_DROP_DESCRIPTION']            = "How many would you like to drop on the ground?",
@@ -88,3 +89,4 @@ Locales = {
     ['ERROR_WEAPON_DOES_NOT_EXIST']           = '[Error] - The following weapon {%s} does not exist on the weapons configuration file.',
     ['WARN_WEAPON_DOES_NOT_EXIST_INV']        = '[Warn] - The following weapon {%s} does not exist in inventory.',
 }
+
