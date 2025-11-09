@@ -41,6 +41,76 @@ function ClearCurrentContainerId()
     CURRENT_CONTAINER_ID = 0
 end
 
+function openInventoryContainerByPlayerTarget(playerId, data, header, disable)
+
+    if data.busy then
+        -- already open from someone else
+        return
+    end
+
+    DISABLE_CONTAINER_TRANSFERS = disable
+
+    local PlayerData = GetPlayerData()
+    PlayerData.IsSecondaryInventoryOpen = true
+
+    PlayerData.IsPlayerInventoryOpen    = true 
+    PlayerData.PlayerInventoryId        = playerId
+
+    local inventoryContents  = data.inventory
+    local inventoryMaxWeight = data.maxWeight
+
+    local weight = GetContainerWeight(inventoryContents)
+
+    if #inventoryContents > 0 then
+
+        for index, content in pairs (inventoryContents) do
+
+            if content.type == 'item' and not Config.UseDatabaseItems then
+
+                content.label          = SharedItems[content.item].label
+                content.description    = SharedItems[content.item].description
+                content.weight         = SharedItems[content.item].weight
+                content.remove         = SharedItems[content.item].remove
+                content.action         = SharedItems[content.item].action
+                content.stackable      = SharedItems[content.item].stackable
+                content.droppable      = SharedItems[content.item].droppable
+                content.closeInventory = SharedItems[content.item].closeInventory
+            else
+                content.description = content.metadata.description
+            end
+
+            content.durability  = content.metadata.durability
+
+            if content.type == "weapon" then
+                content.label       = SharedWeapons.Weapons[string.upper(content.item)].label
+                content.description = SharedWeapons.Weapons[string.upper(content.item)].description
+                content.weight      = SharedWeapons.Weapons[string.upper(content.item)].weight
+            end
+
+            SendNUIMessage({ action = "updateSecondInventoryContents", item_data = content })
+        end
+    end
+    
+    OpenPlayerInventory(false) -- We are opening first the main player inventory.
+
+    SendNUIMessage({ action = "setupSecondInventoryContents", inventory = inventoryContents })
+
+    -- We are opening the second inventory last, after we update its contents.
+    SendNUIMessage(
+        {  
+            action        = "setSecondInventoryState", 
+    
+            enable        = true,
+            header        = header,
+            isTarget      = isTarget,
+    
+            weight        = weight,
+            maxWeight     = inventoryMaxWeight, 
+        }
+    )
+    
+end
+
 function openInventoryContainerById(containerId, header, isTarget, disable)
 
     -- @param inventory
@@ -56,8 +126,9 @@ function openInventoryContainerById(containerId, header, isTarget, disable)
 
         local PlayerData = GetPlayerData()
         PlayerData.IsSecondaryInventoryOpen = true
+
         TriggerEvent('tpz_inventory:setSecondaryInventoryOpenState', true)
-			
+
         local inventoryContents  = data.inventory
         local inventoryMaxWeight = data.maxWeight
 
@@ -134,90 +205,121 @@ AddEventHandler("tpz_inventory:openInventoryContainerById", function(containerId
     openInventoryContainerById(containerId, header, false, false)
 end)
 
+RegisterNetEvent('tpz_inventory:openInventoryContainerByPlayerTarget')
+AddEventHandler("tpz_inventory:openInventoryContainerByPlayerTarget", function(playerId, data, header, disable, event)
+    local PlayerData = GetPlayerData()
+    openInventoryContainerByPlayerTarget(playerId, data, header, disable, event)
+    PlayerData.PlayerInventoryRetrieveDataEvent = event
+end)
+
 RegisterNetEvent('tpz_inventory:onTransferItemUpdate')
-AddEventHandler("tpz_inventory:onTransferItemUpdate", function(inventoryType, item)
+AddEventHandler("tpz_inventory:onTransferItemUpdate", function(inventoryType, item, playerevent)
 	local WeaponAPI  = exports.tpz_weapons:getWeaponsAPI()
     local content    = item
     local PlayerData = GetPlayerData()
 
-    TriggerEvent("tpz_core:ExecuteServerCallBack", "tpz_inventory:getContainerDataById", function(containerData)
+    local containerData 
+    local await = true
 
-        if content.type == 'item' and not Config.UseDatabaseItems then
+    if PlayerData.IsPlayerInventoryOpen then 
+        containerData = exports.tpz_core:ClientRpcCall().Callback.TriggerAwait("tpz_inventory:getPlayerInventoryData", { target = PlayerData.PlayerInventoryId } )
+        await = false
+    else
+        containerData = exports.tpz_core:ClientRpcCall().Callback.TriggerAwait("tpz_inventory:getContainerDataById", { id = CURRENT_CONTAINER_ID } )
+        await = false
+    end
 
-            content.label          = SharedItems[content.item].label
-            content.description    = SharedItems[content.item].description
-            content.weight         = SharedItems[content.item].weight
-            content.remove         = SharedItems[content.item].remove
-            content.action         = SharedItems[content.item].action
-            content.stackable      = SharedItems[content.item].stackable
-            content.droppable      = SharedItems[content.item].droppable
-            content.closeInventory = SharedItems[content.item].closeInventory
-        else
-            content.description = content.metadata.description
+    while await do 
+        Wait(10)
+    end
+
+    if content.type == 'item' and not Config.UseDatabaseItems then
+
+        content.label          = SharedItems[content.item].label
+        content.description    = SharedItems[content.item].description
+        content.weight         = SharedItems[content.item].weight
+        content.remove         = SharedItems[content.item].remove
+        content.action         = SharedItems[content.item].action
+        content.stackable      = SharedItems[content.item].stackable
+        content.droppable      = SharedItems[content.item].droppable
+        content.closeInventory = SharedItems[content.item].closeInventory
+    else
+        content.description = content.metadata.description
+    end
+
+    content.durability  = content.metadata.durability
+    content.usedType    = 0
+
+    if content.type == "weapon" then
+        
+        content.label       = SharedWeapons.Weapons[string.upper(content.item)].label
+        content.description = SharedWeapons.Weapons[string.upper(content.item)].description
+        content.weight      = SharedWeapons.Weapons[string.upper(content.item)].weight
+
+        if not SharedWeapons.Weapons[string.upper(content.item)].displayDurability then
+            content.durability  = -1
+        end
+                
+        local WeaponData = WeaponAPI.getUsedWeaponData()
+
+        if WeaponData.weaponId == content.itemId then
+            content.usedType = 1
+           
         end
 
-        content.durability  = content.metadata.durability
-        content.usedType    = 0
+    end
+
+    if inventoryType == 'main' then
+        SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = content, transfer_type = 'REMOVE' }) -- remove from
+
+        if (tostring(content.type) ~= '0' and tostring(content.type) ~= '1' and tostring(content.type) ~= '2') then
+            SendNUIMessage({ action = "updateSecondInventoryContents", item_data = content, transfer_type = 'ADD' }) -- add to.
+        else 
+            SendNUIMessage({ action = "updateAccount", item_data = content }) -- add to.
+        end
+
+    else
+
+        if (tostring(content.type) ~= '0' and tostring(content.type) ~= '1' and tostring(content.type) ~= '2') then
+            SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = content,  transfer_type = 'ADD' }) -- add to.
+        else 
+            SendNUIMessage({ action = "updateAccount", item_data = content }) -- add to.
+        end
+
+        SendNUIMessage({ action = "updateSecondInventoryContents", item_data = content,  transfer_type = 'REMOVE' }) -- remove from
+    end
+
+
+    -- Setup player inventory contents and weight.
+    for index, content in pairs (PlayerData.Inventory) do
+
+        content.usedType = 0
 
         if content.type == "weapon" then
-            
-            content.label       = SharedWeapons.Weapons[string.upper(content.item)].label
-            content.description = SharedWeapons.Weapons[string.upper(content.item)].description
-            content.weight      = SharedWeapons.Weapons[string.upper(content.item)].weight
-
-            if not SharedWeapons.Weapons[string.upper(content.item)].displayDurability then
-                content.durability  = -1
-            end
-                    
+                
             local WeaponData = WeaponAPI.getUsedWeaponData()
 
             if WeaponData.weaponId == content.itemId then
                 content.usedType = 1
-               
-            end
-
-        end
-
-        if inventoryType == 'main' then
-            SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = content, transfer_type = 'REMOVE' }) -- remove from
-            SendNUIMessage({ action = "updateSecondInventoryContents", item_data = content, transfer_type = 'ADD' }) -- add to.
-    
-        else
-            SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = content,  transfer_type = 'ADD' }) -- add to.
-            SendNUIMessage({ action = "updateSecondInventoryContents", item_data = content,  transfer_type = 'REMOVE' }) -- remove from
-        end
-    
-
-        -- Setup player inventory contents and weight.
-        for index, content in pairs (PlayerData.Inventory) do
-
-            content.usedType = 0
-
-            if content.type == "weapon" then
-                    
-                local WeaponData = WeaponAPI.getUsedWeaponData()
-
-                if WeaponData.weaponId == content.itemId then
-                    content.usedType = 1
-                end
             end
         end
+    end
 
-        SendNUIMessage({ action = "setupPlayerInventoryContents", inventory = PlayerData.Inventory })
-    
-        local currentWeight = getWeight()
-        SendNUIMessage({ action = "updatePlayerInventoryWeight", weight = round(currentWeight, 3), maxWeight = PlayerData.InventoryMaxWeight .. Config.InventoryWeightLabel })
+    SendNUIMessage({ action = "setupPlayerInventoryContents", inventory = PlayerData.Inventory })
 
-        -- Setup secondary inventory contents and weight.
-        local containerInventoryContents  = containerData.inventory
-        local containerInventoryMaxWeight = containerData.maxWeight
-        local containerCurrentWeight      = GetContainerWeight(containerInventoryContents)
+    local currentWeight = getWeight()
+    SendNUIMessage({ action = "updatePlayerInventoryWeight", weight = round(currentWeight, 3), maxWeight = PlayerData.InventoryMaxWeight .. Config.InventoryWeightLabel })
 
-        SendNUIMessage({ action = "updateContainerInventoryWeight", weight = round(containerCurrentWeight, 3), maxWeight = containerInventoryMaxWeight } )
-        SendNUIMessage({ action = "setupSecondInventoryContents", inventory = containerInventoryContents })
+    -- Setup secondary inventory contents and weight.
+    local containerInventoryContents  = containerData.inventory
+    local containerInventoryMaxWeight = containerData.maxWeight
+    local containerCurrentWeight      = GetContainerWeight(containerInventoryContents)
 
-    end, { id = CURRENT_CONTAINER_ID } )
+    SendNUIMessage({ action = "updateContainerInventoryWeight", weight = round(containerCurrentWeight, 3), maxWeight = containerInventoryMaxWeight } )
+    SendNUIMessage({ action = "setupSecondInventoryContents", inventory = containerInventoryContents })
+
 end)
+
 
 -----------------------------------------------------------
 --[[ NUI Callbacks  ]]--
@@ -243,7 +345,13 @@ RegisterNUICallback('nui:transferItem', function(data)
         return
     end
 
-    TriggerServerEvent("tpz_inventory:transferContainerItem", CURRENT_CONTAINER_ID, inventoryType, item, quantity)
-end)
+    local PlayerData = GetPlayerData()
 
+    if not PlayerData.IsPlayerInventoryOpen then
+        TriggerServerEvent("tpz_inventory:transferContainerItem", CURRENT_CONTAINER_ID, inventoryType, item, quantity)
+    else
+        TriggerServerEvent("tpz_inventory:transferPlayerInventoryItem", PlayerData.PlayerInventoryId, inventoryType, item, quantity, PlayerData.PlayerInventoryRetrieveDataEvent)
+    end
+
+end)
 
