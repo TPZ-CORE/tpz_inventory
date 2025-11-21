@@ -890,6 +890,11 @@ function canCarryContainerItem(containerId, item, quantity)
         local itemWeight         = SharedItems[item].weight * quantity
 
         local maxInventoryWeight = inventory.maxWeight
+        
+        if maxInventoryWeight == -1 then 
+            return true
+        end
+
         local currentWeight      = getContainerWeight(containerId)
     
         if (currentWeight + itemWeight) > maxInventoryWeight then return false else return true end
@@ -981,6 +986,11 @@ function canCarryContainerWeapon(containerId, weaponName)
         local inventory          = Containers[containerId]
 
         local maxInventoryWeight = inventory.maxWeight
+
+        if maxInventoryWeight == -1 then 
+            return true
+        end
+        
         local currentWeight      = getContainerWeight(containerId)
     
         if (currentWeight + WeaponData.weight) > maxInventoryWeight then return false else return true end
@@ -1058,6 +1068,7 @@ function GetTableLength(T)
     for _ in pairs(T) do count = count + 1 end
     return count
 end
+
 
 
 
