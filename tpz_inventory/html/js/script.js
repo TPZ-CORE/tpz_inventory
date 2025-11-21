@@ -36,8 +36,8 @@ $(function() {
 
 				$("#second_inventory").fadeIn();
 
-				document.getElementById("second_inventory_current_header").innerHTML = event.data.header;
-				document.getElementById("second_inventory_current_weight").innerHTML = Number(event.data.weight).toFixed(2) + "/" + event.data.maxWeight + "KG";
+				let weightDisplay = (item.maxWeight != -1) ? Number(item.weight).toFixed(2) + "/" + item.maxWeight + "KG" : Number(item.weight).toFixed(2) + "KG";
+				$("#second_inventory_current_weight").text(weightDisplay);
 			}
 			
 			document.getElementById("second_inventory").style.display = display;
@@ -50,7 +50,9 @@ $(function() {
 		}
 
 		else if (item.action == 'updateContainerInventoryWeight'){
-			document.getElementById("second_inventory_current_weight").innerHTML = Number(event.data.weight).toFixed(2) + "/" + event.data.maxWeight + "KG";
+
+			let weightDisplay = (item.maxWeight != -1) ? Number(item.weight).toFixed(2) + "/" + item.maxWeight + "KG" : Number(item.weight).toFixed(2) + "KG";
+			$("#second_inventory_current_weight").text(weightDisplay);
 		}
 
 		else if (item.action == 'updatePlayerSourceId'){
