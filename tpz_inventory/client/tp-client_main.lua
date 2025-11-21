@@ -148,7 +148,7 @@ Citizen.CreateThread(function()
     
 end)
 
--- ENABLE PUSH TO TALK
+-- PUSH TO TALK.
 CreateThread(function()
     repeat Wait(5000) until PlayerData.IsReady 
     local IS_NUI_FOCUSED = false
