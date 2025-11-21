@@ -29,8 +29,8 @@ exports('getInventoryAPI', function()
         ClosePlayerInventory()
     end
 
-    self.openInventoryContainerById = function(containerId, header, isTarget, disable)
-        openInventoryContainerById(containerId, header, isTarget, disable)
+    self.openInventoryContainerById = function(containerId, header, isTarget, disable, itemsList)
+        openInventoryContainerById(containerId, header, isTarget, disable, itemsList)
     end
 
     -- returns the weapon_registrations.lua file shared weapons list related to weapons and ammo.
@@ -51,3 +51,4 @@ exports('getInventoryAPI', function()
     
     return self
 end)
+
