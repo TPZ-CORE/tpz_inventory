@@ -3,6 +3,9 @@ local SELECTED_CONTAINER_TITLE = nil
 
 local DISABLE_CONTAINER_TRANSFERS = false
 
+local TRANSFER_ITEMS_TYPE         = 'ALL'
+local TRANSFER_ITEMS_LISTED_ITEMS = {}
+
 -----------------------------------------------------------
 --[[ Local Functions  ]]--
 -----------------------------------------------------------
@@ -50,6 +53,9 @@ function openInventoryContainerByPlayerTarget(playerId, data, header, disable)
 
     DISABLE_CONTAINER_TRANSFERS = disable
 
+    TRANSFER_ITEMS_TYPE         = 'ALL' -- reset
+    TRANSFER_ITEMS_LISTED_ITEMS = {} -- reset
+	
     local PlayerData = GetPlayerData()
     PlayerData.IsSecondaryInventoryOpen = true
 
@@ -111,7 +117,7 @@ function openInventoryContainerByPlayerTarget(playerId, data, header, disable)
     
 end
 
-function openInventoryContainerById(containerId, header, isTarget, disable)
+function openInventoryContainerById(containerId, header, isTarget, disable, itemsList)
 
     -- @param inventory
     -- @param maxWeight
@@ -124,6 +130,14 @@ function openInventoryContainerById(containerId, header, isTarget, disable)
 
         DISABLE_CONTAINER_TRANSFERS = disable
 
+        TRANSFER_ITEMS_TYPE         = 'ALL' -- reset
+        TRANSFER_ITEMS_LISTED_ITEMS = {} -- reset
+    
+        if itemsList then
+            TRANSFER_ITEMS_TYPE         = itemsList.type -- ALLOWLISTED, BLACKLISTED
+            TRANSFER_ITEMS_LISTED_ITEMS = itemsList.items
+        end
+			
         local PlayerData = GetPlayerData()
         PlayerData.IsSecondaryInventoryOpen = true
 
@@ -345,6 +359,43 @@ RegisterNUICallback('nui:transferItem', function(data)
         return
     end
 
+    if TRANSFER_ITEMS_TYPE ~= 'ALL' then
+
+        local isPermittedToTransfer = true
+
+        if TRANSFER_ITEMS_TYPE == 'BLACKLISTED' then
+
+            isPermittedToTransfer = true
+            
+            for _, blacklistedItem in pairs (TRANSFER_ITEMS_LISTED_ITEMS) do
+
+                if blacklistedItem == item.item then
+                    isPermittedToTransfer = false
+                end
+
+            end
+
+        elseif TRANSFER_ITEMS_TYPE == 'ALLOWLISTED' then
+
+            isPermittedToTransfer = false
+
+            for _, allowlistedItem in pairs (TRANSFER_ITEMS_LISTED_ITEMS) do
+
+                if allowlistedItem == item.item then
+                    isPermittedToTransfer = true
+                end
+
+            end
+
+        end
+
+        if not isPermittedToTransfer then
+            TriggerEvent('tpz_core:sendRightTipNotification', Locales['NOT_PERMITTED_TO_TRANSFER_ITEM'], 3000)
+            return
+        end
+
+    end
+
     local PlayerData = GetPlayerData()
 
     if not PlayerData.IsPlayerInventoryOpen then
@@ -354,4 +405,6 @@ RegisterNUICallback('nui:transferItem', function(data)
     end
 
 end)
+
+
 
