@@ -1,3 +1,5 @@
+local CreatedIds = {}
+
 ---------------------------------------------------------------
 --[[ Local Functions ]]--
 ---------------------------------------------------------------
@@ -230,7 +232,18 @@ function addItem(source, item, quantity, metadata, itemId, preventRefresh)
                         
                         local generatedItemId = tonumber(hours) .. tonumber(minutes) .. tonumber(seconds) .. math.random(1, 9).. math.random(1, 9).. math.random(1, 9)
                         
+                        while CreatedIds[generatedItemId] do 
+
+                            generatedItemId = tonumber(hours) .. tonumber(minutes) .. tonumber(seconds) .. math.random(1, 9).. math.random(1, 9).. math.random(1, 9)
+                        
+                            if CreatedIds[generatedItemId] == nil then 
+                                break
+                            end
+        
+                        end
+
                         itemId = generatedItemId
+                        CreatedIds[itemId] = 1
                     end
 
                     local ItemParameters = {
@@ -1045,6 +1058,7 @@ function GetTableLength(T)
     for _ in pairs(T) do count = count + 1 end
     return count
 end
+
 
 
 
