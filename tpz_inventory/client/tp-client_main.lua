@@ -148,4 +148,38 @@ Citizen.CreateThread(function()
     
 end)
 
+-- ENABLE PUSH TO TALK
+CreateThread(function()
+    repeat Wait(5000) until PlayerData.IsReady 
+    local IS_NUI_FOCUSED = false
+
+    while true do
+        local sleep = 0
+
+        if not PlayerData.IsInventoryOpen then
+
+            if isNuiFocused then
+                SetNuiFocusKeepInput(false)
+                IS_NUI_FOCUSED = false
+            end
+            sleep = 1000
+
+            goto END
+        end
+
+        if PlayerData.IsInventoryOpen then
+            if not isNuiFocused then
+                SetNuiFocusKeepInput(true)
+                IS_NUI_FOCUSED = true
+            end
+
+            DisableAllControlActions(0)
+            EnableControlAction(0, `INPUT_PUSH_TO_TALK`, true)
+        end
+
+        ::END::
+        Wait(sleep)
+    end
+end)
+
 
