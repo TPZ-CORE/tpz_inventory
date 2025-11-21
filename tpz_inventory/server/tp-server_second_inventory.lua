@@ -198,20 +198,27 @@ AddEventHandler("tpz_inventory:upgradeContainerInventoryWeight", function(contai
 
     local container = Containers[containerId]
 
-    Containers[containerId].maxWeight = Containers[containerId].maxWeight + weight
+    if Containers[containerId].maxWeight ~= -1 then
 
-    local Parameters = { 
-        ['id']      = tonumber(containerId),
-        ['weight']  = container.maxWeight + weight, 
-    }
+        Containers[containerId].maxWeight = Containers[containerId].maxWeight + weight
 
-    Citizen.CreateThread(function()
-        exports.ghmattimysql:execute("UPDATE `containers` SET `weight` = @weight WHERE `id` = @id", Parameters)
-    end)
-
-    TriggerClientEvent("tpz_inventory:refreshContainerInventory", _source)
+        local Parameters = { 
+            ['id']      = tonumber(containerId),
+            ['weight']  = container.maxWeight + weight, 
+        }
+    
+        Citizen.CreateThread(function()
+            exports.ghmattimysql:execute("UPDATE `containers` SET `weight` = @weight WHERE `id` = @id", Parameters)
+        end)
+        
+        TriggerClientEvent("tpz_inventory:refreshContainerInventory", _source)
+    
+    else
+        print('attempted to upgrade a container (' .. containerId .. ') max weight. This container has already unlimited weight.')
+    end
 
 end)
+
 
 
 RegisterServerEvent('tpz_inventory:onContainerInventoryClose')
@@ -684,4 +691,5 @@ exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:getPlayerInventoryDa
     return cb(data)
 
 end)
+
 
