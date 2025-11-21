@@ -158,17 +158,19 @@ CreateThread(function()
 
         if not PlayerData.IsInventoryOpen then
 
-            if isNuiFocused then
+            if IS_NUI_FOCUSED then
                 SetNuiFocusKeepInput(false)
                 IS_NUI_FOCUSED = false
             end
+
             sleep = 1000
 
             goto END
         end
 
         if PlayerData.IsInventoryOpen then
-            if not isNuiFocused then
+
+            if not IS_NUI_FOCUSED then
                 SetNuiFocusKeepInput(true)
                 IS_NUI_FOCUSED = true
             end
