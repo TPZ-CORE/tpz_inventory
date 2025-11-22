@@ -390,7 +390,7 @@ RegisterNUICallback('nui:transferItem', function(data)
         end
 
         if not isPermittedToTransfer then
-            TriggerEvent('tpz_core:sendRightTipNotification', Locales['NOT_PERMITTED_TO_TRANSFER_ITEM'], 3000)
+            TriggerEvent('tpz_core:sendBottomTipNotification', Locales['NOT_PERMITTED_TO_TRANSFER_ITEM'], 3000)
             return
         end
 
@@ -405,6 +405,7 @@ RegisterNUICallback('nui:transferItem', function(data)
     end
 
 end)
+
 
 
 
