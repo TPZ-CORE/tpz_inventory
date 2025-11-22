@@ -215,8 +215,8 @@ AddEventHandler("tpz_inventory:setSecondaryInventoryOpenState", function(cb)
 end)
 
 RegisterNetEvent('tpz_inventory:openInventoryContainerById')
-AddEventHandler("tpz_inventory:openInventoryContainerById", function(containerId, header)
-    openInventoryContainerById(containerId, header, false, false)
+AddEventHandler("tpz_inventory:openInventoryContainerById", function(containerId, header, isTarget, disable, itemsList)
+    openInventoryContainerById(containerId, header, isTarget or false, disable or false, itemsList)
 end)
 
 RegisterNetEvent('tpz_inventory:openInventoryContainerByPlayerTarget')
@@ -405,6 +405,7 @@ RegisterNUICallback('nui:transferItem', function(data)
     end
 
 end)
+
 
 
 
