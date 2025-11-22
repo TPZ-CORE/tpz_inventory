@@ -362,8 +362,8 @@ RegisterNUICallback('nui:transferItem', function(data)
     if TRANSFER_ITEMS_TYPE ~= 'ALL' then
 
         local isPermittedToTransfer = true
-
-        if TRANSFER_ITEMS_TYPE == 'BLACKLISTED' then
+			
+        if TRANSFER_ITEMS_TYPE == 'BLACKLISTED' or TRANSFER_ITEMS_TYPE == 'BLACKLIST' then
 
             isPermittedToTransfer = true
             
@@ -375,7 +375,7 @@ RegisterNUICallback('nui:transferItem', function(data)
 
             end
 
-        elseif TRANSFER_ITEMS_TYPE == 'ALLOWLISTED' then
+        elseif TRANSFER_ITEMS_TYPE == 'ALLOWLISTED' or TRANSFER_ITEMS_TYPE == 'ALLOWLIST' then
 
             isPermittedToTransfer = false
 
@@ -405,6 +405,7 @@ RegisterNUICallback('nui:transferItem', function(data)
     end
 
 end)
+
 
 
 
