@@ -226,7 +226,7 @@ function addItem(source, item, quantity, metadata, itemId, preventRefresh)
 
                 for i = 1, tonumber(quantity) do
                     
-                    if itemId == nil then
+                    if itemId == nil or tonumber(quantity) > 1 then
 
                         local hours, minutes, seconds = os.date('%H'), os.date('%M'), os.date('%S')
                         
@@ -701,15 +701,28 @@ function addContainerItem(containerId, item, itemId, quantity, metadata)
 
         if tonumber(itemData.stackable) == 0 then
 
-            if itemId == nil then
-
-                local hours, minutes, seconds = os.date('%H'), os.date('%M'), os.date('%S')
-
-                itemId = tonumber(hours) .. tonumber(minutes) .. tonumber(seconds)  .. math.random(1, 9).. math.random(1, 9).. math.random(1, 9)
-            end
-
             for i = 1, tonumber(quantity) do
 
+                if itemId == nil or tonumber(quantity) > 1 then
+
+                    local hours, minutes, seconds = os.date('%H'), os.date('%M'), os.date('%S')
+                    
+                    local generatedItemId = tonumber(hours) .. tonumber(minutes) .. tonumber(seconds) .. math.random(1, 9).. math.random(1, 9).. math.random(1, 9)
+                    
+                    while CreatedIds[generatedItemId] do 
+    
+                        generatedItemId = tonumber(hours) .. tonumber(minutes) .. tonumber(seconds) .. math.random(1, 9).. math.random(1, 9).. math.random(1, 9)
+                    
+                        if CreatedIds[generatedItemId] == nil then 
+                            break
+                        end
+    
+                    end
+    
+                    itemId = generatedItemId
+                    CreatedIds[itemId] = 1
+                end
+                
                 local ItemParameters = {
                     --id = tonumber(itemData.id), 
                     item = item, 
@@ -1068,6 +1081,7 @@ function GetTableLength(T)
     for _ in pairs(T) do count = count + 1 end
     return count
 end
+
 
 
 
