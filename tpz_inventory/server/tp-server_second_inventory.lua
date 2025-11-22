@@ -590,7 +590,7 @@ if Config.Eatables.Enabled and Config.Eatables.RemoveDurabilityOnContainers then
                 local inventoryData   = container.inventory
                 local inventoryLength = GetTableLength(inventoryData)
 
-                if not Config.Eatables.AllowlistedContainers[container.id] and inventoryLength > 0 then
+                if not Config.Eatables.AllowlistedContainers[container.id] and container.data.allowlisted == nil and inventoryLength > 0 then
 
                     for index, content in pairs (inventoryData) do
 
@@ -698,6 +698,7 @@ exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:getPlayerInventoryDa
     return cb(data)
 
 end)
+
 
 
 
