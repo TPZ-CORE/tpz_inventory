@@ -104,8 +104,14 @@ AddEventHandler("tpz_inventory:registerContainerInventory", function(name, weigh
 
     if create then
     
-        local Parameters = { ['name'] = name, ['weight'] = weight }
-        exports.ghmattimysql:execute("INSERT INTO `containers` ( `name`, `weight`) VALUES ( @name, @weight)", Parameters)
+        local insert_data = '[]'
+
+        if data ~= nil then 
+            insert_data = json.encode(data)
+        end
+
+        local Parameters = { ['name'] = name, ['weight'] = weight, ['data'] = insert_data }
+        exports.ghmattimysql:execute("INSERT INTO `containers` ( `name`, `weight`, `data`) VALUES ( @name, @weight, @data)", Parameters)
 
         Wait(1500)
     end
@@ -692,6 +698,7 @@ exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:getPlayerInventoryDa
     return cb(data)
 
 end)
+
 
 
 
