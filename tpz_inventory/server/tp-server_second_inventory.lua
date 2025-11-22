@@ -98,7 +98,7 @@ end)
 -- The following function is registering (adding) a new container.
 -- In order to load the a new container, it must also be called where the new container has been created.
 RegisterServerEvent("tpz_inventory:registerContainerInventory")
-AddEventHandler("tpz_inventory:registerContainerInventory", function(name, weight, create, contents)
+AddEventHandler("tpz_inventory:registerContainerInventory", function(name, weight, create, contents, data)
     local _name   = name
     local _weight = weight
 
@@ -137,7 +137,8 @@ AddEventHandler("tpz_inventory:registerContainerInventory", function(name, weigh
         container.inventory  = contents or {}
 
         container.busy       = false
-    
+        container.data       = data == nil and {} or data
+				
         Containers[tonumber(res.id)] = container
 
         if Config.Debug then
@@ -541,7 +542,7 @@ if Config.Eatables.Enabled and Config.Eatables.RemoveDurabilityOnContainers then
                 local inventoryData   = container.inventory
                 local inventoryLength = GetTableLength(inventoryData)
 
-                if not container.busy and not Config.Eatables.AllowlistedContainers[container.id] and inventoryLength > 0 then
+                if not container.busy and not Config.Eatables.AllowlistedContainers[container.id] and container.data.allowlisted == nil and inventoryLength > 0 then
 
                     local contains = false
 
@@ -691,5 +692,6 @@ exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:getPlayerInventoryDa
     return cb(data)
 
 end)
+
 
 
