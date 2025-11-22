@@ -2,6 +2,36 @@ function initSecondInventoryHandlers(inventory){
     
     $.each(inventory, function (index, item) {
     
+        // Item Hovering Displays
+        $('.seconditem-' + item.item + "-" + item.itemId).hover(
+            function () {
+
+                if (item.type == "weapon") {
+
+                    let serialDisplay = item.itemId == 'N/A' ? '' : "Serial Number: (" + item.itemId + ")";
+
+                    $("#second_inventory_hovered_weapon_serial_number").text(serialDisplay);
+               
+                } else if (item.type == 'item' && item.itemId != 0 && item.itemId != 'N/A' && item.action != 'EATABLE') {
+
+                    let serialDisplay = item.itemId == 'N/A' ? '' : "Item Id: (" + item.itemId + ")";
+                    $("#second_inventory_hovered_weapon_serial_number").text(serialDisplay);
+                }
+
+                $("#second_inventory_hovered_item_label").text(item.label);
+
+                if (item.description != null && item.description != "undefined" && item.description != "nothing") {
+                    $("#second_inventory_hovered_item_description").text(item.description);
+                }
+                
+            },
+            function () {
+                $("#second_inventory_hovered_weapon_serial_number").text(" ");
+                $("#second_inventory_hovered_item_label").text(" ");
+                $("#second_inventory_hovered_item_description").text(" ");
+            }
+        );
+
         // Item Draggable Actions
 
         $('.seconditem-' + item.item + "-" + item.itemId).draggable({
@@ -23,31 +53,7 @@ function initSecondInventoryHandlers(inventory){
                // $("#second_inventory").fadeIn();
             }
         });
-                        
-    
-        // Item Hovering Displays
-        $('.seconditem-' + item.item + "-" + item.itemId).hover(
-            function () {
-    
-                if (item.type == "weapon"){
-
-                    let serialDisplay = item.itemId == 'N/A' ? '' : "Serial Number: (" + item.itemId  + ")";
-
-                    $("#second_inventory_hovered_weapon_serial_number").text(serialDisplay);
-                }
-    
-                $("#second_inventory_hovered_item_label").text(item.label);
-    
-                if (item.description != null && item.description != "undefined" && item.description != "nothing"){
-                    $("#second_inventory_hovered_item_description").text(item.description);
-                }
-            },
-            function () {
-                $("#second_inventory_hovered_weapon_serial_number").text(" ");
-                $("#second_inventory_hovered_item_label").text(" ");
-                $("#second_inventory_hovered_item_description").text(" ");
-            }
-        );
+                    
     
     });
 
