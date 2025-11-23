@@ -37,7 +37,7 @@ AddEventHandler("tpz_inventory:startEatablesTimeRemoval", function()
 
     Citizen.CreateThread(function()
         while true do
-            Wait(60000 * Config.Eatables.DurabilityRemovalTimer)
+            Wait(60000)
     
             if GetPlayerName(_source) == nil or PlayerInventory[_source] == nil then
                 break
@@ -56,37 +56,52 @@ AddEventHandler("tpz_inventory:startEatablesTimeRemoval", function()
 
                     if ItemData and tonumber(content.stackable) == 0 then
 
-                        if content.metadata.durability > 0 then
+                        -- init duration if missing
+                        content.duration = content.duration or 0
 
-                            local removeValue = tonumber(ItemData.removeValue[1])
+                        -- increase by 1 minute
+                        content.duration = content.duration + 1
 
-                            if ItemData.removeValue[2] then
-                                local randomRemoveValue = math.random(ItemData.removeValue[1], ItemData.removeValue[2])
-                                removeValue = tonumber(randomRemoveValue)
-                            end
-    
-                            content.metadata.durability = tonumber(content.metadata.durability) - removeValue
-    
-                        end
+                        -- check if duration reached timer threshold
+                        if content.duration >= ItemData.removeTime then
 
-                        if content.metadata.durability <= 0 then
+                            -- RESET duration counter
+                            content.duration = 0
 
-                            content.metadata.durability = 0 
-    
-                            removeItemById(_source, content.itemId, true) -- true : preventing inv refresh so we can refresh it only once below.
+                            if content.metadata.durability > 0 then
 
-                            if ItemData.newItem then
+                                local removeValue = tonumber(ItemData.removeValue[1])
 
-                                if canCarryItem(_source, ItemData.newItem, 1) then
-                                    addItem(_source, ItemData.newItem, 1, nil, nil, true) -- true : preventing inv refresh so we can refresh it only once below.
+                                if ItemData.removeValue[2] then
+                                    local randomRemoveValue = math.random(ItemData.removeValue[1], ItemData.removeValue[2])
+                                    removeValue = tonumber(randomRemoveValue)
                                 end
+    
+                                content.metadata.durability = tonumber(content.metadata.durability) - removeValue
+    
                             end
 
-                            refresh = true
+                            if content.metadata.durability <= 0 then
     
+                                content.metadata.durability = 0 
+        
+                                removeItemById(_source, content.itemId, true) -- true : preventing inv refresh so we can refresh it only once below.
+    
+                                if ItemData.newItem then
+    
+                                    if canCarryItem(_source, ItemData.newItem, 1) then
+                                        addItem(_source, ItemData.newItem, 1, nil, nil, true) -- true : preventing inv refresh so we can refresh it only once below.
+                                    end
+                                end
+    
+                                refresh = true
+        
+                            end
+                           
+                            updated = true
+
+                            
                         end
-                       
-                        updated = true
 
                     end
     
@@ -114,3 +129,4 @@ AddEventHandler('playerDropped', function (reason)
     end
 
 end)
+
