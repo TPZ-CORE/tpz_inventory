@@ -39,12 +39,13 @@ $(function() {
 				let weightDisplay = (item.maxWeight != -1) ? Number(item.weight).toFixed(2) + "/" + item.maxWeight + "KG" : Number(item.weight).toFixed(2) + "KG";
 				$("#second_inventory_current_weight").text(weightDisplay);
 			}
+
 			
+			item.isAllowlisted ? $("#second_inventory_freezer_state").show() : $("#second_inventory_freezer_state").hide();
+
 			document.getElementById("second_inventory").style.display = display;
 
-			item.isAllowlisted ? $("#second_inventory_freezer_state").show() : $("#second_inventory_freezer_state").hide();
-			
-			
+
 		} 
 		
 		else if (item.action == 'updatePlayerInventoryWeight'){
