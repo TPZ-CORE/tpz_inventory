@@ -63,62 +63,67 @@ Config.Eatables = {
         [0] = true,
     },
 
-    DurabilityRemovalTimer = 3, -- The time in minutes, every 3 minutes by default we removing (X%) durability (3 minutes = 5 hours for an item to be removed when removeValue equals to 1)
-
+    -- how often should the system save the containers (storages) that are removing durability from food every x minutes?
+    -- this skips the @AllowlistedContainers container storages or the ones that are allowlisted through API.
+    -- (!) THIS DOESNT MEAN THE CONTAINERS ARE NOT SAVED, THEY ARE SAVED ON USE, BUT WHEN NOT BEING OPENED, WE HAVE TO SAVE THEM IF THEY REMOVE DURABILITY
+    -- FROM THE ITEMS AND THOSE STORAGES HAVENT BEEN OPENED.
+    SaveContainerUpdatesEvery = 10, -- time in minutes
+	
+	-- @removeTime : he time in minutes, every 3 minutes by default we removing (X%) durability (3 minutes = 5 hours for an item to be removed when removeValue equals to 1) 
     Items = {
-        ['consumable_bread']             = { removeValue = { 0, 1 }, newItem = false },
-        ['consumable_banana']            = { removeValue = { 0, 1 }, newItem = false },
-        ['consumable_avocado']           = { removeValue = { 0, 1 }, newItem = false },
-        ['consumable_olives']            = { removeValue = { 0, 1 }, newItem = false },
-        ['consumable_orange']            = { removeValue = { 0, 1 }, newItem = false },
-        ['consumable_peach']             = { removeValue = { 0, 1 }, newItem = false },
-        ['consumable_pear']              = { removeValue = { 0, 1 }, newItem = false },
-        ['consumable_strawberry']        = { removeValue = { 0, 1 }, newItem = false },
-        ['consumable_melon']             = { removeValue = { 0, 1 }, newItem = false },
-        ['consumable_grapes']            = { removeValue = { 0, 1 }, newItem = false },
-        ['consumable_tomato']            = { removeValue = { 0, 1 }, newItem = false },
+        ['consumable_bread']             = { removeValue = { 0, 1 }, newItem = false, removeTime = 3 },
+        ['consumable_banana']            = { removeValue = { 0, 1 }, newItem = false, removeTime = 3 },
+        ['consumable_avocado']           = { removeValue = { 0, 1 }, newItem = false, removeTime = 3 },
+        ['consumable_olives']            = { removeValue = { 0, 1 }, newItem = false, removeTime = 3 },
+        ['consumable_orange']            = { removeValue = { 0, 1 }, newItem = false, removeTime = 3 },
+        ['consumable_peach']             = { removeValue = { 0, 1 }, newItem = false, removeTime = 3 },
+        ['consumable_pear']              = { removeValue = { 0, 1 }, newItem = false, removeTime = 3 },
+        ['consumable_strawberry']        = { removeValue = { 0, 1 }, newItem = false, removeTime = 3 },
+        ['consumable_melon']             = { removeValue = { 0, 1 }, newItem = false, removeTime = 3 },
+        ['consumable_grapes']            = { removeValue = { 0, 1 }, newItem = false, removeTime = 3 },
+        ['consumable_tomato']            = { removeValue = { 0, 1 }, newItem = false, removeTime = 3 },
 
 
         ['fish_meat']                    = { removeValue = { 2, 3 }, newItem = false },
 
-        ['meat']                         = { removeValue = { 3, 3 }, newItem = "spoiled_meat" },
-        ['bison_meat']                   = { removeValue = { 3, 3 }, newItem = "spoiled_bison_meat" },
-        ['biggame']                      = { removeValue = { 3, 3 }, newItem = "spoiled_biggame_meat" },
-        ['birdmeat']                     = { removeValue = { 3, 3 }, newItem = false },
+        ['meat']                         = { removeValue = { 3, 3 }, newItem = "spoiled_meat", removeTime = 3 },
+        ['bison_meat']                   = { removeValue = { 3, 3 }, newItem = "spoiled_bison_meat", removeTime = 3 },
+        ['biggame']                      = { removeValue = { 3, 3 }, newItem = "spoiled_biggame_meat", removeTime = 3 },
+        ['birdmeat']                     = { removeValue = { 3, 3 }, newItem = false, removeTime = 3 },
 
-        ['consumable_meat_cooked']       = { removeValue = { 2, 3 }, newItem = "spoiled_meat" },
-        ['consumable_bison_cooked']      = { removeValue = { 2, 3 }, newItem = "spoiled_bison_meat" },
-        ['consumable_biggame_cooked']    = { removeValue = { 2, 3 }, newItem = "spoiled_biggame_meat" },
+        ['consumable_meat_cooked']       = { removeValue = { 2, 3 }, newItem = "spoiled_meat", removeTime = 3 },
+        ['consumable_bison_cooked']      = { removeValue = { 2, 3 }, newItem = "spoiled_bison_meat", removeTime = 3 },
+        ['consumable_biggame_cooked']    = { removeValue = { 2, 3 }, newItem = "spoiled_biggame_meat", removeTime = 3 },
 
         -- FISH MODELS (TPZ FISHING)
 
-        ['a_c_fishbluegil_01_ms']        = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishbluegil_01_sm']        = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishbullheadcat_01_ms']    = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishbullheadcat_01_sm']    = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishchainpickerel_01_ms']  = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishchainpickerel_01_sm']  = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishchannelcatfish_01_lg'] = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishchannelcatfish_01_xl'] = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishlakesturgeon_01_lg']   = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishlargemouthbass_01_lg'] = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishlargemouthbass_01_ms'] = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishlongnosegar_01_lg']    = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishmuskie_01_lg']         = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishnorthernpike_01_lg']   = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishperch_01_ms']          = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishperch_01_sm']          = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishrainbowtrout_01_lg']   = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishrainbowtrout_01_ms']   = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishredfinpickerel_01_ms'] = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishredfinpickerel_01_sm'] = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishrockbass_01_ms']       = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishrockbass_01_sm']       = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishsalmonsockeye_01_lg']  = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishsalmonsockeye_01_ml']  = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishsalmonsockeye_01_ms']  = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishsmallmouthbass_01_lg'] = { removeValue = { 2, 3 }, newItem = false },
-        ['a_c_fishsmallmouthbass_01_ms'] = { removeValue = { 2, 3 }, newItem = false },
+        ['a_c_fishbluegil_01_ms']        = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishbluegil_01_sm']        = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishbullheadcat_01_ms']    = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishbullheadcat_01_sm']    = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishchainpickerel_01_ms']  = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishchainpickerel_01_sm']  = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishchannelcatfish_01_lg'] = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishchannelcatfish_01_xl'] = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishlakesturgeon_01_lg']   = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishlargemouthbass_01_lg'] = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishlargemouthbass_01_ms'] = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishlongnosegar_01_lg']    = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishmuskie_01_lg']         = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishnorthernpike_01_lg']   = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishperch_01_ms']          = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishperch_01_sm']          = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishrainbowtrout_01_lg']   = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishrainbowtrout_01_ms']   = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishredfinpickerel_01_ms'] = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishredfinpickerel_01_sm'] = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishrockbass_01_ms']       = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishrockbass_01_sm']       = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishsalmonsockeye_01_lg']  = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishsalmonsockeye_01_ml']  = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishsalmonsockeye_01_ms']  = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishsmallmouthbass_01_lg'] = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
+        ['a_c_fishsmallmouthbass_01_ms'] = { removeValue = { 2, 3 }, newItem = false, removeTime = 3 },
 
     },
 }
@@ -247,4 +252,5 @@ function SendCommandNotification(source, message, type, duration) -- ONLY RELATE
     end
   
 end
+
 
