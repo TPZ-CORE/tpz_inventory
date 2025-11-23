@@ -112,6 +112,7 @@ function openInventoryContainerByPlayerTarget(playerId, data, header, disable)
     
             weight        = weight,
             maxWeight     = inventoryMaxWeight, 
+			isAllowlisted = false,
         }
     )
     
@@ -182,6 +183,8 @@ function openInventoryContainerById(containerId, header, isTarget, disable, item
 
         SendNUIMessage({ action = "setupSecondInventoryContents", inventory = inventoryContents })
 
+        local isAllowlisted = ( (Config.Eatables.AllowlistedContainers[containerId]) or (data.data and data.data.allowlisted == 1))
+
         -- We are opening the second inventory last, after we update its contents.
         SendNUIMessage(
             {  
@@ -193,6 +196,8 @@ function openInventoryContainerById(containerId, header, isTarget, disable, item
         
                 weight        = weight,
                 maxWeight     = inventoryMaxWeight, 
+                isAllowlisted = isAllowlisted,
+					
             }
         )
         
@@ -405,6 +410,7 @@ RegisterNUICallback('nui:transferItem', function(data)
     end
 
 end)
+
 
 
 
