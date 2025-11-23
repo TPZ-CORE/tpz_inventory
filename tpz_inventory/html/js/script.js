@@ -42,6 +42,8 @@ $(function() {
 			
 			document.getElementById("second_inventory").style.display = display;
 
+			item.isAllowlisted ? $("#second_inventory_freezer_state").show() : $("#second_inventory_freezer_state").hide();
+			
 			
 		} 
 		
