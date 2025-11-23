@@ -534,14 +534,11 @@ end)
 
 if Config.Eatables.Enabled and Config.Eatables.RemoveDurabilityOnContainers then 
 
-    -- Incase @RemoveDurabilityOnContainers is enabled, we are forcing the system
-    -- to save every 10 minutes the containers for the durability updates. 
-    -- This system is not requirement when @RemoveDurabilityOnContainers is not enabled. 
+    -- This system saves the items with durability on containers that are not allowlisted.
     Citizen.CreateThread(function()
         while true do
 
-            local delay = (Config.Eatables.DurabilityRemovalTimer * 2) + 1
-            Wait(60000 * delay)
+            Wait(60000 * Config.Eatables.SaveContainerUpdatesEvery)
 
             for _, container in pairs (Containers) do
 
@@ -583,7 +580,7 @@ if Config.Eatables.Enabled and Config.Eatables.RemoveDurabilityOnContainers then
 
     Citizen.CreateThread(function()
         while true do
-            Wait(60000 * Config.Eatables.DurabilityRemovalTimer)
+            Wait(60000)
     
             for _, container in pairs (Containers) do 
 
@@ -598,34 +595,48 @@ if Config.Eatables.Enabled and Config.Eatables.RemoveDurabilityOnContainers then
 
                         if ItemData and tonumber(content.stackable) == 0 then
 
-                            if content.metadata.durability > 0 then
+                            -- init duration if missing
+                            content.duration = content.duration or 0
 
-                                local removeValue = tonumber(ItemData.removeValue[1])
+                            -- increase by 1 minute
+                            content.duration = content.duration + 1
 
-                                if ItemData.removeValue[2] then
-                                    local randomRemoveValue = math.random(ItemData.removeValue[1], ItemData.removeValue[2])
-                                    removeValue = tonumber(randomRemoveValue)
-                                end
+                            -- check if duration reached timer threshold
+                            if content.duration >= ItemData.removeTime then
+
+                                -- RESET duration counter
+                                content.duration = 0
+
+                                if content.metadata.durability > 0 then
+
+                                    local removeValue = tonumber(ItemData.removeValue[1])
     
-                                content.metadata.durability = tonumber(content.metadata.durability) - removeValue
-    
-                            end
-
-                            if content.metadata.durability <= 0 then
-
-                                content.metadata.durability = 0 
-
-                                removeContainerItem(container.id, content.item, 1, content.itemId)
-
-                                if ItemData.newItem then
-
-                                    local canCarry = canCarryContainerItem(container.id, ItemData.newItem, 1)
-
-                                    if canCarry then
-                                        addContainerItem(container.id, ItemData.newItem, nil, 1)
+                                    if ItemData.removeValue[2] then
+                                        local randomRemoveValue = math.random(ItemData.removeValue[1], ItemData.removeValue[2])
+                                        removeValue = tonumber(randomRemoveValue)
                                     end
+        
+                                    content.metadata.durability = tonumber(content.metadata.durability) - removeValue
+        
                                 end
     
+                                if content.metadata.durability <= 0 then
+    
+                                    content.metadata.durability = 0 
+    
+                                    removeContainerItem(container.id, content.item, 1, content.itemId)
+    
+                                    if ItemData.newItem then
+    
+                                        local canCarry = canCarryContainerItem(container.id, ItemData.newItem, 1)
+    
+                                        if canCarry then
+                                            addContainerItem(container.id, ItemData.newItem, nil, 1)
+                                        end
+                                    end
+        
+                                end
+
                             end
 
                         end
@@ -698,6 +709,7 @@ exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:getPlayerInventoryDa
     return cb(data)
 
 end)
+
 
 
 
