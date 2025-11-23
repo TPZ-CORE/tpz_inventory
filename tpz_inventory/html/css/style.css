@@ -383,6 +383,24 @@ div[id^='primary_content'] {
 
 }
 
+#second_inventory_freezer_state {
+	position: absolute;
+
+	width: 2vw;
+	height: fit-content;
+
+	margin-top: 1.2vw;
+	margin-left: 1vw;
+
+	font-weight: bold;
+	text-align: center;
+	font-size: 1vw;
+	color: #A0E3F6;
+
+	opacity: 0.6;
+
+}
+
 #second_inventory_current_weight {
 	position: absolute;
 
