@@ -38,7 +38,7 @@ function LoadContainerInventories()
             container.id                = tonumber(res.id)
             container.name              = res.name
             container.maxWeight         = tonumber(res.weight)
-            container.data = json.decode(res.data)
+            container.data              = json.decode(res.data)
 
             if Config.UseDatabaseItems then
                 
