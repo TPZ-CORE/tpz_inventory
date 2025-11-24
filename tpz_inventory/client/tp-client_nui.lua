@@ -80,6 +80,8 @@ OpenPlayerInventory = function(refresh)
                 
                 if content.type == 'item' and not Config.UseDatabaseItems then
 
+                    local exist = false 
+
                     if SharedItems[content.item] then
                         content.label          = SharedItems[content.item].label
                         content.weight         = SharedItems[content.item].weight
@@ -88,60 +90,67 @@ OpenPlayerInventory = function(refresh)
                         content.stackable      = SharedItems[content.item].stackable
                         content.droppable      = SharedItems[content.item].droppable
                         content.closeInventory = SharedItems[content.item].closeInventory
+
+                        exist = true
                     else
                         print("Attempted to retrieve an invalid item data with the name as: " .. content.item)
+                        exist = false
                     end
                 end
 
-                content.description = content.metadata.description
+                if exist then
 
-                content.durability  = content.metadata.durability
-                content.usedType    = 0
+                    content.description = content.metadata.description
 
-                if content.type == "weapon" then
+                    content.durability  = content.metadata.durability
+                    content.usedType    = 0
+
+                    if content.type == "weapon" then
                     
-                    content.label       = SharedWeapons.Weapons[string.upper(content.item)].label
-                    content.description = SharedWeapons.Weapons[string.upper(content.item)].description
-                    content.weight      = SharedWeapons.Weapons[string.upper(content.item)].weight
+                        content.label       = SharedWeapons.Weapons[string.upper(content.item)].label
+                        content.description = SharedWeapons.Weapons[string.upper(content.item)].description
+                        content.weight      = SharedWeapons.Weapons[string.upper(content.item)].weight
 
-                    if not SharedWeapons.Weapons[string.upper(content.item)].displayDurability then
-                        content.durability  = -1
-                    end
+                        if not SharedWeapons.Weapons[string.upper(content.item)].displayDurability then
+                            content.durability  = -1
+                        end
 
-                    local WeaponData = exports.tpz_weapons:getWeaponsAPI().getUsedWeaponData()
+                        local WeaponData = exports.tpz_weapons:getWeaponsAPI().getUsedWeaponData()
 
-                    if WeaponData.weaponId == content.itemId then
-                        content.usedType = 1
+                        if WeaponData.weaponId == content.itemId then
+                            content.usedType = 1
                         
-                        if WeaponData.ammoType then
-                            content.ammoType      = WeaponData.ammoType
-                            content.ammoTypeLabel = SharedWeapons.Ammo[WeaponData.ammoType].label
+                            if WeaponData.ammoType then
+                                content.ammoType      = WeaponData.ammoType
+                                content.ammoTypeLabel = SharedWeapons.Ammo[WeaponData.ammoType].label
 
-                            content.metadata.ammoType = WeaponData.ammoType
+                                content.metadata.ammoType = WeaponData.ammoType
+                            end
+
                         end
 
-                    end
+                        if content.metadata.ammoType == nil then
 
-                    if content.metadata.ammoType == nil then
+                            local weaponGroup = GetWeapontypeGroup(GetHashKey(string.upper(content.item)))
 
-                        local weaponGroup = GetWeapontypeGroup(GetHashKey(string.upper(content.item)))
+                            if string.upper(content.item) == "WEAPON_RIFLE_VARMINT" then 
+                                weaponGroup = tostring(weaponGroup) .. '1'
+                            end
 
-                        if string.upper(content.item) == "WEAPON_RIFLE_VARMINT" then 
-                            weaponGroup = tostring(weaponGroup) .. '1'
+                            local getAmmoType = SharedWeapons.AmmoTypes[tostring(weaponGroup)]
+
+                            if getAmmoType then
+                                content.metadata.ammoType = getAmmoType[1]
+                            end
                         end
 
-                        local getAmmoType = SharedWeapons.AmmoTypes[tostring(weaponGroup)]
+                        content.ammoType = content.metadata.ammoType
+                        content.ammo     = content.metadata.ammo
 
-                        if getAmmoType then
-                            content.metadata.ammoType = getAmmoType[1]
+                        if content.ammoType then
+                            content.ammoTypeLabel = SharedWeapons.Ammo[content.ammoType].label
                         end
-                    end
 
-                    content.ammoType = content.metadata.ammoType
-                    content.ammo     = content.metadata.ammo
-
-                    if content.ammoType then
-                        content.ammoTypeLabel = SharedWeapons.Ammo[content.ammoType].label
                     end
 
                 end
