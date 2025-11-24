@@ -80,13 +80,17 @@ OpenPlayerInventory = function(refresh)
                 
                 if content.type == 'item' and not Config.UseDatabaseItems then
 
-                    content.label          = SharedItems[content.item].label
-                    content.weight         = SharedItems[content.item].weight
-                    content.remove         = SharedItems[content.item].remove
-                    content.action         = SharedItems[content.item].action
-                    content.stackable      = SharedItems[content.item].stackable
-                    content.droppable      = SharedItems[content.item].droppable
-                    content.closeInventory = SharedItems[content.item].closeInventory
+                    if SharedItems[content.item] then
+                        content.label          = SharedItems[content.item].label
+                        content.weight         = SharedItems[content.item].weight
+                        content.remove         = SharedItems[content.item].remove
+                        content.action         = SharedItems[content.item].action
+                        content.stackable      = SharedItems[content.item].stackable
+                        content.droppable      = SharedItems[content.item].droppable
+                        content.closeInventory = SharedItems[content.item].closeInventory
+                    else
+                        print("Attempted to retrieve an invalid item data with the name as: " .. content.item)
+                    end
                 end
 
                 content.description = content.metadata.description
