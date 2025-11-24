@@ -153,9 +153,9 @@ OpenPlayerInventory = function(refresh)
 
                     end
 
-                end
+                    SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = content })
 
-                SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = content })
+                end
 
             end
     
