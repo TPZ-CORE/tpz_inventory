@@ -83,6 +83,7 @@ OpenPlayerInventory = function(refresh)
                     local exist = false 
 
                     if SharedItems[content.item] then
+
                         content.label          = SharedItems[content.item].label
                         content.weight         = SharedItems[content.item].weight
                         content.remove         = SharedItems[content.item].remove
@@ -90,12 +91,15 @@ OpenPlayerInventory = function(refresh)
                         content.stackable      = SharedItems[content.item].stackable
                         content.droppable      = SharedItems[content.item].droppable
                         content.closeInventory = SharedItems[content.item].closeInventory
-
+                        
                         exist = true
                     else
                         print("Attempted to retrieve an invalid item data with the name as: " .. content.item)
                         exist = false
                     end
+
+                else
+                    exist = true
                 end
 
                 if exist then
@@ -457,5 +461,6 @@ RegisterNUICallback('give', function(data)
 
     exports.tpz_inventory_trade:StartTradingProcess(playerid, _data, _data.quantity)
 end)
+
 
 
