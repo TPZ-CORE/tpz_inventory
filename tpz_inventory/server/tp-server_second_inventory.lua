@@ -296,9 +296,15 @@ end)
 RegisterServerEvent("tpz_inventory:transferPlayerInventoryItem")
 AddEventHandler("tpz_inventory:transferPlayerInventoryItem", function(targetPlayerId, inventory, item, quantity, event)
     local _source  = source
+    local xPlayer  = TPZ.GetPlayer(_source)
     local _tsource = tonumber(targetPlayerId)
     local _item    = item
-
+		
+    if xPlayer.hasLostConnection() then 
+        print(string.format('A player with the steam name as: %s and online id: %s, attempted to transfer an item on another player while his connection is lost.', GetPlayerName(_source), _source))
+        return 
+    end
+		
     if inventory == 'main' then
         item.quantity = getItemQuantity(_source, item.item)
 
@@ -414,6 +420,7 @@ end)
 RegisterServerEvent("tpz_inventory:transferContainerItem")
 AddEventHandler("tpz_inventory:transferContainerItem", function(containerId, inventory, item, quantity, cb)
     local _source = source
+    local xPlayer = TPZ.GetPlayer(_source)
     local _item   = item
 
     containerId   = tonumber(containerId)
@@ -424,6 +431,11 @@ AddEventHandler("tpz_inventory:transferContainerItem", function(containerId, inv
     -- Don't do any action if for any reason the containerId returns nil.
     if Containers[containerId] == nil then
         return
+    end
+		
+    if xPlayer.hasLostConnection() then 
+        print(string.format('A player with the steam name as: %s and online id: %s, attempted to transfer an item on storages while his connection is lost.', GetPlayerName(_source), _source))
+        return 
     end
 
     if inventory == 'main' then
@@ -710,6 +722,7 @@ exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:getPlayerInventoryDa
     return cb(data)
 
 end)
+
 
 
 
