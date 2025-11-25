@@ -43,7 +43,12 @@ RegisterServerEvent("tpz_inventory:dropMoney")
 AddEventHandler("tpz_inventory:dropMoney", function(coords, currencyType, quantity)
     local _source = source
     local xPlayer = TPZ.GetPlayer(_source)
-
+		
+    if xPlayer.hasLostConnection() then 
+        print(string.format('A player with the steam name as: %s and online id: %s, attempted to drop money on the ground while his connection is lost.', GetPlayerName(_source), _source))
+        return 
+    end
+		
     math.randomseed( os.time() )
     Citizen.Wait( math.random(250, 500) )
 
@@ -116,6 +121,11 @@ AddEventHandler("tpz_inventory:onMoneyPickup", function(currencyType, data)
     local _source = source
     local xPlayer = TPZ.GetPlayer(_source)
 
+    if xPlayer.hasLostConnection() then 
+        print(string.format('A player with the steam name as: %s and online id: %s, attempted to pickup money from the ground while his connection is lost.', GetPlayerName(_source), _source))
+        return 
+    end
+		
     math.randomseed( os.time() )
     Citizen.Wait( math.random(500, 1000) )
 
@@ -181,6 +191,11 @@ AddEventHandler("tpz_inventory:dropItem", function(coords, data, quantity)
     local _source = source
     local xPlayer = TPZ.GetPlayer(_source)
 
+    if xPlayer.hasLostConnection() then 
+        print(string.format('A player with the steam name as: %s and online id: %s, attempted to drop an item on the ground while his connection is lost.', GetPlayerName(_source), _source))
+        return 
+    end
+		
     math.randomseed( os.time() )
     Citizen.Wait( math.random(100, 500) )
 
@@ -270,6 +285,11 @@ AddEventHandler("tpz_inventory:onItemPickup", function(data)
     local _source = source
     local xPlayer = TPZ.GetPlayer(_source)
 
+    if xPlayer.hasLostConnection() then 
+        print(string.format('A player with the steam name as: %s and online id: %s, attempted to pickup an item from the ground while his connection is lost.', GetPlayerName(_source), _source))
+        return 
+    end
+		
     math.randomseed( os.time() )
     Citizen.Wait( math.random(500, 1000) )
 
@@ -327,6 +347,11 @@ RegisterServerEvent("tpz_inventory:dropWeapon")
 AddEventHandler("tpz_inventory:dropWeapon", function(coords, data)
     local _source = source
     local xPlayer = TPZ.GetPlayer(_source)
+
+    if xPlayer.hasLostConnection() then 
+        print(string.format('A player with the steam name as: %s and online id: %s, attempted to drop a weapon on the ground while his connection is lost.', GetPlayerName(_source), _source))
+        return 
+    end
 
     math.randomseed( os.time() )
     Citizen.Wait( math.random(500, 1000) )
@@ -401,6 +426,11 @@ RegisterServerEvent("tpz_inventory:onWeaponPickup")
 AddEventHandler("tpz_inventory:onWeaponPickup", function(data)
     local _source = source
     local xPlayer = TPZ.GetPlayer(_source)
+
+    if xPlayer.hasLostConnection() then 
+        print(string.format('A player with the steam name as: %s and online id: %s, attempted to pickup a weapon from the ground while his connection is lost.', GetPlayerName(_source), _source))
+        return 
+    end
 
     math.randomseed( os.time() )
     Citizen.Wait( math.random(500, 1000) )
@@ -484,3 +514,4 @@ Citizen.CreateThread(function()
 
     end
 end)
+
