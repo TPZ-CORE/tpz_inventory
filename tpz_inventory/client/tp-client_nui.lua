@@ -77,10 +77,10 @@ OpenPlayerInventory = function(refresh)
         for index, content in pairs (PlayerData.Inventory) do
     
             if content.type ~= "money" and content.type ~= "blackmoney" and content.type ~= "gold"  then
+
+                local exist = false 
                 
                 if content.type == 'item' and not Config.UseDatabaseItems then
-
-                    local exist = false 
 
                     if SharedItems[content.item] then
 
@@ -461,6 +461,7 @@ RegisterNUICallback('give', function(data)
 
     exports.tpz_inventory_trade:StartTradingProcess(playerid, _data, _data.quantity)
 end)
+
 
 
 
