@@ -32,7 +32,11 @@ AddEventHandler("tpz_inventory:useItem", function(itemId, id, item, label, weigh
         print("The following item {" .. item .. "} does not exist.")
         return
     end
-
+		
+    if TPZ.GetPlayer(_source).hasLostConnection() then
+        return 
+    end
+		
     if usableItemsList[item] then
 
         local arguments = { 
@@ -82,5 +86,6 @@ function unRegisterUsableItem(name)
     else
 		print("The following item {" .. name .. "} has not been registered to remove it from the item registrations list.")
     end
+
 
 end
