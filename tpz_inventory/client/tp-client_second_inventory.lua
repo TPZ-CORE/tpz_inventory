@@ -252,6 +252,10 @@ AddEventHandler("tpz_inventory:onTransferItemUpdate", function(inventoryType, it
         Wait(10)
     end
 
+    if containerData == nil then 
+        return 
+    end
+		
     if content.type == 'item' and not Config.UseDatabaseItems then
 
         content.label          = SharedItems[content.item].label
@@ -410,6 +414,7 @@ RegisterNUICallback('nui:transferItem', function(data)
     end
 
 end)
+
 
 
 
