@@ -1,3 +1,4 @@
+local TPZ = exports.tpz_core:getCoreAPI()
 local usableItemsList = {}
 
 -----------------------------------------------------------
@@ -89,3 +90,4 @@ function unRegisterUsableItem(name)
 
 
 end
+
