@@ -1,6 +1,6 @@
 var Locales = new Object();
 
-Locales['ITEM_ACTION_GIVE']              = 'Give';
+Locales['ITEM_ACTION_GIVE']              = 'Trade';
 Locales['ITEM_ACTION_DROP']              = 'Drop';
 
 /* Item Action Texts */
@@ -20,4 +20,5 @@ Locales['WEAPON_ACTION_DEFAULT_UNEQUIP'] = "Unequip";
 Locales['SET_AMMO_TYPE']                 = "Set Ammo Type";
 
 Locales['TRANSFER']                      = "How many would you like to transfer?";
+
 Locales['ACCEPT']                        = "Accept";
