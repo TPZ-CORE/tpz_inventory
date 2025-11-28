@@ -14,6 +14,25 @@ SharedItems = {} -- DO NOT EDIT
 -- @param closeInventory [0] to not close the inventory on its use | [1] to close the inventory on its use.
 
 SharedItems = {
+
+    -- slots
+    
+    ['slot1']  = {
+        label = '#1 Slot',  
+    },
+
+    ['slot2']  = {
+        label = '#2 Slot',  
+    },
+
+    ['slot3']  = {
+        label = '#3 Slot',  
+    },
+
+    ['slot4']  = {
+        label = '#4 Slot',  
+    },
+    
     -- [ EATABLES ] --
     ['consumable_bread']  = {
         label = 'Bread Piece',
@@ -5387,3 +5406,4 @@ SharedItems = {
         closeInventory = 0
     },
 }
+
