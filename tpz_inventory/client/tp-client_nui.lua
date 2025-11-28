@@ -19,6 +19,8 @@ OpenPlayerInventory = function(refresh)
 
     TriggerEvent("tpz_core:ExecuteServerCallBack", "tpz_core:getPlayerData", function(account)
             
+        ClearSlotsProperly()
+
         -- Inventory Slot Keys
 
         local slot1item  = PlayerData.Slots['1'].item
@@ -110,7 +112,7 @@ OpenPlayerInventory = function(refresh)
         for index, content in pairs (PlayerData.Inventory) do
     
             if content.type ~= 'slot' and content.type ~= "money" and content.type ~= "blackmoney" and content.type ~= "gold"  then
-               
+
                 local exist = false 
 
                 if content.type == 'item' and not Config.UseDatabaseItems then
@@ -273,6 +275,93 @@ SetNUIFocusStatus = function(state)
 
 end 
 
+DoesItemExistOnSlot = function(data)
+    local PlayerData = GetPlayerData()
+
+    for _, slot in pairs (PlayerData.Slots) do 
+
+        if slot.item == data.item and slot.itemId == data.itemId then 
+            return true
+        end
+
+    end
+
+    return false
+end
+
+RemoveFromSlotByItemData = function(data)
+    local PlayerData = GetPlayerData()
+
+    for _, slot in pairs (PlayerData.Slots) do 
+
+        if slot.item == data.item and slot.itemId == data.itemId then 
+            
+            TriggerServerEvent("tpz_inventory:server:set_slot", _, { item = "slot" .. _, type = 'slot', action = "slot" .. _ })
+
+            PlayerData.Slots[_] = { item = "slot" .. _, type = 'slot', action = "slot" .. _}
+
+            if PlayerData.IsInventoryOpen then
+                SendNUIMessage({ action = 'updateSlot', slotIndex = _, result = { item = "slot" .. _, itemId = tonumber("-" .. _)} })
+            end
+
+            if EquippedSlot and EquippedSlot == _ then
+
+                local equipped_data = PlayerData.Slots[EquippedSlot]
+
+                if equipped_data.type == 'weapon' then 
+                    
+                    local WeaponAPI = exports.tpz_weapons:getWeaponsAPI()
+    
+                    WeaponAPI.saveUsedWeaponData()
+                    WeaponAPI.clearUsedWeaponData(true)
+
+                    EquippedSlot = nil
+
+                else 
+                    
+                    TriggerServerEvent("tpz_inventory:useItem", tonumber(equipped_data.itemId), tonumber(equipped_data.id), equipped_data.item, equipped_data.label, equipped_data.weight, equipped_data.durability, equipped_data.metadata)
+                end
+
+                EquippedSlot = nil
+
+            end
+
+            break
+        end
+
+    end
+
+end
+
+ClearSlotsProperly = function()
+
+    local PlayerData = GetPlayerData()
+
+    for _, slot in pairs (PlayerData.Slots) do 
+
+        local exist = false 
+
+        for index, content in pairs (PlayerData.Inventory) do
+            
+            if content.type ~= 'slot' and content.type ~= "money" and content.type ~= "blackmoney" and content.type ~= "gold"  then
+               
+                if slot.item == content.item and slot.itemId == content.itemId then 
+                    exist = true
+                    break
+                end
+
+            end
+
+        end
+
+        if not exist then 
+            RemoveFromSlotByItemData(slot)
+        end
+
+    end
+
+end
+
 -----------------------------------------------------------
 --[[ Local Functions  ]]--
 -----------------------------------------------------------
@@ -323,11 +412,6 @@ AddEventHandler("tpz_core:isPlayerRespawned", function()
     PlayerData.Slots['2'] = { item = "slot2", type = 'slot', action = "slot2"}
     PlayerData.Slots['3'] = { item = "slot3", type = 'slot', action = "slot3"}
     PlayerData.Slots['4'] = { item = "slot4", type = 'slot', action = "slot4"}
-
-    if PlayerData.IsInventoryOpen then
-        SendNUIMessage({ action = 'updateSlot', slotIndex = slotId, result = { item = data.action, itemId = tonumber("-" .. slotId)} })
-    end
-
 end)
 
 -----------------------------------------------------------
@@ -388,8 +472,6 @@ RegisterNUICallback('useItem', function(data)
             return 
         end
 
-        print(data.type)
-
         ItemUseCooldown = 2 -- adding (2) seconds of cooldown. 
 
         if tonumber(data.closeInventory) == 1 or data.type == "weapon" then
@@ -421,11 +503,9 @@ RegisterNUICallback('select_slot', function(data)
     
     local doesItemExist = false
 
-    local item = _data.item .. '-' .. _data.itemId
-
     for _, slot in pairs (PlayerData.Slots) do 
 
-        if slot == item then 
+        if slot.item == _data.item then 
             doesItemExist = true
             break
         end
@@ -595,7 +675,6 @@ end)
 
 Citizen.CreateThread(function()
     
-    --["1"] = 0xE6F612E4, ["2"] = 0x1CE6D9EB, ["3"] = 0x4F49CC4C, ["4"] = 0x8F9F9E58
 
     while true do
 
@@ -695,4 +774,3 @@ Citizen.CreateThread(function()
     end
 
 end)
-
