@@ -38,7 +38,7 @@ function initMainInventoryHandlers(inventory){
 
         if (HasSecondInventoryOpen){
             
-            if (item.type != "money" && item.type != "blackmoney" && item.type != "gold"){
+            if (item.type != 'slot' && item.type != "money" && item.type != "blackmoney" && item.type != "gold"){
 
                 if (item.usedType == undefined || item.usedType == null || item.usedType == 0){
 
@@ -85,6 +85,7 @@ function initMainInventoryHandlers(inventory){
                         durability : item.durability,
                         remove : item.remove,	
                         closeInventory : item.closeInventory,
+
                     }));
     
                 }
@@ -103,6 +104,10 @@ function initMainInventoryHandlers(inventory){
     
                     let actionText = Locales['ITEM_ACTION_' + item.action] != null ? Locales['ITEM_ACTION_' + item.action] : Locales['ITEM_ACTION_USABLE'];
 
+                    if (item.type == 'slot') {
+                        actionText = Locales['ITEM_ACTION_USABLE_SLOT'];
+                    }
+
                     data.push({
                         text: actionText,
                         action: function () {
@@ -118,6 +123,8 @@ function initMainInventoryHandlers(inventory){
                                 durability : item.durability,
                                 remove : item.remove,	
                                 closeInventory : item.closeInventory,
+                                action : item.action,
+
                             }));
                         }
                     });
@@ -172,7 +179,7 @@ function initMainInventoryHandlers(inventory){
                 }
             }
     
-            if (item.usedType == 0){
+            if (item.usedType == 0 && item.type != 'slot'){
                 data.push({
                     text: Locales['ITEM_ACTION_GIVE'],
                     action: function () {
@@ -209,6 +216,32 @@ function initMainInventoryHandlers(inventory){
                             durability : item.durability,
                             remove : item.remove,
                         }));
+                    }
+                });
+            }
+
+            if (item.action != 'NONE' && item.action != "currency" && item.type != 'slot') {
+                data.push({
+                    text: Locales['ITEM_ACTION_USABLE_SELECT_SLOT'],
+                    action: function () {
+                        
+                        $.post("http://tpz_inventory/select_slot", JSON.stringify({
+                            item: item.item,
+                            itemId: item.itemId,
+                            type: item.type,
+                            id: item.id,
+                            quantity: item.quantity,
+                            label: item.label,
+                            weight: item.weight,
+                            metadata: item.metadata,
+                            durability: item.durability,
+                            remove: item.remove,
+                            closeInventory: item.closeInventory,
+                            action : item.action,
+                            ammoType: item.ammoType,
+                            ammo: item.ammo,
+                        }));
+
                     }
                 });
             }
@@ -278,5 +311,4 @@ function initMainInventoryHandlers(inventory){
             }
         }
     })
-
 }
