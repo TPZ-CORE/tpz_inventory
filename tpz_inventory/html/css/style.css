@@ -82,7 +82,7 @@ body {
 	height: 1vw;
 
 	margin-top: 38.9%;
-	margin-left: 21.60%;
+	margin-left: 22.2%;
 
 	text-align: left;
 	font-size: 0.8vw;
@@ -99,7 +99,7 @@ body {
 	height: 1vw;
 
 	margin-top: 42.50%;
-	margin-left: 23.95%;
+	margin-left: 24.3%;
 
 	text-align: center;
 	font-size: 0.70vw;
@@ -147,6 +147,27 @@ body {
 
 }
 
+.slot-number-overlay {
+	position: absolute;
+	top: 50%;
+	left: 55%;
+	transform: translate(-50%, -50%);
+	font-weight: bold;
+	font-size: 1.5vw;
+	color: rgba(255, 255, 255, 0.623);
+	text-shadow: 0 0 5px black;
+	pointer-events: none;
+}
+
+.slot-separator {
+	width: 95%;
+	height: 0.4vw;
+
+	margin: 10px 0;
+
+	margin-left: 2.2%;
+
+}
 
 #main_inventory_item_image_display {
 	position: relative;
