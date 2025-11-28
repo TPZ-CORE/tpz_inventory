@@ -36,15 +36,15 @@ $(function() {
 
 				$("#second_inventory").fadeIn();
 
+				$("#second_inventory_current_header").text(event.data.header);
+
 				let weightDisplay = (item.maxWeight != -1) ? Number(item.weight).toFixed(2) + "/" + item.maxWeight + "KG" : Number(item.weight).toFixed(2) + "KG";
 				$("#second_inventory_current_weight").text(weightDisplay);
 			}
 
-			
 			item.isAllowlisted ? $("#second_inventory_freezer_state").show() : $("#second_inventory_freezer_state").hide();
 
 			document.getElementById("second_inventory").style.display = display;
-
 
 		} 
 		
@@ -56,6 +56,7 @@ $(function() {
 
 			let weightDisplay = (item.maxWeight != -1) ? Number(item.weight).toFixed(2) + "/" + item.maxWeight + "KG" : Number(item.weight).toFixed(2) + "KG";
 			$("#second_inventory_current_weight").text(weightDisplay);
+
 		}
 
 		else if (item.action == 'updatePlayerSourceId'){
@@ -69,11 +70,11 @@ $(function() {
 
 		else if (item.action == 'clearContainerInventoryContents'){
 			$("#second_inventory_contents").html('');
+
 		}
 
 		else if (item.action == 'updateAccount') {
 			var prod_item = event.data.item_data;
-			
 
 			if (prod_item.type == "0") {
 
@@ -187,7 +188,7 @@ $(function() {
 
 			var prod_item = event.data.item_data;
 
-			if (prod_item.type != "money" && prod_item.type != "blackmoney" && prod_item.type != "gold" && prod_item.type != "kit_pouch_ammo") {
+			if (prod_item.type != 'slot' && prod_item.type != "money" && prod_item.type != "blackmoney" && prod_item.type != "gold" && prod_item.type != "kit_pouch_ammo") {
 
 				if (event.data.transfer_type != null){
 
@@ -271,7 +272,7 @@ $(function() {
 				}
 			}
 
-			if (prod_item.type == "money" || prod_item.type == "blackmoney" || prod_item.type == "gold" || prod_item.type == "kit_pouch_ammo" ) {
+			if (prod_item.type == 'slot' || prod_item.type == "money" || prod_item.type == "blackmoney" || prod_item.type == "gold" || prod_item.type == "kit_pouch_ammo" ) {
 
 				if (prod_item.type == "money") {
 					document.getElementById("main_inventory_current_money").innerHTML = "$" + prod_item.quantity.toFixed(2);
@@ -281,15 +282,49 @@ $(function() {
 				}
 
 				if (event.data.displayImage){
+					
+					let slotNumber = prod_item.type === "slot" ? prod_item.action.replace('slot', '') : "";
+					let slotStyle = prod_item.type === "slot"
+						? "height: 3vw; width: 3vw;"   // <-- change to whatever size you want
+						: "height: 3.4vw; width: 3.4vw;";
+
+					let slotMargin = prod_item.type === "slot"
+						? "margin-left: 0.3vw;"   // <-- adjust spacing here
+						: "";
+
 					$("#main_inventory_contents").append(
-						`<div id = "primary_content"> ` +
-						`<img class = "item-` + prod_item.item + "-" + prod_item.itemId +  `" id="main_inventory_item_image_display" src = "` + getItemIMG(prod_item.item) + `"></img>` + 
+						`<div id="primary_content" style="position: relative; display: inline-block; ${slotMargin}">` +
+						`<img class="item-${prod_item.item}-${prod_item.itemId}" 
+						id="main_inventory_item_image_display"
+						style="${slotStyle}"
+						src="${getItemIMG(prod_item.item)}">` +
+		  
+						(prod_item.type === "slot"
+							? `<div class="slot-number-overlay">${slotNumber}</div>`
+							: ""
+						) +
 						`</div>`
 					);
+
+					if (prod_item.action == 'slot4'){
+
+						$("#main_inventory_contents").append(`
+							<div class="slot-separator"></div>
+						`);
+					}
+
+
 				}
 
 			}
 
+		}
+
+		else if (item.action == 'updateSlot'){
+			let prod_item = item.result;
+			
+			let selector = `.item-slot${item.slotIndex}--${item.slotIndex}`;
+			$(selector).attr("src", getItemIMG(prod_item.item));
 		}
 
 		else if (item.action == 'setupSecondInventoryContents'){
