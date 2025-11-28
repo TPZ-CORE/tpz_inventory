@@ -23,8 +23,7 @@ Locales = {
 
     ['CANNOT_CARRY_ITEM_CONTAINER']           = "~e~There's not enough storage to transfer this item.",
     ['CANNOT_CARRY_WEAPON_CONTAINER']         = "~e~There's not enough storage to transfer this weapon.",
-    ['NOT_PERMITTED_TO_WITHDRAW_MONEY']       = "You can't withdraw more than the available quantity.",
-    
+
     ['USABLE_ITEM_CLICK_SPAM']                = "~e~Do not spam the usable item action.",
     ['KG']                                    = "KG",
     ['INVENTORY_DROP_DESCRIPTION']            = "How many would you like to drop on the ground?",
@@ -65,9 +64,17 @@ Locales = {
     ['SET_AMMO_ACCEPT']                       = "ACCEPT",
     ['SET_AMMO_DECLINE']                      = "DECLINE",
 
+    ['SELECT_SLOT_TITLE']                     = "Select Slot",
+    ['SELECT_SLOT_DESCRIPTION']               = "Select a slot for the specified item or weapon to be used easily through the selected key.",
+    ['SELECT_SLOT_INPUT_ACCEPT']              = "SET SLOT",
+    ['SELECT_SLOT_INPUT_CANCEL']              = "CANCEL",
+
+    ['SLOT_ALREADY_REGISTERED']               = "~e~This item already exists on a slot.",
+
     ['NOT_PERMITTED_TO_WITHDRAW_QUANTITY']    = "You are not allowed to transfer more than the existing item's available quantity.",
     ['NOT_PERMITTED_TO_TRANSFER']             = "You are not allowed to transfer to the storage any items.",
-
+    ['NOT_PERMITTED_TO_WITHDRAW_MONEY']       = "You can't withdraw more than the available quantity.",
+    
     ['DEVTOOLS_INJECTION_DETECTED_TITLE_LOG'] = "DevTools / Injection Cheat Found!",
     ['DEVTOOLS_INJECTION_DETECTED']           = "You have been kicked due to cheating by using DevTools or Injection cheat.",
 
@@ -91,6 +98,3 @@ Locales = {
     ['COMMAND_NOT_PERMITTED_ON_CONSOLE']      = '^1This command is not permitted to be used on console.^0',
     ['NOT_PERMITTED_TO_TRANSFER_ITEM']        = '~e~This item cannot be transferred to the storage.',
 }
-
-
-
