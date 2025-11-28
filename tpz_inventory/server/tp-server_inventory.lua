@@ -71,6 +71,10 @@ function LoadPlayerInventoryContents(source, identifier, charId, newChar)
         local res           = result[1]
         local inventoryData = PlayerInventory[_source]
 
+        if type(res.inventory_slots) == "string" then
+            inventoryData.slots = json.decode(res.inventory_slots)
+        end
+
         if res.inventory == nil or tostring(res.inventory) == '[]' then
             
             inventoryData.inventory = {}
@@ -104,7 +108,6 @@ function LoadPlayerInventoryContents(source, identifier, charId, newChar)
 
             return
         end
-
 
         if Config.UseDatabaseItems then
             local decodedInventoryContents  = json.decode(res.inventory)
@@ -157,13 +160,14 @@ function saveInventoryContents(source, remove)
     local inventoryData    = PlayerInventory[_source].inventory
 
     local Parameters = { 
-        ['identifier']     = xPlayer.getIdentifier(),
-        ['charidentifier'] = xPlayer.getCharacterIdentifier(),
-        ['inventory']      = json.encode(inventoryData), 
+        ['identifier']      = xPlayer.getIdentifier(),
+        ['charidentifier']  = xPlayer.getCharacterIdentifier(),
+        ['inventory']       = json.encode(inventoryData), 
+        ['inventory_slots'] = json.encode(PlayerInventory[_source].slots),
     }
 
     Citizen.CreateThread(function()
-        exports.ghmattimysql:execute("UPDATE `characters` SET `inventory` = @inventory WHERE `identifier` = @identifier AND `charidentifier` = @charidentifier", Parameters)
+        exports.ghmattimysql:execute("UPDATE `characters` SET `inventory` = @inventory, `inventory_slots` = @inventory_slots WHERE `identifier` = @identifier AND `charidentifier` = @charidentifier", Parameters)
     end)
 
     if remove then
@@ -171,3 +175,13 @@ function saveInventoryContents(source, remove)
     end
 
 end
+
+-----------------------------------------------------------
+--[[ Events  ]]--
+-----------------------------------------------------------
+
+RegisterServerEvent("tpz_inventory:server:set_slot")
+AddEventHandler("tpz_inventory:server:set_slot", function(slot, item)
+    local _source = source
+    PlayerInventory[_source].slots[slot] = item
+end)
