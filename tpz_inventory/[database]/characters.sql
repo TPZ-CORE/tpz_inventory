@@ -1,1 +1,2 @@
 ALTER TABLE `characters` ADD COLUMN `inventory` longtext COLLATE utf8mb4_bin DEFAULT '[]';
+ALTER TABLE `characters` ADD COLUMN `inventory_slots` longtext COLLATE utf8mb4_bin DEFAULT '{"1": { "item": "slot1", "type" : "slot", "action" : "slot1" },"2": { "item": "slot2", "type" : "slot", "action" : "slot2" },"3": { "item": "slot3", "type" : "slot", "action" : "slot3" },"4": { "item": "slot4", "type" : "slot", "action" : "slot1"  } }';
