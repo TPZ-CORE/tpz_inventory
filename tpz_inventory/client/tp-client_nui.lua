@@ -1,5 +1,8 @@
+local TPZ = exports.tpz_core:getCoreAPI()
 
 local ItemUseCooldown = 0
+
+local EquippedSlot = nil
 
 -----------------------------------------------------------
 --[[ Functions  ]]--
@@ -16,6 +19,31 @@ OpenPlayerInventory = function(refresh)
 
     TriggerEvent("tpz_core:ExecuteServerCallBack", "tpz_core:getPlayerData", function(account)
             
+        -- Inventory Slot Keys
+
+        local slot1item  = PlayerData.Slots['1'].item
+        local slot1label = PlayerData.Slots['1'].type == 'weapon' and SharedWeapons.Weapons[string.upper(slot1item)].label or SharedItems[slot1item].label
+        local slot1 = { item = slot1item, label = slot1label, type = 'slot', description = '', weight = 0.0, action = 'slot1', droppable = 0, itemId = -1, usedType = 0, quantity = 1 }
+       
+        local slot2item  = PlayerData.Slots['2'].item
+        local slot2label = PlayerData.Slots['2'].type == 'weapon' and SharedWeapons.Weapons[string.upper(slot2item)].label or SharedItems[slot2item].label
+        local slot2 = { item = slot2item, label = slot2label, type = 'slot', description = '', weight = 0.0, action = 'slot2', droppable = 0, itemId = -2, usedType = 0, quantity = 1  }
+       
+        local slot3item  = PlayerData.Slots['3'].item
+        local slot3label = PlayerData.Slots['3'].type == 'weapon' and SharedWeapons.Weapons[string.upper(slot3item)].label or SharedItems[slot3item].label
+        local slot3 = { item = slot3item, label = slot3label, type = 'slot', description = '', weight = 0.0, action = 'slot3', droppable = 0, itemId = -3, usedType = 0, quantity = 1  }
+        
+        local slot4item  = PlayerData.Slots['4'].item
+        local slot4label = PlayerData.Slots['4'].type == 'weapon' and SharedWeapons.Weapons[string.upper(slot4item)].label or SharedItems[slot4item].label
+        local slot4 = { item = slot4item, label = slot4label, type = 'slot', description = '', weight = 0.0, action = 'slot4', droppable = 0, itemId = -4, usedType = 0, quantity = 1  }
+    
+        table.insert(PlayerData.Inventory, slot1)
+        table.insert(PlayerData.Inventory, slot2)
+        table.insert(PlayerData.Inventory, slot3)
+        table.insert(PlayerData.Inventory, slot4)
+
+        -- End of Slot Keys
+
         MoneyItemParameters = { 
                 item = "money", 
                 label = Locales['INVENTORY_ACCOUNT_MONEY'], 
@@ -66,6 +94,11 @@ OpenPlayerInventory = function(refresh)
 
         Wait(250)
             
+        SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = slot1, displayImage = true })
+        SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = slot2, displayImage = true })
+        SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = slot3, displayImage = true })
+        SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = slot4, displayImage = true })
+
         SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = MoneyItemParameters, displayImage = Config.DisplayMoney })
 
         if Config.DisplayBlackMoney then
@@ -76,10 +109,10 @@ OpenPlayerInventory = function(refresh)
 
         for index, content in pairs (PlayerData.Inventory) do
     
-            if content.type ~= "money" and content.type ~= "blackmoney" and content.type ~= "gold"  then
-
+            if content.type ~= 'slot' and content.type ~= "money" and content.type ~= "blackmoney" and content.type ~= "gold"  then
+               
                 local exist = false 
-                
+
                 if content.type == 'item' and not Config.UseDatabaseItems then
 
                     if SharedItems[content.item] then
@@ -103,60 +136,60 @@ OpenPlayerInventory = function(refresh)
                 end
 
                 if exist then
-
+      
                     content.description = content.metadata.description
 
                     content.durability  = content.metadata.durability
                     content.usedType    = 0
-
+    
                     if content.type == "weapon" then
-                    
+                        
                         content.label       = SharedWeapons.Weapons[string.upper(content.item)].label
                         content.description = SharedWeapons.Weapons[string.upper(content.item)].description
                         content.weight      = SharedWeapons.Weapons[string.upper(content.item)].weight
-
+    
                         if not SharedWeapons.Weapons[string.upper(content.item)].displayDurability then
                             content.durability  = -1
                         end
-
+    
                         local WeaponData = exports.tpz_weapons:getWeaponsAPI().getUsedWeaponData()
-
+    
                         if WeaponData.weaponId == content.itemId then
                             content.usedType = 1
-                        
+                            
                             if WeaponData.ammoType then
                                 content.ammoType      = WeaponData.ammoType
                                 content.ammoTypeLabel = SharedWeapons.Ammo[WeaponData.ammoType].label
-
+    
                                 content.metadata.ammoType = WeaponData.ammoType
                             end
-
+    
                         end
-
+    
                         if content.metadata.ammoType == nil then
-
+    
                             local weaponGroup = GetWeapontypeGroup(GetHashKey(string.upper(content.item)))
-
+    
                             if string.upper(content.item) == "WEAPON_RIFLE_VARMINT" then 
                                 weaponGroup = tostring(weaponGroup) .. '1'
                             end
-
+    
                             local getAmmoType = SharedWeapons.AmmoTypes[tostring(weaponGroup)]
-
+    
                             if getAmmoType then
                                 content.metadata.ammoType = getAmmoType[1]
                             end
                         end
-
+    
                         content.ammoType = content.metadata.ammoType
                         content.ammo     = content.metadata.ammo
-
+    
                         if content.ammoType then
                             content.ammoTypeLabel = SharedWeapons.Ammo[content.ammoType].label
                         end
-
+    
                     end
-
+    
                     SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = content })
 
                 end
@@ -239,6 +272,7 @@ SetNUIFocusStatus = function(state)
     
 
 end 
+
 -----------------------------------------------------------
 --[[ Local Functions  ]]--
 -----------------------------------------------------------
@@ -256,7 +290,7 @@ function getWeight()
     
     for index, content in pairs (inventory) do
 
-        if content.quantity > 0 then -- In case of bugged item quantity we check if quantity is more than 0.
+        if content.quantity and content.quantity > 0 then -- In case of bugged item quantity we check if quantity is more than 0.
             totalWeight = totalWeight + (content.quantity * content.weight)
         end
 
@@ -299,6 +333,41 @@ RegisterNUICallback('useItem', function(data)
 
     if ItemUseCooldown == 0 then
 
+        if data.type == 'slot' then 
+            local PlayerData = GetPlayerData()
+            local slotId     = string.gsub(data.action, 'slot', "")
+
+            if EquippedSlot and tostring(EquippedSlot) == tostring(slotId) then
+
+                local equipped_data = PlayerData.Slots[EquippedSlot]
+
+                if equipped_data.type == 'weapon' then 
+                    
+                    local WeaponAPI = exports.tpz_weapons:getWeaponsAPI()
+    
+                    WeaponAPI.saveUsedWeaponData()
+                    WeaponAPI.clearUsedWeaponData(true)
+
+                    EquippedSlot = nil
+
+                else 
+                    TriggerServerEvent("tpz_inventory:useItem", tonumber(equipped_data.itemId), tonumber(equipped_data.id), equipped_data.item, equipped_data.label, equipped_data.weight, equipped_data.durability, equipped_data.metadata)
+                end
+
+                EquippedSlot = nil
+
+            end
+
+            TriggerServerEvent("tpz_inventory:server:set_slot", slotId, { item = data.action, type = 'slot', action = data.action })
+
+            PlayerData.Slots[slotId] = { item = data.action, type = 'slot', action = data.action }
+ 
+            SendNUIMessage({ action = 'updateSlot', slotIndex = slotId, result = { item = data.action, itemId = tonumber("-" .. slotId)} })
+            return 
+        end
+
+        print(data.type)
+
         ItemUseCooldown = 2 -- adding (2) seconds of cooldown. 
 
         if tonumber(data.closeInventory) == 1 or data.type == "weapon" then
@@ -313,10 +382,6 @@ RegisterNUICallback('useItem', function(data)
 
             TriggerServerEvent("tpz_inventory:useItem", tonumber(data.itemId), tonumber(data.id), data.item, data.label, data.weight, data.durability, data.metadata)
        
-        elseif data.type == "weapon" then
-
-            EquipWeapon(data.primary, data.itemId, data.item, data.ammoType, data.ammo, data.label, data.durability, data.metadata)
-
         end
 
         Wait(1000 * ItemUseCooldown)
@@ -328,7 +393,50 @@ RegisterNUICallback('useItem', function(data)
 
 end)
 
+RegisterNUICallback('select_slot', function(data)
+    local _data      = data
+    local PlayerData = GetPlayerData()
+    
+    local doesItemExist = false
 
+    local item = _data.item .. '-' .. _data.itemId
+
+    for _, slot in pairs (PlayerData.Slots) do 
+
+        if slot == item then 
+            doesItemExist = true
+            break
+        end
+
+    end
+
+    if doesItemExist then 
+        TriggerEvent('tpz_core:sendBottomTipNotification', Locales['SLOT_ALREADY_REGISTERED'], 3000)
+        return 
+    end
+
+    local inputData = {
+        title = Locales['SELECT_SLOT_TITLE'],
+        desc  = Locales['SELECT_SLOT_DESCRIPTION'],
+        buttonparam1 = Locales['SELECT_SLOT_INPUT_ACCEPT'],
+        buttonparam2 = Locales['SELECT_SLOT_INPUT_CANCEL'],
+    
+        options = { '1', '2', '3', '4'} -- <- The list with the name values.
+    }
+        
+    TriggerEvent("tpz_inputs:getSelectedOptionsInput", inputData, function(cb)
+        
+        if cb ~= "DECLINE" then
+           TriggerServerEvent("tpz_inventory:server:set_slot", cb, _data)
+
+           PlayerData.Slots[tostring(cb)] = _data
+
+           SendNUIMessage({ action = 'updateSlot', slotIndex = cb, result = _data })
+        end
+                
+    end)
+
+end)
 
 RegisterNUICallback('drop', function(data)
     local _data   = data
@@ -463,5 +571,105 @@ RegisterNUICallback('give', function(data)
 end)
 
 
+Citizen.CreateThread(function()
+    
+    --["1"] = 0xE6F612E4, ["2"] = 0x1CE6D9EB, ["3"] = 0x4F49CC4C, ["4"] = 0x8F9F9E58
+
+    while true do
+
+        Wait(1)
+
+        local PlayerData = GetPlayerData()
+
+        local pressed      = false
+        local pressed_slot = '1'
+
+        if IsControlJustPressed(0, 0xE6F612E4) and PlayerData.Slots['1'].item ~= 'slot1' then
+            pressed = true
+            pressed_slot = '1'
+        end
+
+        if IsControlJustPressed(0, 0x1CE6D9EB) and PlayerData.Slots['2'].item ~= 'slot2' then
+            pressed = true
+            pressed_slot = '2'
+        end
+
+        if IsControlJustPressed(0, 0x4F49CC4C) and PlayerData.Slots['3'].item ~= 'slot3' then
+            pressed = true
+            pressed_slot = '3'
+        end
+
+        if IsControlJustPressed(0, 0x8F9F9E58) and PlayerData.Slots['4'].item ~= 'slot4' then
+            pressed = true
+            pressed_slot = '4'
+        end
+
+        if pressed then
+
+            local data = PlayerData.Slots[pressed_slot]
+
+            if EquippedSlot and EquippedSlot ~= pressed_slot then
+
+                local equipped_data = PlayerData.Slots[EquippedSlot]
+
+                if equipped_data.type == 'weapon' then 
+                    
+                    local WeaponAPI = exports.tpz_weapons:getWeaponsAPI()
+    
+                    WeaponAPI.saveUsedWeaponData()
+                    WeaponAPI.clearUsedWeaponData(true)
+
+                    EquippedSlot = nil
+
+                else 
+                    
+                    TriggerServerEvent("tpz_inventory:useItem", tonumber(equipped_data.itemId), tonumber(equipped_data.id), equipped_data.item, equipped_data.label, equipped_data.weight, equipped_data.durability, equipped_data.metadata)
+                end
+
+                EquippedSlot = nil
+
+            end
+
+            if tonumber(data.remove) == 1 and not data.type == "weapon" then
+
+                TriggerServerEvent("tpz_inventory:removeUsableItem", tonumber(data.itemId), tonumber(data.id), data.item, data.label)
+
+                -- remove from slot since item is one time use.
+                TriggerServerEvent("tpz_inventory:server:set_slot", pressed_slot, { item = "slot".. pressed_slot, type = 'slot', action = "slot" .. pressed_slot })
+                
+                PlayerData.Slots[pressed_slot] = { item = "slot".. pressed_slot, type = 'slot', action = "slot" .. pressed_slot }
+                SendNUIMessage({ action = 'updateSlot', slotIndex = pressed_slot, result = { item = "slot" .. pressed_slot, itemId = tonumber("-" .. pressed_slot)} })
+                EquippedSlot = nil
+            end
+    
+            if data.type ~= "weapon" then
+    
+                TriggerServerEvent("tpz_inventory:useItem", tonumber(data.itemId), tonumber(data.id), data.item, data.label, data.weight, data.durability, data.metadata)
+                EquippedSlot = pressed_slot
+
+            elseif data.type == "weapon" then
+    
+                local WeaponAPI = exports.tpz_weapons:getWeaponsAPI()
+
+                WeaponAPI.saveUsedWeaponData()
+
+                if WeaponAPI.getUsedWeaponData().weaponId == nil then
+
+                    WeaponAPI.equipWeapon(data.itemId, data.item, data.ammoType, data.ammo, data.label, data.durability, data.metadata)
+                    EquippedSlot = pressed_slot
+                else
+                    
+                    WeaponAPI.clearUsedWeaponData(true)
+                    EquippedSlot = nil
+                end
+
+            end
+
+            Wait(500)
+
+        end
 
 
+    end
+
+end)
