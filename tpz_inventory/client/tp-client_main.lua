@@ -10,6 +10,7 @@ local PlayerData = {
     PlayerInventoryRetrieveDataEvent = "",
     IsPickingUp              = false,
     Inventory                = {},
+    Slots                    = {},
     InventoryMaxWeight       = 0,
 }
 
@@ -56,6 +57,7 @@ end)
 RegisterNetEvent('tpz_inventory:updatePlayerInventoryContents')
 AddEventHandler("tpz_inventory:updatePlayerInventoryContents", function(data, refresh, first)
     PlayerData.Inventory         = data.inventory
+    PlayerData.Slots             = data.slots
     PlayerData.HasLoadedContents = true
 
     if refresh and PlayerData.IsInventoryOpen and not PlayerData.IsSecondaryInventoryOpen then -- When updating the player contents, we check if player inventory is active to refresh the inventory.
@@ -183,5 +185,3 @@ CreateThread(function()
         Wait(sleep)
     end
 end)
-
-
