@@ -546,6 +546,11 @@ RegisterNUICallback('drop', function(data)
     local player  = PlayerPedId()
     local coords  = GetEntityCoords(player, true, true)
 
+    if DoesItemExistOnSlot(_data) then 
+        TriggerEvent('tpz_core:sendRightTipNotification', Locales['CANNOT_WHILE_BEING_SET_AS_USABLE_SLOT'], 3000)
+        return 
+    end
+
     ClosePlayerInventory()
 
     Wait(550)
@@ -605,6 +610,11 @@ end)
 
 RegisterNUICallback('give', function(data)
     local _data   = data
+
+    if DoesItemExistOnSlot(_data) then 
+        TriggerEvent('tpz_core:sendRightTipNotification', Locales['CANNOT_WHILE_BEING_SET_AS_USABLE_SLOT'], 3000)
+        return 
+    end
 
     ClosePlayerInventory()
 
