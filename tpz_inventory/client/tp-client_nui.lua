@@ -307,6 +307,28 @@ function getWeight()
     return totalWeight
 end
 
+-----------------------------------------------------------
+--[[ Events ]]--
+-----------------------------------------------------------
+
+RegisterNetEvent("tpz_core:isPlayerRespawned")
+AddEventHandler("tpz_core:isPlayerRespawned", function()
+
+    TriggerServerEvent("tpz_inventory:server:set_slot", "1", { item = "slot1", type = 'slot', action = "slot1" })
+    TriggerServerEvent("tpz_inventory:server:set_slot", "2", { item = "slot2", type = 'slot', action = "slot2" })
+    TriggerServerEvent("tpz_inventory:server:set_slot", "3", { item = "slot3", type = 'slot', action = "slot3" })
+    TriggerServerEvent("tpz_inventory:server:set_slot", "4", { item = "slot4", type = 'slot', action = "slot4" })
+
+    PlayerData.Slots['1'] = { item = "slot1", type = 'slot', action = "slot1"}
+    PlayerData.Slots['2'] = { item = "slot2", type = 'slot', action = "slot2"}
+    PlayerData.Slots['3'] = { item = "slot3", type = 'slot', action = "slot3"}
+    PlayerData.Slots['4'] = { item = "slot4", type = 'slot', action = "slot4"}
+
+    if PlayerData.IsInventoryOpen then
+        SendNUIMessage({ action = 'updateSlot', slotIndex = slotId, result = { item = data.action, itemId = tonumber("-" .. slotId)} })
+    end
+
+end)
 
 -----------------------------------------------------------
 --[[ NUI Callbacks  ]]--
@@ -673,3 +695,4 @@ Citizen.CreateThread(function()
     end
 
 end)
+
