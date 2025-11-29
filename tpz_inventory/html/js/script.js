@@ -293,9 +293,10 @@ $(function() {
 						? "margin-left: 0.3vw;"   // <-- adjust spacing here
 						: "";
 
+
 					$("#main_inventory_contents").append(
 						`<div id="primary_content-${prod_item.type}-${prod_item.itemId}" style="position: relative; display: inline-block; ${slotMargin}">` +
-						`<img class="item-${prod_item.item}-${prod_item.itemId}" 
+						`<img class="item-${prod_item.type}-${prod_item.itemId}" 
 						id="main_inventory_item_image_display"
 						style="${slotStyle}"
 						src="${getItemIMG(prod_item.item)}">` +
@@ -323,9 +324,9 @@ $(function() {
 
 		else if (item.action == 'updateSlot'){
 			let prod_item = item.result;
-			let selector = `.item-slot${item.slotIndex}--${item.slotIndex}`;
+			let selector = `.item-slot--${item.slotIndex}`;
 			$(selector).attr("src", getItemIMG(prod_item.item));
-			
+
 		}
 
 		else if (item.action == 'setupSecondInventoryContents'){
