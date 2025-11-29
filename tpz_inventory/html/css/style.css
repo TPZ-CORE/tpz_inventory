@@ -149,11 +149,11 @@ body {
 
 .slot-number-overlay {
 	position: absolute;
-	top: 50%;
-	left: 55%;
+	top: 29%;
+	left: 30%;
 	transform: translate(-50%, -50%);
 	font-weight: bold;
-	font-size: 1.5vw;
+	font-size: 1.1vw;
 	color: rgba(255, 255, 255, 0.623);
 	text-shadow: 0 0 5px black;
 	pointer-events: none;
