@@ -44,7 +44,6 @@ OpenPlayerInventory = function(refresh)
         table.insert(PlayerData.Inventory, slot3)
         table.insert(PlayerData.Inventory, slot4)
 
-        print('#1', slot1.item)
         -- End of Slot Keys
 
         MoneyItemParameters = { 
@@ -797,3 +796,4 @@ Citizen.CreateThread(function()
     end
 
 end)
+
