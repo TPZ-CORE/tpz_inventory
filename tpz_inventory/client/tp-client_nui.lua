@@ -233,7 +233,7 @@ OpenPlayerInventory = function(refresh)
         SendNUIMessage({ action = 'updateSlot', slotIndex = "2", result = { item = slot2.item, itemId = tonumber("-2")} })
         SendNUIMessage({ action = 'updateSlot', slotIndex = "3", result = { item = slot3.item, itemId = tonumber("-3")} })
         SendNUIMessage({ action = 'updateSlot', slotIndex = "4", result = { item = slot4.item, itemId = tonumber("-4")} })
-        
+
         SendNUIMessage({ action = "setupPlayerInventoryContents", inventory = PlayerData.Inventory })
 
     end)
@@ -796,4 +796,3 @@ Citizen.CreateThread(function()
     end
 
 end)
-
