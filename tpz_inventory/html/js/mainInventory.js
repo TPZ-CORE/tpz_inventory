@@ -101,7 +101,6 @@ function initMainInventoryHandlers(inventory){
             if (item.action != "NONE" && item.action != "currency"){
     
                 if (item.type != "weapon"){
-    
                     let actionText = Locales['ITEM_ACTION_' + item.action] != null ? Locales['ITEM_ACTION_' + item.action] : Locales['ITEM_ACTION_USABLE'];
 
                     if (item.type == 'slot') {
@@ -246,12 +245,16 @@ function initMainInventoryHandlers(inventory){
                 });
             }
     
-    
-            $(".item-" + item.item + "-" + item.itemId).contextMenu([data], {
+            let selector = (item.type !== 'slot')
+                ? `.item-${item.item}-${item.itemId}`
+                : `.item-slot-${item.itemId}`;
+
+            // Apply contextMenu once
+            $(selector).contextMenu([data], {
                 offsetX: 1,
                 offsetY: 1,
             });
-
+            
         }
 
     });
