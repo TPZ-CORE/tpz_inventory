@@ -284,6 +284,7 @@ $(function() {
 				if (event.data.displayImage){
 					
 					let slotNumber = prod_item.type === "slot" ? prod_item.action.replace('slot', '') : "";
+
 					let slotStyle = prod_item.type === "slot"
 						? "height: 3vw; width: 3vw;"   // <-- change to whatever size you want
 						: "height: 3.4vw; width: 3.4vw;";
@@ -293,7 +294,7 @@ $(function() {
 						: "";
 
 					$("#main_inventory_contents").append(
-						`<div id="primary_content" style="position: relative; display: inline-block; ${slotMargin}">` +
+						`<div id="primary_content-${prod_item.type}-${prod_item.itemId}" style="position: relative; display: inline-block; ${slotMargin}">` +
 						`<img class="item-${prod_item.item}-${prod_item.itemId}" 
 						id="main_inventory_item_image_display"
 						style="${slotStyle}"
@@ -322,9 +323,9 @@ $(function() {
 
 		else if (item.action == 'updateSlot'){
 			let prod_item = item.result;
-			
 			let selector = `.item-slot${item.slotIndex}--${item.slotIndex}`;
 			$(selector).attr("src", getItemIMG(prod_item.item));
+			
 		}
 
 		else if (item.action == 'setupSecondInventoryContents'){
