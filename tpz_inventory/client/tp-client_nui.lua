@@ -44,6 +44,7 @@ OpenPlayerInventory = function(refresh)
         table.insert(PlayerData.Inventory, slot3)
         table.insert(PlayerData.Inventory, slot4)
 
+        print('#1', slot1.item)
         -- End of Slot Keys
 
         MoneyItemParameters = { 
@@ -95,11 +96,17 @@ OpenPlayerInventory = function(refresh)
         table.insert(PlayerData.Inventory, GoldItemParameters)
 
         Wait(250)
-            
-        SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = slot1, displayImage = true })
-        SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = slot2, displayImage = true })
-        SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = slot3, displayImage = true })
-        SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = slot4, displayImage = true })
+
+        local _slot1 = { item = 'slot1', label = slot1label, type = 'slot', description = '', weight = 0.0, action = 'slot1', droppable = 0, itemId = -1, usedType = 0, quantity = 1 }
+        local _slot2 = { item = 'slot2', label = slot2label, type = 'slot', description = '', weight = 0.0, action = 'slot2', droppable = 0, itemId = -2, usedType = 0, quantity = 1  }
+        local _slot3 = { item = 'slot3', label = slot3label, type = 'slot', description = '', weight = 0.0, action = 'slot3', droppable = 0, itemId = -3, usedType = 0, quantity = 1  }
+        local _slot4 = { item = 'slot4', label = slot4label, type = 'slot', description = '', weight = 0.0, action = 'slot4', droppable = 0, itemId = -4, usedType = 0, quantity = 1  }
+    
+        -- we run fake slots in order to load their images, somehow they can never be set without loading them first.
+        SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = _slot1, displayImage = true })
+        SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = _slot2, displayImage = true })
+        SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = _slot3, displayImage = true })
+        SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = _slot4, displayImage = true })
 
         SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = MoneyItemParameters, displayImage = Config.DisplayMoney })
 
@@ -221,7 +228,13 @@ OpenPlayerInventory = function(refresh)
             SetNUIFocusStatus(true)
 
         end
-
+        
+        -- We are running after loading fake slot images, the real item images.
+        SendNUIMessage({ action = 'updateSlot', slotIndex = "1", result = { item = slot1.item, itemId = tonumber("-1")} })
+        SendNUIMessage({ action = 'updateSlot', slotIndex = "2", result = { item = slot2.item, itemId = tonumber("-2")} })
+        SendNUIMessage({ action = 'updateSlot', slotIndex = "3", result = { item = slot3.item, itemId = tonumber("-3")} })
+        SendNUIMessage({ action = 'updateSlot', slotIndex = "4", result = { item = slot4.item, itemId = tonumber("-4")} })
+        
         SendNUIMessage({ action = "setupPlayerInventoryContents", inventory = PlayerData.Inventory })
 
     end)
@@ -505,7 +518,7 @@ RegisterNUICallback('select_slot', function(data)
 
     for _, slot in pairs (PlayerData.Slots) do 
 
-        if slot.item == _data.item then 
+        if slot.item == _data.item then -- and slot.itemId == _data.itemId then 
             doesItemExist = true
             break
         end
