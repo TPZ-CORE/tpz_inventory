@@ -290,7 +290,7 @@ $(function() {
 						: "height: 3.4vw; width: 3.4vw;";
 
 					let slotMargin = prod_item.type === "slot"
-						? "margin-left: 0.3vw;"   // <-- adjust spacing here
+						? "margin-left: 0.315vw;"   // <-- adjust spacing here
 						: "";
 
 
