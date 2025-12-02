@@ -209,7 +209,7 @@ exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:callbacks:requestWea
     
         if content.type == 'weapon' and content.itemId == data.itemId then
             weapon_data = content
-			break
+            break
         end
 
     end
@@ -217,4 +217,5 @@ exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:callbacks:requestWea
     return cb(weapon_data)
 
 end)
+
 
