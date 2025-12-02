@@ -195,3 +195,24 @@ AddEventHandler("tpz_inventory:onThrowableWeaponAmmoAmbientPickup", function(pic
 
 end)
 
+-----------------------------------------------------------
+--[[ Callbacks ]]--
+-----------------------------------------------------------
+
+exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:callbacks:requestWeaponData", function(source, cb, data)
+    local _source   = source
+    local inventory = PlayerInventory[_source].inventory
+
+    local weapon_data = {}
+
+    for index, content in pairs (inventory) do
+    
+        if content.type == 'weapon' and content.itemId == data.itemId then
+            weapon_data = content
+        end
+
+    end
+
+    return cb(weapon_data)
+
+end)
