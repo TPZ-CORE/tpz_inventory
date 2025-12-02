@@ -781,7 +781,7 @@ Citizen.CreateThread(function()
                     PlayerData.Slots[pressed_slot] = exports.tpz_core:ClientRpcCall().Callback.TriggerAwait("tpz_inventory:callbacks:requestWeaponData", { itemId = data.itemId, item = data.item } )
                     local data = PlayerData.Slots[pressed_slot]
 
-                    WeaponAPI.equipWeapon(data.itemId, data.item, data.ammoType, data.ammo, data.label, data.durability, data.metadata)
+                    WeaponAPI.equipWeapon(data.itemId, data.item, data.metadata.ammoType, data.metadata.ammo, data.label, data.durability, data.metadata)
                     EquippedSlot = pressed_slot
                 else
                     
