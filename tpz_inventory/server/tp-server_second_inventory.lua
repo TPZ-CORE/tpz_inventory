@@ -686,6 +686,22 @@ exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:getContainerDataById
 
 end)
 
+exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:getContainerDataByName", function(source, cb, data)
+       
+    local containerId = GetContainerIdByName(data.name)
+
+    if containerId then
+        if Containers[containerId] then 
+
+            local container = Containers[containerId]
+
+            return cb( { containerId = containerId, name = container.name, inventory = container.inventory,  maxWeight = tonumber(container.maxWeight), busy = container.busy } ) 
+        end
+    end
+
+    return cb(nil)
+
+end)
 
 exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:getPlayerInventoryData", function(source, cb, data)
 
