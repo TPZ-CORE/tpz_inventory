@@ -209,6 +209,99 @@ function openInventoryContainerById(containerId, header, isTarget, disable, item
 
 end
 
+function openInventoryContainerByName(containerName, header, isTarget, disable, itemsList)
+
+    -- @param inventory
+    -- @param maxWeight
+    TriggerEvent("tpz_core:ExecuteServerCallBack", "tpz_inventory:getContainerDataByName", function(data)
+
+        if data.busy then
+            -- already open from someone else
+            return
+        end
+
+        local containerId = tonumber(data.containerId)
+
+        DISABLE_CONTAINER_TRANSFERS = disable
+
+        TRANSFER_ITEMS_TYPE         = 'ALL' -- reset
+        TRANSFER_ITEMS_LISTED_ITEMS = {} -- reset
+    
+        if itemsList then
+            TRANSFER_ITEMS_TYPE         = itemsList.type -- ALLOWLISTED, BLACKLISTED
+            TRANSFER_ITEMS_LISTED_ITEMS = itemsList.items
+        end
+			
+        local PlayerData = GetPlayerData()
+        PlayerData.IsSecondaryInventoryOpen = true
+
+        TriggerEvent('tpz_inventory:setSecondaryInventoryOpenState', true)
+
+        local inventoryContents  = data.inventory
+        local inventoryMaxWeight = data.maxWeight
+
+        local weight             = GetContainerWeight(inventoryContents)
+
+        if #inventoryContents > 0 then
+
+            for index, content in pairs (inventoryContents) do
+
+                if content.type == 'item' and not Config.UseDatabaseItems then
+
+                    content.label          = SharedItems[content.item].label
+                    content.description    = SharedItems[content.item].description
+                    content.weight         = SharedItems[content.item].weight
+                    content.remove         = SharedItems[content.item].remove
+                    content.action         = SharedItems[content.item].action
+                    content.stackable      = SharedItems[content.item].stackable
+                    content.droppable      = SharedItems[content.item].droppable
+                    content.closeInventory = SharedItems[content.item].closeInventory
+                else
+                    content.description = content.metadata.description
+                end
+
+                content.durability  = content.metadata.durability
+
+                if content.type == "weapon" then
+                    content.label       = SharedWeapons.Weapons[string.upper(content.item)].label
+                    content.description = SharedWeapons.Weapons[string.upper(content.item)].description
+                    content.weight      = SharedWeapons.Weapons[string.upper(content.item)].weight
+                end
+
+                SendNUIMessage({ action = "updateSecondInventoryContents", item_data = content })
+            end
+        end
+
+        OpenPlayerInventory(false) -- We are opening first the main player inventory.
+
+        SendNUIMessage({ action = "setupSecondInventoryContents", inventory = inventoryContents })
+
+        local isAllowlisted = ( (Config.Eatables.AllowlistedContainers[containerId]) or (data.data and data.data.allowlisted == 1))
+
+        -- We are opening the second inventory last, after we update its contents.
+        SendNUIMessage(
+            {  
+                action        = "setSecondInventoryState", 
+        
+                enable        = true,
+                header        = header,
+                isTarget      = isTarget,
+        
+                weight        = weight,
+                maxWeight     = inventoryMaxWeight, 
+                isAllowlisted = isAllowlisted,
+					
+            }
+        )
+        
+        CURRENT_CONTAINER_ID = containerId
+
+        TriggerServerEvent("tp_containers:server:setBusyState", CURRENT_CONTAINER_ID, true)
+
+    end, { id = containerName } )
+
+end
+
 -----------------------------------------------------------
 --[[ Events  ]]--
 -----------------------------------------------------------
