@@ -298,7 +298,7 @@ function openInventoryContainerByName(containerName, header, isTarget, disable, 
 
         TriggerServerEvent("tp_containers:server:setBusyState", CURRENT_CONTAINER_ID, true)
 
-    end, { id = containerName } )
+    end, { name = containerName } )
 
 end
 
