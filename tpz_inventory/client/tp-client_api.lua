@@ -33,6 +33,10 @@ exports('getInventoryAPI', function()
         openInventoryContainerById(containerId, header, isTarget, disable, itemsList)
     end
 
+    self.openInventoryContainerByName = function(containerName, header, isTarget, disable, itemsList)
+        openInventoryContainerByName(containerName, header, isTarget, disable, itemsList)
+    end
+
     -- returns the weapon_registrations.lua file shared weapons list related to weapons and ammo.
     self.getSharedWeapons = function()
         return SharedWeapons
