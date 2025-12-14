@@ -141,6 +141,7 @@ AddEventHandler("tpz_inventory:registerContainerInventory", function(name, weigh
 
         if alreadyExist then
             print('(!) Container with the name: ' .. name .. ' has already been registered.')
+            return
         end
 
         local container      = {}
