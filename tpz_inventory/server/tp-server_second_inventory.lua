@@ -713,12 +713,24 @@ end
 -- @param id
 exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:getContainerDataById", function(source, cb, data)
     local containerId = tonumber(data.id)
+    
+    local timer = 0
+
+    while not Containers[containerId] then
+        Wait(1000)
+        
+        timer = timer + 1
+
+        if Containers[containerId] or timer == 5 then 
+            break
+        end
+    end
 
     if Containers[containerId] then 
 
         local container = Containers[containerId]
 
-        return cb( { name = container.name, inventory = container.inventory,  maxWeight = tonumber(container.maxWeight), busy = container.busy } ) 
+        return cb( { name = container.name, inventory = container.inventory, maxWeight = tonumber(container.maxWeight), busy = container.busy, data = container.data } ) 
     end
 
     return cb(nil)
@@ -790,6 +802,7 @@ exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:getPlayerInventoryDa
     return cb(data)
 
 end)
+
 
 
 
