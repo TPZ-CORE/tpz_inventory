@@ -106,7 +106,7 @@ AddEventHandler("tpz_inventory:registerContainerInventory", function(name, weigh
 
     if create then
     
-        alreadyExist =  GetContainerIdByName(name)
+        alreadyExist = GetContainerIdByName(name)
 
         if not alreadyExist then
             local insert_data = '[]'
@@ -125,6 +125,11 @@ AddEventHandler("tpz_inventory:registerContainerInventory", function(name, weigh
     -- Based on the name and the weight, we are searching the ID directly from the containers database table to register it on the Containers List.
     exports["ghmattimysql"]:execute("SELECT * FROM `containers` WHERE `name` = @name AND `weight` = @weight", { ['name'] = _name, ['weight'] = _weight}, function(result)
 
+        if alreadyExist then
+            print('(!) Container with the name: ' .. name .. ' has already been registered.')
+            return
+        end
+
         local res = nil
 
         if result == nil or result[1] == nil then
@@ -136,11 +141,6 @@ AddEventHandler("tpz_inventory:registerContainerInventory", function(name, weigh
 
         if Containers[tonumber(res.id)] then
             print('(!) Container with the ID: ' .. res.id .. ' has already been registered.')
-            return
-        end
-
-        if alreadyExist then
-            print('(!) Container with the name: ' .. name .. ' has already been registered.')
             return
         end
 
