@@ -729,7 +729,20 @@ exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:getContainerDataByNa
        
     local containerId = GetContainerIdByName(data.name)
 
+    local timer = 0
+
+    while not containerId then -- added a mandatory wait in case it doesnt retrieve it, maybe its created and opened the same time.
+        Wait(1000)
+        containerId = GetContainerIdByName(data.name)
+        timer = timer + 1
+
+        if containerId or timer == 5 then 
+            break
+        end
+    end
+
     if containerId then
+
         if Containers[containerId] then 
 
             local container = Containers[containerId]
@@ -777,6 +790,7 @@ exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:getPlayerInventoryDa
     return cb(data)
 
 end)
+
 
 
 
