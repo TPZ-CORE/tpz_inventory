@@ -211,8 +211,6 @@ end
 
 function openInventoryContainerByName(containerName, header, isTarget, disable, itemsList)
 
-	if containerName == nil then return end
-	
     -- @param inventory
     -- @param maxWeight
     TriggerEvent("tpz_core:ExecuteServerCallBack", "tpz_inventory:getContainerDataByName", function(data)
@@ -514,6 +512,7 @@ RegisterNUICallback('nui:transferItem', function(data)
     end
 
 end)
+
 
 
 
