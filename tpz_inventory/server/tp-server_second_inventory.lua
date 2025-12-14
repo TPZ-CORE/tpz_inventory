@@ -123,7 +123,11 @@ AddEventHandler("tpz_inventory:registerContainerInventory", function(name, weigh
     end
 
     if alreadyExist then
-        print('(!) Container with the name: ' .. name .. ' has already been registered.')
+
+        if Config.Debug then
+            print('(!) Container with the name: ' .. name .. ' has already been registered.')
+        end
+
         return
     end
 
