@@ -102,12 +102,13 @@ RegisterServerEvent("tpz_inventory:registerContainerInventory")
 AddEventHandler("tpz_inventory:registerContainerInventory", function(name, weight, create, contents, data)
     local _name   = name
     local _weight = weight
+    local alreadyExist = false
 
     if create then
     
-        local exist =  GetContainerIdByName(name)
+        alreadyExist =  GetContainerIdByName(name)
 
-        if not exist then
+        if not alreadyExist then
             local insert_data = '[]'
 
             if data ~= nil then 
@@ -136,6 +137,10 @@ AddEventHandler("tpz_inventory:registerContainerInventory", function(name, weigh
         if Containers[tonumber(res.id)] then
             print('(!) Container with the ID: ' .. res.id .. ' has already been registered.')
             return
+        end
+
+        if alreadyExist then
+            print('(!) Container with the name: ' .. name .. ' has already been registered.')
         end
 
         local container      = {}
