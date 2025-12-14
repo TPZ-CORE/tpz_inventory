@@ -192,6 +192,31 @@ AddEventHandler("tpz_inventory:unregisterCustomContainer", function(containerId)
     
 end)
 
+RegisterServerEvent("tpz_inventory:unregisterCustomContainerByName")
+AddEventHandler("tpz_inventory:unregisterCustomContainerByName", function(containerName)
+    local containerId = GetContainerIdByName(containerName)
+
+    if containerId == nil then return end 
+
+    containerId = tonumber(containerId)
+
+    -- Don't do any action if for any reason the containerId returns nil.
+    if Containers[containerId] == nil then
+        print(string.format("Attempt to un-register a container with the id: %s. The container does not exist or not registered.", containerId))
+        return
+    end
+
+    Containers[containerId] = nil
+
+    exports.ghmattimysql:execute("DELETE FROM `containers` WHERE `id` = @id", {["id"] = containerId })
+
+    if Config.Debug then
+        print('The container with the id: ' .. containerId .. ' has been removed.')
+    end
+    
+end)
+
+
 RegisterServerEvent("tpz_inventory:registerCustomContainerInventoryContents")
 AddEventHandler("tpz_inventory:registerCustomContainerInventoryContents", function(containerId, contents)
 
