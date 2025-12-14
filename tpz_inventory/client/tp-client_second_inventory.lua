@@ -215,8 +215,8 @@ function openInventoryContainerByName(containerName, header, isTarget, disable, 
     -- @param maxWeight
     TriggerEvent("tpz_core:ExecuteServerCallBack", "tpz_inventory:getContainerDataByName", function(data)
 
-        if data.busy then
-            -- already open from someone else
+        if data.busy or data == nil then
+            -- already open from someone else or null
             return
         end
 
