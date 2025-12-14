@@ -105,16 +105,20 @@ AddEventHandler("tpz_inventory:registerContainerInventory", function(name, weigh
 
     if create then
     
-        local insert_data = '[]'
+        local exist =  GetContainerIdByName(name)
 
-        if data ~= nil then 
-            insert_data = json.encode(data)
+        if not exist then
+            local insert_data = '[]'
+
+            if data ~= nil then 
+                insert_data = json.encode(data)
+            end
+
+            local Parameters = { ['name'] = name, ['weight'] = weight, ['data'] = insert_data }
+            exports.ghmattimysql:execute("INSERT INTO `containers` ( `name`, `weight`, `data`) VALUES ( @name, @weight, @data)", Parameters)
+
+            Wait(1500)
         end
-
-        local Parameters = { ['name'] = name, ['weight'] = weight, ['data'] = insert_data }
-        exports.ghmattimysql:execute("INSERT INTO `containers` ( `name`, `weight`, `data`) VALUES ( @name, @weight, @data)", Parameters)
-
-        Wait(1500)
     end
 
     -- Based on the name and the weight, we are searching the ID directly from the containers database table to register it on the Containers List.
