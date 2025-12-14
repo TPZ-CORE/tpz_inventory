@@ -124,10 +124,12 @@ function openInventoryContainerById(containerId, header, isTarget, disable, item
     -- @param maxWeight
     TriggerEvent("tpz_core:ExecuteServerCallBack", "tpz_inventory:getContainerDataById", function(data)
 
-        if data.busy then
-            -- already open from someone else
+        if data == nil then
+            print('Attempted to retrieve an inventory container storage data by the id: ' .. containerId )
             return
         end
+
+		if data.busy then return end  -- already open from someone else or null
 
         DISABLE_CONTAINER_TRANSFERS = disable
 
@@ -215,10 +217,12 @@ function openInventoryContainerByName(containerName, header, isTarget, disable, 
     -- @param maxWeight
     TriggerEvent("tpz_core:ExecuteServerCallBack", "tpz_inventory:getContainerDataByName", function(data)
 
-        if data.busy or data == nil then
-            -- already open from someone else or null
+        if data == nil then
+            print('Attempted to retrieve an inventory container storage data by the name: ' .. containerName )
             return
         end
+
+		if data.busy then return end  -- already open from someone else or null
 
         local containerId = tonumber(data.containerId)
 
@@ -512,6 +516,7 @@ RegisterNUICallback('nui:transferItem', function(data)
     end
 
 end)
+
 
 
 
