@@ -18,6 +18,18 @@ exports('getInventoryAPI', function()
         return GetContainerIdByName(containerName)
     end
 
+    self.doesContainerExistByName = function(containerName)
+        local cb = GetContainerIdByName(containerName) == nil and false or true
+        return cb
+    end
+
+    self.doesContainerExistById = function(containerId)
+        containerId = tonumber(containerId)
+
+        local cb = Containers[containerId] == nil and false or true
+        return cb
+    end
+
     -- @returns
     -- @param .name, .maxWeight, .inventory, .busy
     self.getContainerData = function(containerId)
