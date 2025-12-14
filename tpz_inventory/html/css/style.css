@@ -369,21 +369,27 @@ div[id^='primary_content'] {
 
 	background-image: url(../img/secondary_inventory.png);
     background-repeat: no-repeat;
-    background-size: 540px 864px;
-
+	background-size: 21.6vw 33.7vw;
+	
 	overflow: hidden;
-
-    min-width: 540px;
-    min-height: 864px;
-
+	
+	min-width: 21.6vw;
+	min-height: 33.7vw;
+	
 	justify-content: center;
-
-	-webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Old versions of Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently */
+	
+	-webkit-touch-callout: none;
+	/* iOS Safari */
+	-webkit-user-select: none;
+	/* Safari */
+	-khtml-user-select: none;
+	/* Konqueror HTML */
+	-moz-user-select: none;
+	/* Old versions of Firefox */
+	-ms-user-select: none;
+	/* Internet Explorer/Edge */
+	user-select: none;
+	/* Non-prefixed version, currently */
 }
 
 #second_inventory_current_header {
