@@ -317,6 +317,11 @@ AddEventHandler("tpz_inventory:openInventoryContainerById", function(containerId
     openInventoryContainerById(containerId, header, isTarget or false, disable or false, itemsList)
 end)
 
+RegisterNetEvent('tpz_inventory:openInventoryContainerByName')
+AddEventHandler("tpz_inventory:openInventoryContainerByName", function(containerName, header, isTarget, disable, itemsList)
+    openInventoryContainerByName(containerName, header, isTarget or false, disable or false, itemsList)
+end)
+
 RegisterNetEvent('tpz_inventory:openInventoryContainerByPlayerTarget')
 AddEventHandler("tpz_inventory:openInventoryContainerByPlayerTarget", function(playerId, data, header, disable, event)
     local PlayerData = GetPlayerData()
