@@ -716,7 +716,7 @@ exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:getContainerDataById
     
     local timer = 0
 
-    while not Containers[containerId] then
+    while not Containers[containerId] do
         Wait(1000)
         
         timer = timer + 1
@@ -743,7 +743,7 @@ exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:getContainerDataByNa
 
     local timer = 0
 
-    while not containerId then -- added a mandatory wait in case it doesnt retrieve it, maybe its created and opened the same time.
+    while not containerId do -- added a mandatory wait in case it doesnt retrieve it, maybe its created and opened the same time.
         Wait(1000)
         containerId = GetContainerIdByName(data.name)
         timer = timer + 1
@@ -802,6 +802,7 @@ exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:getPlayerInventoryDa
     return cb(data)
 
 end)
+
 
 
 
