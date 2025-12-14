@@ -129,7 +129,7 @@ function openInventoryContainerById(containerId, header, isTarget, disable, item
             return
         end
 
-		if data.busy then return end  -- already open from someone else or null
+		if data.busy then return end  -- already open from someone else
 
         DISABLE_CONTAINER_TRANSFERS = disable
 
@@ -222,7 +222,7 @@ function openInventoryContainerByName(containerName, header, isTarget, disable, 
             return
         end
 
-		if data.busy then return end  -- already open from someone else or null
+		if data.busy then return end  -- already open from someone else
 
         local containerId = tonumber(data.containerId)
 
@@ -516,6 +516,7 @@ RegisterNUICallback('nui:transferItem', function(data)
     end
 
 end)
+
 
 
 
