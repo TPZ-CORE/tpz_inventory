@@ -293,6 +293,43 @@ $(function() {
 						? "margin-left: 0.315vw;"   // <-- adjust spacing here
 						: "";
 
+					if (window.screen.width === 2560 && window.screen.height === 1080) {
+
+						slotStyle = prod_item.type === "slot"
+							? "height: 2.6vw; width: 3vw;"   // <-- change to whatever size you want
+							: "height: 2.8vw; width: 3.4vw;";
+
+						slotMargin = prod_item.type === "slot"
+							? "margin-left: 0.325vw;"   // <-- adjust spacing here
+							: "";
+					}
+					else if (window.screen.width === 3440 && window.screen.height === 1440) {
+						slotStyle = prod_item.type === "slot"
+							? "height: 2.6vw; width: 3vw;"   // <-- change to whatever size you want
+							: "height: 2.8vw; width: 3.4vw;";
+
+						slotMargin = prod_item.type === "slot"
+							? "margin-left: 0.325vw;"   // <-- adjust spacing here
+							: "";
+					}
+					else if (window.screen.width === 3840 && window.screen.height === 1600) {
+						slotStyle = prod_item.type === "slot"
+							? "height: 2.6vw; width: 3vw;"   // <-- change to whatever size you want
+							: "height: 2.8vw; width: 3.4vw;";
+
+						slotMargin = prod_item.type === "slot"
+							? "margin-left: 0.325vw;"   // <-- adjust spacing here
+							: "";
+					}
+					else if (window.screen.width === 5120 && window.screen.height === 1440) {
+						slotStyle = prod_item.type === "slot"
+							? "height: 2.6vw; width: 3vw;"   // <-- change to whatever size you want
+							: "height: 2.8vw; width: 3.4vw;";
+
+						slotMargin = prod_item.type === "slot"
+							? "margin-left: 0.325vw;"   // <-- adjust spacing here
+							: "";
+					}
 
 					$("#main_inventory_contents").append(
 						`<div id="primary_content-${prod_item.type}-${prod_item.itemId}" style="position: relative; display: inline-block; ${slotMargin}">` +
