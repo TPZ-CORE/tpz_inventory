@@ -801,6 +801,191 @@ input[type=number] {
 
 /* Resolution Fixes */
 
+@media (min-aspect-ratio: 21/9) {
+
+	#inventory {
+	
+		background-size: 49vw 24vw;
+		min-width: 49%;
+		min-height: 24vw;
+		
+	}
+
+	#main_inventory_current_weight {
+		margin-top: 8.0%;
+		margin-left: 65.15%;
+		font-size: 0.48vw;
+	}
+	
+	#main_inventory_current_money {
+		margin-top: 31.5%;
+		margin-left: 22.5%;
+		font-size: 0.7vw;
+	}
+	
+	#main_inventory_current_gold {
+		margin-top: 34.77%;
+		margin-left: 24.1%;
+		font-size: 0.55vw;
+	}
+	
+	#main_inventory_current_source_id {
+		margin-top: 20.45%;
+	}
+	
+	#main_inventory_contents {
+	
+		width: 18.70vw;
+		height: fit-content;
+		max-height: 12.0vw;
+	
+		margin-left: 51.4%;
+		margin-top: 11%;
+	}
+	
+	
+	#main_inventory_item_image_display {
+	
+		height: 2.8vw;
+		width: 3.4vw;
+	
+	}
+
+	#main_inventory_item_count {
+		width: 1.25vw;
+		height: 0.8vw;
+		
+		font-size: 0.60vw;
+		font-weight: bold;
+		
+		margin-left: -8.50%;
+		margin-top: 10.40%;
+		border-radius: 50%;
+		
+		padding-top: 1%;
+	}
+
+	#main_inventory_hovered_weapon_serial_number {
+		margin-top: 37.2%;
+		margin-left: 53.3%;
+	
+		font-size: 0.45vw;
+	
+	}
+	
+	#main_inventory_hovered_item_label {
+		margin-top: 38.5%;
+		margin-left: 53.3%;
+		font-size: 0.7vw;
+	}
+	
+	#main_inventory_hovered_item_description {
+	
+		margin-top: 38.8%;
+		margin-left: 52.1%;
+		
+		font-size: 0.5vw;
+	}
+
+	#second_inventory {
+		margin-top: -5%;
+		margin-left: 60%;
+		background-size: 21.6vw 25.7vw;
+	
+		min-width: 21.6vw;
+		min-height: 25.7vw;
+	}
+	
+	#second_inventory_current_header {
+		width: 8.5vw;
+		height: 1vw;
+
+		margin-top: 0.8vw;
+		margin-left: 6.3vw;
+		font-size: 0.80vw;
+
+	}
+
+	#second_inventory_freezer_state {
+		width: 2vw;
+		margin-top: 1.2vw;
+		margin-left: 1vw;
+
+		font-size: 1vw;
+		opacity: 0.6;
+
+	}
+	
+	#second_inventory_current_weight {
+		width: 3.5vw;
+		height: 1vw;
+	
+		margin-top: 23.9vw;
+		margin-left: 15.2vw;
+		font-size: 0.50vw;
+	
+	}
+	
+	
+	#second_inventory_contents {
+		width: 16.70vw;
+		max-height: 16.0vw;
+	
+		margin-left: 10.2%;
+		margin-top: 22%;
+	
+		border-radius: 1px;
+		padding-left: 0.5vw;
+	}
+	
+	
+	#second_inventory_item_image_display {
+		height: 2.8vw;
+		width: 3.4vw;
+	
+		margin-top: 0.2vw;
+		border-radius: 2%;
+	}
+
+	#second_inventory_item_count{
+
+		width: 1.25vw;
+		height: 0.8vw;
+	
+		font-size: 0.55vw;
+		margin-left: -9.50%;
+		margin-top: 11%;
+		border-radius: 50%;
+		padding-top: 1%;
+	
+	}
+
+	#second_inventory_hovered_weapon_serial_number {
+	
+		margin-top: 85%;
+		margin-left: 13%;
+	
+		font-size: 0.45vw;
+	
+	}
+	
+	#second_inventory_hovered_item_label {
+		margin-top: 88%;
+		margin-left: 13%;
+	
+		font-size: 0.7vw;
+	}
+	
+	#second_inventory_hovered_item_description {
+		margin-top: 94%;
+		margin-left: 13%;
+
+		font-size: 0.5vw;
+	
+	}
+
+}
+
 @media (max-width:1920px){
 
 	#main_inventory_current_weight {
