@@ -4,7 +4,7 @@ rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aw
 
 author 'Nosmakos'
 description 'TPZ-CORE - Inventory'
-version '1.1.0'
+version '1.1.1'
 
 ui_page 'html/index.html'
 
@@ -18,6 +18,7 @@ dependency { 'tpz_core' }
 
 
 lua54 'yes'
+
 
 
 
