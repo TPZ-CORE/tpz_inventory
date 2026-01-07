@@ -56,12 +56,16 @@ AddEventHandler("tpz_inventory:onDroppedItemUpdate", function(cb)
 
     elseif cb.actionType == "REMOVE" then
 
-        if DroppedItems[cb.dropId].object then
-            DeleteEntity(DroppedItems[cb.dropId].object)
-            SetEntityAsNoLongerNeeded(DroppedItems[cb.dropId].object)
+        if DroppedItems[cb.dropId] then
+            if DroppedItems[cb.dropId].object then
+                DeleteEntity(DroppedItems[cb.dropId].object)
+                SetEntityAsNoLongerNeeded(DroppedItems[cb.dropId].object)
+            end
+
+            DroppedItems[cb.dropId] = nil
+
         end
 
-        DroppedItems[cb.dropId] = nil
     end
 end)
 
