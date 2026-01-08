@@ -125,15 +125,20 @@ OpenPlayerInventory = function(refresh)
 
                     if SharedItems[content.item] then
 
-                        content.label          = SharedItems[content.item].label
-                        content.weight         = SharedItems[content.item].weight
-                        content.remove         = SharedItems[content.item].remove
-                        content.action         = SharedItems[content.item].action
-                        content.stackable      = SharedItems[content.item].stackable
-                        content.droppable      = SharedItems[content.item].droppable
-                        content.closeInventory = SharedItems[content.item].closeInventory
-                        
-                        exist = true
+                        if content.quantity > 0 then
+                            
+                            content.label          = SharedItems[content.item].label
+                            content.weight         = SharedItems[content.item].weight
+                            content.remove         = SharedItems[content.item].remove
+                            content.action         = SharedItems[content.item].action
+                            content.stackable      = SharedItems[content.item].stackable
+                            content.droppable      = SharedItems[content.item].droppable
+                            content.closeInventory = SharedItems[content.item].closeInventory
+                            
+                            exist = true
+
+                        end
+
                     else
                         print("Attempted to retrieve an invalid item data with the name as: " .. content.item)
                         exist = false
@@ -799,3 +804,4 @@ Citizen.CreateThread(function()
     end
 
 end)
+
