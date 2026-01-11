@@ -712,22 +712,22 @@ Citizen.CreateThread(function()
         local pressed      = false
         local pressed_slot = '1'
 
-        if IsControlJustPressed(0, 0xE6F612E4) and PlayerData.Slots['1'].item ~= 'slot1' then
+        if IsControlJustPressed(0, 0xE6F612E4) and PlayerData.Slots['1'].item ~= 'slot1' and not pressed then
             pressed = true
             pressed_slot = '1'
         end
 
-        if IsControlJustPressed(0, 0x1CE6D9EB) and PlayerData.Slots['2'].item ~= 'slot2' then
+        if IsControlJustPressed(0, 0x1CE6D9EB) and PlayerData.Slots['2'].item ~= 'slot2' and not pressed then
             pressed = true
             pressed_slot = '2'
         end
 
-        if IsControlJustPressed(0, 0x4F49CC4C) and PlayerData.Slots['3'].item ~= 'slot3' then
+        if IsControlJustPressed(0, 0x4F49CC4C) and PlayerData.Slots['3'].item ~= 'slot3' and not pressed then
             pressed = true
             pressed_slot = '3'
         end
 
-        if IsControlJustPressed(0, 0x8F9F9E58) and PlayerData.Slots['4'].item ~= 'slot4' then
+        if IsControlJustPressed(0, 0x8F9F9E58) and PlayerData.Slots['4'].item ~= 'slot4' and not pressed then
             pressed = true
             pressed_slot = '4'
         end
@@ -804,4 +804,5 @@ Citizen.CreateThread(function()
     end
 
 end)
+
 
