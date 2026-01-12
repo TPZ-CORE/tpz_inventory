@@ -250,6 +250,23 @@ body {
 
 }
 
+#main_inventory_item_weight {
+	position: absolute;
+	display: inline-block;
+
+	width: fit-content;
+	height: fit-content;
+
+	font-family: "crock", crock, serif;
+
+	color: rgba(255, 255, 255, 0.649);
+	font-size: 0.45vw;
+	margin-left: -20%;
+	margin-top: 2%;
+
+	text-align: left;
+}
+
 #main_inventory_hovered_weapon_serial_number {
 	position: absolute;
 
@@ -551,6 +568,23 @@ div[id^='primary_content'] {
 
 	background-color: rgba(255, 255, 255, 0.849);
 
+}
+
+#second_inventory_item_weight {
+	position: absolute;
+	display: inline-block;
+
+	width: fit-content;
+	height: fit-content;
+
+	font-family: "crock", crock, serif;
+
+	color: rgba(255, 255, 255, 0.649);
+	font-size: 0.45vw;
+	margin-left: -20%;
+	margin-top: 2%;
+
+	text-align: left;
 }
 
 #second_inventory_hovered_weapon_serial_number {
@@ -984,6 +1018,10 @@ input[type=number] {
 	
 	}
 
+	#main_inventory_item_weight {
+		margin-left: -18%;
+	}
+
 }
 
 @media (max-width:1920px){
@@ -1022,6 +1060,10 @@ input[type=number] {
 		height: 3.4vw;
 		width: 3.4vw;
 	
+	}
+
+	#main_inventory_item_weight {
+		margin-left: -18.5%;
 	}
 
 
