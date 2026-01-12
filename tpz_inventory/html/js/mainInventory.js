@@ -162,6 +162,7 @@ function initMainInventoryHandlers(inventory){
                             }
                         });
 
+                        /*
                         if (item.ammoType != null){
                             data.push({
                                 text: Locales['SET_AMMO_TYPE'] + " | " + item.ammoTypeLabel,
@@ -171,7 +172,7 @@ function initMainInventoryHandlers(inventory){
                                 }
                             });
 
-                        }
+                        }*/
                         
 
                     }
@@ -315,3 +316,4 @@ function initMainInventoryHandlers(inventory){
         }
     })
 }
+
