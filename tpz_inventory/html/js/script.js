@@ -138,22 +138,28 @@ $(function() {
 							`<div id = "second_content-` + prod_item.item + "-" + prod_item.itemId + `" class = "seconditem-` + prod_item.item + "-" + prod_item.itemId + `"> ` +
 							`<img id="second_inventory_item_image_display" src = "` + getItemIMG(prod_item.item) + `"></img>` + 
 							`<div id="second_inventory_item_count" style = 'background-color: #9e7a4a; color: snow; font-weight: 100; font-size: 0.5vw; '>` + Number(prod_item.durability) + `%</div>`+
+							`<div class = "item-weight-` + prod_item.item + "-" + prod_item.itemId + `" id="second_inventory_item_weight">` + prod_item.weight + `kg</div>` +
 							`</div>`
 						);
 					}else{
 						$("#second_inventory_contents").append(
 							`<div id = "second_content-` + prod_item.item + "-" + prod_item.itemId + `" class = "seconditem-` + prod_item.item + "-" + prod_item.itemId + `"> ` +
 							`<img id="second_inventory_item_image_display" src = "` + getItemIMG(prod_item.item) + `"></img>` + 
+							`<div class = "item-weight-` + prod_item.item + "-" + prod_item.itemId + `" id="second_inventory_item_weight">` + prod_item.weight + `kg</div>` +
 							`</div>`
 						);
 					}
 
 				}else{
+					
+					let weight = prod_item.weight * prod_item.quantity
+					weight = weight.toFixed(2);
 	
 					$("#second_inventory_contents").append(
 						`<div id = "second_content-` + prod_item.item + "-" + prod_item.itemId + `" class = "seconditem-` + prod_item.item + "-" + prod_item.itemId + `"> ` +
 						`<img id = "second_inventory_item_image_display" src = "` + getItemIMG(prod_item.item) + `"></img>` + 
 						`<div class = "seconditem-count-` + prod_item.item + "-" + prod_item.itemId + `" id="second_inventory_item_count">` + prod_item.quantity + `</div>`+
+						`<div class = "item-weight-` + prod_item.item + "-" + prod_item.itemId + `" id="second_inventory_item_weight">` + weight + `kg</div>` +
 						`</div>`
 					);
 				}
@@ -167,6 +173,7 @@ $(function() {
 						`<div id = "second_content-` + prod_item.item + "-" + prod_item.itemId + `" class = "seconditem-` + prod_item.item + "-" + prod_item.itemId + `"> ` +
 						`<img id="second_inventory_item_image_display" src = "` + getItemIMG(prod_item.item) + `"></img>` + 
 						`<div id="second_inventory_item_count" style = 'background-color: brown; color: snow; font-weight: 100; font-size: 0.5vw; '>` + durability + `%</div>`+
+						`<div class = "item-weight-` + prod_item.item + "-" + prod_item.itemId + `" id="second_inventory_item_weight">` + prod_item.weight + `kg</div>` +
 						`</div>`
 					);
 
@@ -175,6 +182,7 @@ $(function() {
 					$("#second_inventory_contents").append(
 						`<div id = "second_content-` + prod_item.item + "-" + prod_item.itemId + `" class = "seconditem-` + prod_item.item + "-" + prod_item.itemId + `"> ` +
 						`<img id="second_inventory_item_image_display" src = "` + getItemIMG(prod_item.item) + `"></img>` + 
+						`<div class = "item-weight-` + prod_item.item + "-" + prod_item.itemId + `" id="second_inventory_item_weight">` + prod_item.weight + `kg</div>` +
 						`</div>`
 					);
 
@@ -225,27 +233,35 @@ $(function() {
 
 					if (prod_item.stackable == 0) {
 
+						console.log(prod_item.item, prod_item.weight)
+
 						if (prod_item.durability != -1) {
 							$("#main_inventory_contents").append(
 								`<div id = "primary_content-` + prod_item.item + "-" + prod_item.itemId + `" class = "item-` + prod_item.item + "-" + prod_item.itemId + `"> ` +
 								`<img id="main_inventory_item_image_display" src = "` + getItemIMG(prod_item.item) + `"></img>` + 
 								`<div id="main_inventory_item_count" style = 'background-color: #9e7a4a; color: snow; font-weight: 100; font-size: 0.5vw; '>` + Number(prod_item.durability) + `%</div>`+
+								`<div class = "item-weight-` + prod_item.item + "-" + prod_item.itemId + `" id="main_inventory_item_weight">` + prod_item.weight + `kg</div>` +
 								`</div>`
 							);
 						}else{
 							$("#main_inventory_contents").append(
 								`<div id = "primary_content-` + prod_item.item + "-" + prod_item.itemId + `" class = "item-` + prod_item.item + "-" + prod_item.itemId + `"> ` +
 								`<img id="main_inventory_item_image_display" src = "` + getItemIMG(prod_item.item) + `"></img>` + 
+								`<div class = "item-weight-` + prod_item.item + "-" + prod_item.itemId + `" id="main_inventory_item_weight">` + prod_item.weight + `kg</div>` +
 								`</div>`
 							);
 						}
 
 					}else{
-		
+
+						let weight = prod_item.weight * prod_item.quantity 
+						weight = weight.toFixed(2);
+
 						$("#main_inventory_contents").append(
 							`<div id = "primary_content-` + prod_item.item + "-" + prod_item.itemId + `" class = "item-` + prod_item.item + "-" + prod_item.itemId + `"> ` +
 							`<img id="main_inventory_item_image_display" src = "` + getItemIMG(prod_item.item) + `"></img>` + 
 							`<div class = "item-count-` + prod_item.item + "-" + prod_item.itemId + `" id="main_inventory_item_count">` + prod_item.quantity + `</div>`+
+							`<div class = "item-weight-` + prod_item.item + "-" + prod_item.itemId + `" id="main_inventory_item_weight">` + weight + `kg</div>` +
 							`</div>`
 						);
 					}
@@ -253,12 +269,13 @@ $(function() {
 				}else{
 					
 					var durability = prod_item.durability
-		
+
 					if (durability != -1 ) {
 						$("#main_inventory_contents").append(
 							`<div id = "primary_content-` + prod_item.item + "-" + prod_item.itemId + `" class = "item-` + prod_item.item + "-" + prod_item.itemId + `"> ` +
 							`<img id="main_inventory_item_image_display" src = "` + getItemIMG(prod_item.item) + `"></img>` + 
 							`<div id="main_inventory_item_count" style = 'background-color: brown; color: snow; font-weight: 100; font-size: 0.5vw; '>` + durability + `%</div>`+
+							`<div class = "item-weight-` + prod_item.item + "-" + prod_item.itemId + `" id="main_inventory_item_weight">` + prod_item.weight + `kg</div>` +
 							`</div>`
 						);
 
@@ -266,6 +283,7 @@ $(function() {
 						$("#main_inventory_contents").append(
 							`<div id = "primary_content-` + prod_item.item + "-" + prod_item.itemId + `" class = "item-` + prod_item.item + "-" + prod_item.itemId + `"> ` +
 							`<img id="main_inventory_item_image_display" src = "` + getItemIMG(prod_item.item) + `"></img>` + 
+							`<div class = "item-weight-` + prod_item.item + "-" + prod_item.itemId + `" id="main_inventory_item_weight">` + prod_item.weight + `kg</div>` +
 							`</div>`
 						);
 					}
