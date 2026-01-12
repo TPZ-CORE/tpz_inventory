@@ -233,8 +233,6 @@ $(function() {
 
 					if (prod_item.stackable == 0) {
 
-						console.log(prod_item.item, prod_item.weight)
-
 						if (prod_item.durability != -1) {
 							$("#main_inventory_contents").append(
 								`<div id = "primary_content-` + prod_item.item + "-" + prod_item.itemId + `" class = "item-` + prod_item.item + "-" + prod_item.itemId + `"> ` +
