@@ -195,7 +195,7 @@ AddEventHandler("tpz_inventory:dropItem", function(coords, data, quantity)
         print(string.format('A player with the steam name as: %s and online id: %s, attempted to drop an item on the ground while his connection is lost.', GetPlayerName(_source), _source))
         return 
     end
-		
+
     math.randomseed( os.time() )
     Citizen.Wait( math.random(100, 500) )
 
@@ -514,4 +514,5 @@ Citizen.CreateThread(function()
 
     end
 end)
+
 
