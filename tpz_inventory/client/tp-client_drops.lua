@@ -54,20 +54,21 @@ AddEventHandler("tpz_inventory:onDroppedItemUpdate", function(cb)
         DroppedItems[cb.dropId] = {}
         DroppedItems[cb.dropId] = cb.data
 
+        RemoveFromSlotByItemData(cb.data)
+
     elseif cb.actionType == "REMOVE" then
 
-        if DroppedItems[cb.dropId] then
-            if DroppedItems[cb.dropId].object then
-                DeleteEntity(DroppedItems[cb.dropId].object)
-                SetEntityAsNoLongerNeeded(DroppedItems[cb.dropId].object)
-            end
-
-            DroppedItems[cb.dropId] = nil
-
+        if DroppedItems[cb.dropId] == nil then return end 
+        
+        if DroppedItems[cb.dropId].object then
+            DeleteEntity(DroppedItems[cb.dropId].object)
+            SetEntityAsNoLongerNeeded(DroppedItems[cb.dropId].object)
         end
 
+        DroppedItems[cb.dropId] = nil
     end
 end)
+
 
 
 RegisterNetEvent('tpz_inventory:isPlayerPickingUp')
@@ -157,7 +158,7 @@ Citizen.CreateThread(function()
 
         local PlayerData  = GetPlayerData()
 
-        if PlayerData.IsPickingUp or IsEntityDead(player) or IsPedOnMount(player) or IsPedInAnyVehicle(player, false) or IsPedSwimming(player) or IsPedLassoed(player) ~= 0 then
+        if PlayerData.IsPickingUp or IsEntityDead(player) or IsPedOnMount(player) or IsPedInAnyVehicle(player, true) or IsPedSwimming(player) or IsPedLassoed(player) ~= 0 then
             goto END
         end
 
@@ -176,7 +177,7 @@ Citizen.CreateThread(function()
 
                     if distance <= Config.Droppables.ActionDistance then
                         sleep = 0
-    
+            
                         local droppedDisplay = "X" .. droppedData.quantity .. " " .. droppedData.label
 
                         if droppedData.type == 'money' or droppedData.type == 'gold' or droppedData.type == 'blackmoney' then
@@ -245,4 +246,5 @@ Citizen.CreateThread(function()
 
     end
 end)
+
 
