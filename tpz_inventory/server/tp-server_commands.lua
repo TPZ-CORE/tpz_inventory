@@ -25,13 +25,37 @@ local GetIdentity = function(source, identity)
     end
 end
 
+-- @function FindSourceTarget is used for commands to be able to get an input source id to replace executed source id
+-- $[id]. This is for in case a command is used server side and want to replace the 0 source to the executed source.
+local function FindSourceTarget(source, args)
+    local resolvedSource = source
+
+    if args[1] then
+        local embeddedSource = args[1]:match("%$%[(%d+)%]")
+
+        if embeddedSource then
+            resolvedSource = tonumber(embeddedSource)
+            args[1] = args[1]:gsub("%$%[%d+%]", "")
+        end
+
+        args[1] = args[1]:match("^%s*(.-)%s*$")
+        args[1] = tonumber(args[1])
+    end
+
+    return resolvedSource, args[1]
+end
+
 -----------------------------------------------------------
 --[[ Commands ]]--
 -----------------------------------------------------------
 
 --[[ Add Item Command ]] --
 RegisterCommand("additem", function(source, args, rawCommand)
-    local _source = source
+    local _source, replacedArg = FindSourceTarget(source, args)
+
+    if replacedArg then 
+        args[1] = replacedArg
+    end
 
     local hasPermissions, await = false, true
    
@@ -126,7 +150,11 @@ end, false)
 
 --[[ Add Weapon Command ]] --
 RegisterCommand("addweapon", function(source, args, rawCommand)
-    local _source = source
+    local _source, replacedArg = FindSourceTarget(source, args)
+
+    if replacedArg then 
+        args[1] = replacedArg
+    end
 
     local hasPermissions, await = false, true
    
@@ -219,7 +247,11 @@ end, false)
 
 --[[ Clear All Inventory Contents Command ]] --
 RegisterCommand("clearinventory", function(source, args, rawCommand)
-    local _source = source
+    local _source, replacedArg = FindSourceTarget(source, args)
+
+    if replacedArg then 
+        args[1] = replacedArg
+    end
 
     local hasPermissions, await = false, true
    
@@ -310,7 +342,11 @@ end, false)
 
 --[[ Open Inventory Contents Command ]] --
 RegisterCommand("openinventory", function(source, args, rawCommand)
-    local _source = source
+    local _source, replacedArg = FindSourceTarget(source, args)
+
+    if replacedArg then 
+        args[1] = replacedArg
+    end
 
     local hasPermissions, await = false, true
    
@@ -446,6 +482,7 @@ AddEventHandler("tpz_inventory:registerChatSuggestions", function()
     })
     
 end)
+
 
 
 
