@@ -52,7 +52,12 @@ exports('getInventoryAPI', function()
         end
 
     end
+
+    self.getSharedItems = function()
+        return SharedItems
+    end
     
     return self
 end)
+
 
