@@ -15,6 +15,9 @@ Config.PromptKeys     = {
 --[[ General Settings ]]--
 ---------------------------------------------------------------
 
+-- Set to true if you are using tpz_admin.
+Config.tpz_admin = true
+
 -- Set to true if you want to use a database table for handling all items instead of configuration.
 -- The database table is `items`.
 Config.UseDatabaseItems  = false
@@ -252,5 +255,6 @@ function SendCommandNotification(source, message, type, duration) -- ONLY RELATE
     end
   
 end
+
 
 
