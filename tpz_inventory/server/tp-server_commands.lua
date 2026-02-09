@@ -89,6 +89,10 @@ RegisterCommand("additem", function(source, args, rawCommand)
             return
         end
 
+        if Config.tpz_admin and _source ~= 0 then 
+            exports.tpz_admin:getAPI().InsertHistoryAction(_source, string.format(Locales['COMMAND_HISTORY_ACTION_DESCRIPTION'], '<span style="color: gray;">additem ' .. target .. ' ' .. item .. ' ' .. quantity .. '</span>'))
+        end
+
         local targetSteamName = GetPlayerName(tonumber(target))
 
         local webhookData = Config.Commands['additem'].Webhook
@@ -188,6 +192,10 @@ RegisterCommand("addweapon", function(source, args, rawCommand)
             return
         end
 
+        if Config.tpz_admin and _source ~= 0 then 
+            exports.tpz_admin:getAPI().InsertHistoryAction(_source, string.format(Locales['COMMAND_HISTORY_ACTION_DESCRIPTION'], '<span style="color: gray;">addweapon ' .. target .. ' ' .. weaponName .. '</span>'))
+        end
+
         local targetSteamName = GetPlayerName(tonumber(target))
 
         local webhookData = Config.Commands['addweapon'].Webhook
@@ -285,6 +293,10 @@ RegisterCommand("clearinventory", function(source, args, rawCommand)
             return
         end
         
+        if Config.tpz_admin and _source ~= 0 then 
+            exports.tpz_admin:getAPI().InsertHistoryAction(_source, string.format(Locales['COMMAND_HISTORY_ACTION_DESCRIPTION'], '<span style="color: gray;">clearinventory ' .. target .. '</span>'))
+        end
+
         local targetSteamName = GetPlayerName(tonumber(target))
 
         local webhookData = Config.Commands['clearinventory'].Webhook
@@ -380,6 +392,10 @@ RegisterCommand("openinventory", function(source, args, rawCommand)
             return
         end
         
+        if Config.tpz_admin and _source ~= 0 then 
+            exports.tpz_admin:getAPI().InsertHistoryAction(_source, string.format(Locales['COMMAND_HISTORY_ACTION_DESCRIPTION'], '<span style="color: gray;">openinventory ' .. target .. '</span>'))
+        end
+
         local targetSteamName = GetPlayerName(tonumber(target))
 
         local webhookData = Config.Commands['openinventory'].Webhook
@@ -476,13 +492,9 @@ AddEventHandler("tpz_inventory:registerChatSuggestions", function()
     TriggerClientEvent("chat:addSuggestion", _source, "/clearinventory", Config.Commands['clearinventory'].Suggestion, {
         { name = "Id", help = 'Player ID' },
     })
-        
+
     TriggerClientEvent("chat:addSuggestion", _source, "/openinventory", Config.Commands['openinventory'].Suggestion, {
         { name = "Id", help = 'Player ID' },
     })
     
 end)
-
-
-
-
