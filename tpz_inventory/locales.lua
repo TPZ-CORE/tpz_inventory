@@ -98,6 +98,7 @@ Locales = {
     ['COMMAND_NOT_PERMITTED_ON_CONSOLE']      = '^1This command is not permitted to be used on console.^0',
     ['NOT_PERMITTED_TO_TRANSFER_ITEM']        = '~e~This item cannot be transferred to the storage.',
 
-    ['COMMAND_HISTORY_ACTION_DESCRIPTION']    = "Executed Command: ",
+    ['COMMAND_HISTORY_ACTION_DESCRIPTION']    = "Executed Command: %s",
 }
+
 
