@@ -255,6 +255,26 @@ function initMainInventoryHandlers(inventory){
                 offsetX: 1,
                 offsetY: 1,
             });
+
+            if (item.itemId != null && item.itemId != 0) {
+
+                data.push({
+                    text: item.type != "weapon" ? Locales['COPY_ITEM_ID'] : Locales['COPY_WEAPON_SERIAL_NUMBER'],
+                    action: function () {
+
+                        let textToCopy = item.itemId; // or however you get it
+                        let textarea = document.createElement("textarea");
+                        textarea.value = textToCopy;
+                        document.body.appendChild(textarea);
+
+                        textarea.select();
+                        document.execCommand("copy");
+
+                        document.body.removeChild(textarea);
+
+                    }
+                });
+            }
             
         }
 
@@ -316,4 +336,5 @@ function initMainInventoryHandlers(inventory){
         }
     })
 }
+
 
