@@ -22,3 +22,6 @@ Locales['SET_AMMO_TYPE']                 = "Set Ammo Type";
 
 Locales['TRANSFER']                      = "How many would you like to transfer?";
 Locales['ACCEPT']                        = "Accept";
+
+Locales['COPY_ITEM_ID']                  = "Copy Item Id";
+Locales['COPY_WEAPON_SERIAL_NUMBER']     = "Copy Serial Number";
