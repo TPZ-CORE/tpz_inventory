@@ -384,6 +384,7 @@ exports('getInventoryAPI', function()
 
     end
 
+
     self.addItemMetadata = function(source, item, itemId, metadata)
 
         local _source           = source
@@ -402,7 +403,41 @@ exports('getInventoryAPI', function()
        
             end
     
-            if not exist then
+            if exist then
+                TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], false, false)
+            else
+
+                print(string.format(Locales['WARN_ITEM_DOES_NOT_EXIST_INV'], item))
+            end
+
+        else
+            print(string.format(Locales['ERROR_ITEM_DOES_NOT_EXIST_CONFIG'], item))
+        end
+
+    end
+
+    self.setItemMetadata = function(source, item, itemId, metadata)
+
+        local _source           = source
+        local exist             = false
+
+        if SharedItems[item] then
+
+            local inventory = PlayerInventory[_source].inventory
+
+            for index, content in pairs (inventory) do
+    
+                if content.item == item and tostring(content.itemId) == tostring(itemId) then
+                    content.metadata = metadata
+                    exist = true
+                end
+       
+            end
+    
+            if exist then
+                TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], false, false)
+            else
+
                 print(string.format(Locales['WARN_ITEM_DOES_NOT_EXIST_INV'], item))
             end
 
