@@ -15,8 +15,6 @@ SharedItems = {} -- DO NOT EDIT
 
 SharedItems = {
 
-    -- slots
-    
     ['slot1']  = {
         label = '#1 Slot',  
     },
@@ -32,7 +30,117 @@ SharedItems = {
     ['slot4']  = {
         label = '#4 Slot',  
     },
+
+    ['journal_fish'] = {
+        label = 'Fish Journal',
+        weight = 0.5,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['telegram'] = {
+        label = 'Telegram Document',
+        weight = 0.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['stamp_henry_clay'] = {
+        label = 'Henry Clay Stamp',
+        weight = 0.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+    },
+      
+    ['stamp_james_madison'] = {
+      label = 'James Madison Stamp',
+      weight = 0.0,
+      remove = 0,
+      description = 'nothing',
+      action = 'NONE',
+      stackable = 1,
+      droppable = 1,
+      closeInventory = 1
+    },
     
+    ['stamp_daniel_webster'] = {
+        label = 'Daniel Webster Stamp',
+        weight = 0.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+    },
+      
+    ['stamp_george_washington'] = {
+        label = 'George Washington Stamp',
+        weight = 0.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+    },
+      
+      ['stamp_abraham_lincoln'] = {
+        label = 'Abraham Lincoln Stamp',
+        weight = 0.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+      },
+      
+      ['stamp_benjamin_franklin'] = {
+        label = 'Benjamin Franklin Stamp',
+        weight = 0.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+      },
+      
+      ['stamp_ulyssessgrant'] = {
+        label = 'Ulysses S. Grant Stamp',
+        weight = 0.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+      },
+      
+      ['stamp_thomas_jefferson'] = {
+        label = 'Thomas Jefferson Stamp',
+        weight = 0.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+      },
+
     -- [ EATABLES ] --
     ['consumable_bread']  = {
         label = 'Bread Piece',
@@ -220,6 +328,85 @@ SharedItems = {
         closeInventory = 1
     },
 
+    ['consumable_bannock'] = {
+        label = 'Bannock',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['consumable_pemmican'] = {
+        label = 'Pemmican',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+    
+    ['consumable_three_sisters_soup'] = {
+        label = 'Three Sisters Soup',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    
+    ['consumable_corn_porridge'] = {
+        label = 'Corn Porridge',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    
+    ['consumable_fried_bread'] = {
+        label = 'Fry Bread',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['jerky'] = {
+        label = 'Jerky',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['consumable_jerky_soup'] = {
+        label = 'Jerky Soup',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'EATABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
     ['consumable_bruschetta'] = {
         label = 'Bruschetta',
         weight = 0.1,
@@ -308,17 +495,6 @@ SharedItems = {
         closeInventory = 1
     },
 
-    ['consumable_vegstew'] = {
-        label = 'Vegetables Soup',
-        weight = 0.1,
-        remove = 0,
-        description = 'nothing',
-        action = 'EATABLE',
-        stackable = 0,
-        droppable = 1,
-        closeInventory = 1
-    },
-    
     ['consumable_smoked_salmon'] = {
         label = 'Smoked Salmon Piece',
         weight = 0.1,
@@ -566,17 +742,6 @@ SharedItems = {
 
 -- [ VEG & FRUITS - NOT EATABLES ]
 
-    ['butter'] = {
-        label = 'Butter',
-        weight = 0.01,
-        remove = 0,
-        description = 'nothing',
-        action = 'NONE',
-        stackable = 1,
-        droppable = 1,
-        closeInventory = 1
-    },
-
     ['consumable_tomato'] = {
         label = 'Tomato',
         weight = 0.1,
@@ -686,7 +851,7 @@ SharedItems = {
         droppable = 1,
         closeInventory = 0
     },
-
+    
     ['indian_tobacco'] = { 
         label = 'Indian Tobacco Leafs',                       
         weight = 0.01,  
@@ -754,7 +919,7 @@ SharedItems = {
     },
 
     ['creeking_thyme'] = { 
-        label = 'Creeking Thyme',                       
+        label = 'Creeping Thyme',                       
         weight = 0.01,  
         remove = 0, 
         description = 'nothing', 
@@ -1017,17 +1182,6 @@ SharedItems = {
         closeInventory = 0 
     },
 
-    ['parasol_mushroom'] = { 
-        label = 'Parasol Mushroom',                       
-        weight = 0.01,  
-        remove = 0, 
-        description = 'nothing', 
-        action = 'NONE', 
-        stackable = 1, 
-        droppable = 1, 
-        closeInventory = 0 
-    },
-
     ['hop'] = { 
         label = 'Hop',                       
         weight = 0.01,  
@@ -1049,6 +1203,18 @@ SharedItems = {
         droppable = 1, 
         closeInventory = 0 
     },
+
+    ['burdock_root'] = {
+        label = 'Burdock Root',                       
+        weight = 0.01,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
 
     ['choc_daisy'] = { 
         label = 'Choc Daisy',                       
@@ -1182,6 +1348,17 @@ SharedItems = {
         closeInventory = 1
     },
 
+    ['white_cheese'] = {
+        label = 'White Cheese',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+    },
+
     ['cream'] = {
         label = 'Milk Cream',
         weight = 0.1,
@@ -1215,6 +1392,29 @@ SharedItems = {
         closeInventory = 1
     },
 
+    -- [ MEDIC MISSIONS ] -- 
+    ['collected_water_bottle'] = {
+        label = 'Water Bottle',
+        weight = 0.5,
+        remove = 0,
+        description = 'Cholera Mission',
+        action = 'NONE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['cholera_bottle'] = {
+        label = 'Water Bottle (Cholera)',
+        weight = 0.5,
+        remove = 0,
+        description = 'Cholera Mission',
+        action = 'NONE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
     -- [ DRINKABLES ]
     ['consumable_water_bottle'] = {
         label = 'Water Bottle',
@@ -1223,6 +1423,17 @@ SharedItems = {
         description = 'Drinkables',
         action = 'DRINKABLE',
         stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['canteen'] = {
+        label = 'Canteen',
+        weight = 0.7,
+        remove = 0,
+        description = 'Drinkables',
+        action = 'DRINKABLE',
+        stackable = 0,
         droppable = 1,
         closeInventory = 1
     },
@@ -1350,7 +1561,7 @@ SharedItems = {
 
     ['consumable_milk_bottle'] = {
         label = 'Bottle Of Milk',
-        weight = 0.4,
+        weight = 0.5,
         remove = 0,
         description = 'Drinkables',
         action = 'DRINKABLE',
@@ -1384,6 +1595,17 @@ SharedItems = {
     ['consumable_wolfspirit'] = {
         label = 'Wolf Spirit',
         weight = 0.4,
+        remove = 0,
+        description = 'Drinkables',
+        action = 'DRINKABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['consumable_endurance_potion'] = {
+        label = 'Endurance Potion',
+        weight = 0.5,
         remove = 0,
         description = 'Drinkables',
         action = 'DRINKABLE',
@@ -1581,6 +1803,17 @@ SharedItems = {
         closeInventory = 1
     },
 
+    ['shear_tool'] = {
+        label = 'Shears',
+        weight = 0.3,
+        remove = 0,
+        description = 'Tools',
+        action = 'NONE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
     ['shovel'] = {
         label = 'Shovel',
         weight = 5.0,
@@ -1599,6 +1832,17 @@ SharedItems = {
         description = 'Tools',
         action = 'USABLE',
         stackable = 0,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['wateringcan_empty'] = {
+        label = 'Empty Bucket',
+        weight = 1.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
         droppable = 1,
         closeInventory = 1
     },
@@ -1641,7 +1885,7 @@ SharedItems = {
         weight = 1.0,
         remove = 0,
         description = 'Tools',
-        action = 'NONE',
+        action = 'USABLE',
         stackable = 0,
         droppable = 1,
         closeInventory = 1
@@ -2033,6 +2277,17 @@ SharedItems = {
         closeInventory = 0
     },
 
+    ['dynamite'] = {
+        label = 'Placeable Dynamite',
+        weight = 0.30,
+        remove = 0,
+        description = 'Criminal activities',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
     ['ammopoisonbottle'] = {
         label = 'Poisoned Bottle',
         weight = 0.05,
@@ -2135,6 +2390,17 @@ SharedItems = {
     ['riflecartidgebox'] = {
         label = 'Rifle Cartidges Box',
         weight = 1.5,
+        remove = 0,
+        description = 'Ammunition',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['varmintcartidgebox'] = {
+        label = 'Varmint Cartidges Box',
+        weight = 1.2,
         remove = 0,
         description = 'Ammunition',
         action = 'USABLE',
@@ -2374,7 +2640,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_toad_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_toad_01-1'] = { 
@@ -2385,7 +2653,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_toad_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_frogbull_01'] = { 
@@ -2407,7 +2677,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_frogbull_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_frogbull_01-1'] = { 
@@ -2418,7 +2690,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_frogbull_01', -- This is required for using a background image of another item's name.
+
     }, -- end of frogs
 
     -- start of snakes
@@ -2442,7 +2716,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_snake_01', -- This is required for using a background image of another item's name.
+
     },
 
     
@@ -2454,7 +2730,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_snake_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_snake_01-2'] = { 
@@ -2465,7 +2743,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_snake_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_snakewater_01'] = { 
@@ -2488,7 +2768,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_snakewater_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_snakewater_01-1'] = { 
@@ -2499,7 +2781,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_snakewater_01', -- This is required for using a background image of another item's name.
+
     },
 
     
@@ -2511,29 +2795,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
-    },
+        closeInventory = 0,
+        backgroundImageName = 'a_c_snakewater_01', -- This is required for using a background image of another item's name.
 
-    ['a_c_snakewater_01-2'] = { 
-        label = 'Northern Water Snake',                       
-        weight = 0.3,  
-        remove = 1, 
-        description = 'Reptile', 
-        action = 'NONE', 
-        stackable = 0, 
-        droppable = 1, 
-        closeInventory = 0 
-    },
-
-    ['a_c_snakewater_01-2'] = { 
-        label = 'Northern Water Snake',                       
-        weight = 0.3,  
-        remove = 1, 
-        description = 'Reptile', 
-        action = 'NONE', 
-        stackable = 0, 
-        droppable = 1, 
-        closeInventory = 0 
     },
 
     ['a_c_snakeredboa_01'] = { 
@@ -2555,7 +2819,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_snakeredboa_01', -- This is required for using a background image of another item's name.
+
     },
     
     ['a_c_snakeredboa_01-1'] = { 
@@ -2566,7 +2832,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_snakeredboa_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_snakeredboa_01-2'] = { 
@@ -2577,7 +2845,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_snakeredboa_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_snakeferdelance_01'] = { 
@@ -2599,7 +2869,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_snakeferdelance_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_snakeferdelance_01-1'] = { 
@@ -2610,7 +2882,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_snakeferdelance_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_snakeferdelance_01-2'] = { 
@@ -2621,7 +2895,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_snakeferdelance_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_snakeblacktailrattle_01'] = { 
@@ -2643,7 +2919,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_snakeblacktailrattle_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_snakeblacktailrattle_01-1'] = { 
@@ -2654,7 +2932,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_snakeblacktailrattle_01', -- This is required for using a background image of another item's name.
+
     }, -- end of snakes
 
     -- start of mammals.
@@ -2678,7 +2958,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_squirrel_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_squirrel_01-1'] = { 
@@ -2689,7 +2971,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_squirrel_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_squirrel_01-2'] = { 
@@ -2700,7 +2984,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_squirrel_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_squirrel_01-3'] = { 
@@ -2711,7 +2997,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_squirrel_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_squirrel_01-4'] = { 
@@ -2722,7 +3010,8 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_squirrel_01', -- This is required for using a background image of another item's name.
     },
 
     ['a_c_badger_01'] = { 
@@ -2744,7 +3033,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_badger_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_badger_01-1'] = { 
@@ -2755,7 +3046,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_badger_01', -- This is required for using a background image of another item's name.
+
     }, 
 
     ['a_c_possum_01'] = { 
@@ -2777,7 +3070,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_possum_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_possum_01-1'] = { 
@@ -2788,7 +3083,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_possum_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_possum_01-2'] = { 
@@ -2799,7 +3096,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_possum_01', -- This is required for using a background image of another item's name.
+
     }, 
 
     ['a_c_rabbit_01'] = { 
@@ -2821,7 +3120,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_rabbit_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_rabbit_01-1'] = { 
@@ -2832,7 +3133,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_rabbit_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_rabbit_01-2'] = { 
@@ -2843,7 +3146,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_rabbit_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_rabbit_01-3'] = { 
@@ -2854,7 +3159,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_rabbit_01', -- This is required for using a background image of another item's name.
+
     }, 
 
     ['a_c_raccoon_01'] = { 
@@ -2876,7 +3183,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_raccoon_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_raccoon_01-1'] = { 
@@ -2887,7 +3196,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_raccoon_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_raccoon_01-2'] = { 
@@ -2898,7 +3209,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_raccoon_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_raccoon_01-3'] = { 
@@ -2909,7 +3222,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_raccoon_01', -- This is required for using a background image of another item's name.
+
     }, 
 
     ['a_c_muskrat_01'] = { 
@@ -2931,7 +3246,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_muskrat_01', -- This is required for using a background image of another item's name.
+
     },
     
     ['a_c_muskrat_01-1'] = { 
@@ -2942,7 +3259,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_muskrat_01', -- This is required for using a background image of another item's name.
+
     }, 
     ['a_c_skunk_01'] = { 
         label = 'Skunk',                       
@@ -2964,18 +3283,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
-    },
+        closeInventory = 0,
+        backgroundImageName = 'a_c_skunk_01', -- This is required for using a background image of another item's name.
 
-    ['a_c_skunk_01-0'] = { 
-        label = 'Skunk',                       
-        weight = 0.8,  
-        remove = 1, 
-        description = 'Mammals', 
-        action = 'NONE', 
-        stackable = 0, 
-        droppable = 1, 
-        closeInventory = 0 
     },
 
     ['a_c_chipmunk_01'] = { 
@@ -3008,7 +3318,8 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_rat_01', -- This is required for using a background image of another item's name.
     },
 
     ['a_c_rat_01-1'] = { 
@@ -3019,7 +3330,8 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_rat_01', -- This is required for using a background image of another item's name.
     },
 
     
@@ -3031,7 +3343,8 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_rat_01', -- This is required for using a background image of another item's name.
     },
 
     
@@ -3043,7 +3356,8 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_rat_01', -- This is required for using a background image of another item's name.
     },
 
     ['a_c_rat_01-4'] = { 
@@ -3054,7 +3368,8 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_rat_01', -- This is required for using a background image of another item's name.
     }, 
 
     ['a_c_armadillo_01'] = { 
@@ -3091,7 +3406,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_cedarwaxwing_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_cedarwaxwing_01-1'] = { 
@@ -3102,7 +3419,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_cedarwaxwing_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_cedarwaxwing_01-2'] = { 
@@ -3113,7 +3432,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_cedarwaxwing_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_cardinal_01'] = { 
@@ -3135,7 +3456,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_cardinal_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_cardinal_01-1'] = { 
@@ -3146,7 +3469,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_cardinal_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_cardinal_01-2'] = { 
@@ -3157,7 +3482,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_cardinal_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_bluejay_01'] = { 
@@ -3179,7 +3506,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_bluejay_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_bluejay_01-1'] = { 
@@ -3190,7 +3519,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_bluejay_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_carolinaparakeet_01'] = { 
@@ -3223,7 +3554,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_oriole_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_oriole_01-1'] = { 
@@ -3234,7 +3567,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_oriole_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_pigeon'] = { 
@@ -3256,7 +3591,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_pigeon', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_robin_01'] = { 
@@ -3278,7 +3615,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_robin_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_woodpecker_01'] = { 
@@ -3300,7 +3639,8 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_woodpecker_01', -- This is required for using a background image of another item's name.
     },
 
     ['a_c_woodpecker_02'] = { 
@@ -3322,7 +3662,8 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_woodpecker_02', -- This is required for using a background image of another item's name.
     },
 
     ['a_c_sparrow_01'] = { 
@@ -3344,7 +3685,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_sparrow_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_sparrow_01-1'] = { 
@@ -3355,7 +3698,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_sparrow_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_sparrow_01-2'] = { 
@@ -3366,7 +3711,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_sparrow_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_songbird_01'] = { 
@@ -3388,7 +3735,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_songbird_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_songbird_01-1'] = { 
@@ -3399,7 +3748,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_songbird_01', -- This is required for using a background image of another item's name.
+
     },
 
     ['a_c_crow_01'] = { 
@@ -3421,7 +3772,9 @@ SharedItems = {
         action = 'NONE', 
         stackable = 0, 
         droppable = 1, 
-        closeInventory = 0 
+        closeInventory = 0,
+        backgroundImageName = 'a_c_crow_01', -- This is required for using a background image of another item's name.
+
     },
 
     -- FISH MODELS (FISHES BY DEFAULT ARE NOT USABLE ITEMS, THEY ARE MOSTLY REQUIRED FOR CRAFTING RECIPES, IF YOU WANT YOUR PLAYER TO EAT THEM, CHANGE THE ACTION TO EATABLE)
@@ -3734,13 +4087,13 @@ SharedItems = {
         closeInventory = 0 
     },
 
-    ['fish_bone'] = { 
+    ['animal_fish_bones'] = { 
         label = 'Fish Bones',                       
-        weight = 0.1,  
+        weight = 0.0,  
         remove = 1, 
         description = 'nothing', 
         action = 'NONE', 
-        stackable = 0, 
+        stackable = 1, 
         droppable = 1, 
         closeInventory = 0 
     },
@@ -3748,6 +4101,17 @@ SharedItems = {
     -- FARMING GENERAL ITEMS
     ['fertilizer'] = { 
         label = 'Fertilizer',                       
+        weight = 1.0,  
+        remove = 0, 
+        description = 'nothing', 
+        action = 'NONE', 
+        stackable = 1, 
+        droppable = 1, 
+        closeInventory = 0 
+    },
+
+    ['fertilizer_manure'] = { 
+        label = 'Manure Fertilizer',                       
         weight = 1.0,  
         remove = 0, 
         description = 'nothing', 
@@ -3829,7 +4193,7 @@ SharedItems = {
         label = 'Tomato Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '0°C – 28°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -3840,7 +4204,7 @@ SharedItems = {
         label = 'Peach Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '7°C – 20°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -3851,7 +4215,7 @@ SharedItems = {
         label = 'Apple Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '0°C – 35°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -3862,7 +4226,7 @@ SharedItems = {
         label = 'Cocoa Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '12°C – 32°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -3873,7 +4237,7 @@ SharedItems = {
         label = 'Potato Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '12°C – 28°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -3884,7 +4248,7 @@ SharedItems = {
         label = 'Corn Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '17°C – 42°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -3906,7 +4270,7 @@ SharedItems = {
         label = 'Wintergreen Berry Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '17°C – 38°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -3917,7 +4281,7 @@ SharedItems = {
         label = 'Wild Mint Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '2°C – 38°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -3928,7 +4292,7 @@ SharedItems = {
         label = 'Wild Carrot Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '17°C – 35°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -3939,7 +4303,7 @@ SharedItems = {
         label = 'Red Sage Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '18°C – 30°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -3950,7 +4314,7 @@ SharedItems = {
         label = 'Red Raspberry Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '18°C – 26°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -3961,7 +4325,7 @@ SharedItems = {
         label = 'Prairie Poppy Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '5°C – 32°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -3972,7 +4336,7 @@ SharedItems = {
         label = 'Parasol Mushroom Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '15°C – 28°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -3983,7 +4347,7 @@ SharedItems = {
         label = 'Oregano Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '0°C – 20°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -3994,7 +4358,7 @@ SharedItems = {
         label = 'Oleander Sage Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '12°C – 37°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -4005,7 +4369,7 @@ SharedItems = {
         label = 'Milk Weed Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '0°C – 32°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -4016,7 +4380,7 @@ SharedItems = {
         label = 'Indian Tobacco Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '18°C – 27°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -4027,7 +4391,7 @@ SharedItems = {
         label = 'Tobacco Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '18°C – 27°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -4038,7 +4402,7 @@ SharedItems = {
         label = 'English Mace Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '5°C – 25°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -4060,7 +4424,7 @@ SharedItems = {
         label = 'Creeking Thyme Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '12°C – 25°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -4071,7 +4435,7 @@ SharedItems = {
         label = 'Creekplum Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '13°C – 40°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -4082,7 +4446,7 @@ SharedItems = {
         label = 'Choc Daisy Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '-7°C – 10°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -4093,7 +4457,7 @@ SharedItems = {
         label = 'Blood Flower Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '10°C – 38°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -4104,7 +4468,7 @@ SharedItems = {
         label = 'Black Currant Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '10°C – 26°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -4115,7 +4479,7 @@ SharedItems = {
         label = 'Black Berry Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '14°C – 32°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -4126,7 +4490,7 @@ SharedItems = {
         label = 'Hop Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '-5°C – 35°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -4137,7 +4501,7 @@ SharedItems = {
         label = 'American Ginseng Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '0°C – 32°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -4148,7 +4512,7 @@ SharedItems = {
         label = 'Alaskan Ginseng Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = '-40°C – 5°C', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -4159,7 +4523,7 @@ SharedItems = {
         label = 'Sugarcane Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = 'N/A', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -4170,7 +4534,7 @@ SharedItems = {
         label = 'Wheat Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = 'N/A', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -4181,7 +4545,7 @@ SharedItems = {
         label = 'Cannabis Seeds',                       
         weight = 0.01,  
         remove = 0, 
-        description = 'Seeds', 
+        description = 'N/A', 
         action = 'USABLE', 
         stackable = 1, 
         droppable = 1, 
@@ -4270,11 +4634,11 @@ SharedItems = {
     -- BEEKEEPING
     ['apiary_bee_house_gk_1'] = {
         label = 'Apiary',
-        weight = 10.0,
+        weight = 5.0,
         remove = 0,
         description = 'nothing',
         action = 'USABLE',
-        stackable = 1,
+        stackable = 0,
         droppable = 1,
         closeInventory = 0
     },
@@ -4295,7 +4659,18 @@ SharedItems = {
         weight = 0.25,
         remove = 0,
         description = 'nothing',
-        action = 'USABLE',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['sponge'] = {
+        label = 'Sponge',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
         stackable = 1,
         droppable = 1,
         closeInventory = 0
@@ -4510,6 +4885,17 @@ SharedItems = {
         droppable = 1,
         closeInventory = 0
     },
+    
+    ['wool'] = {
+        label = 'Wool',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
 
     ['fabric'] = {
         label = 'Fabric',
@@ -4565,6 +4951,62 @@ SharedItems = {
         droppable = 1,
         closeInventory = 0
     },
+
+    ['license_hunting'] = {
+        label = 'Hunting License',
+        weight = 0.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 0, -- NOT STACKABLE, LICENSE IS UNIQUE!
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['licenses_book'] = {
+        label = 'Licenses Book',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['license_boat'] = {
+        label = 'Boat License',
+        weight = 0.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 0, -- NOT STACKABLE, LICENSE IS UNIQUE!
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['license_farming'] = {
+        label = 'Farming License',
+        weight = 0.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 0, -- NOT STACKABLE, LICENSE IS UNIQUE!
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['license_marriage'] = {
+        label = 'Marriage Certificate',
+        weight = 0.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 0, -- NOT STACKABLE, LICENSE IS UNIQUE!
+        droppable = 1,
+        closeInventory = 0
+    },
+
     -- MYDOG
     ['mydog_snacks'] = {
         label = 'Doggie Snacks',
@@ -4577,8 +5019,63 @@ SharedItems = {
         closeInventory = 0
     },
 
+    ['antipoison'] = {
+        label = 'Anti Snake-Poison',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+    },
+
     ['vetsyringe'] = {
         label = 'Dogs Syringe',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['syringe'] = {
+        label = 'Syringe',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['emptysyringe'] = {
+        label = 'Empty Syringe',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+    },
+    
+    ['bandage'] = {
+        label = 'Bandage',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 1
+    },
+
+    ['handmade_bandage'] = {
+        label = 'Handmade Bandage',
         weight = 0.1,
         remove = 0,
         description = 'nothing',
@@ -4599,7 +5096,17 @@ SharedItems = {
         closeInventory = 0
     },
 
-    
+    ['bird_whistle'] = {
+        label = 'Trained Bird Whistle',
+        weight = 0.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
     -- Horses
 
     ['horse_adrenaline_shot'] = {
@@ -4625,7 +5132,7 @@ SharedItems = {
     },
 
     ['consumable_haycube'] = {
-        label = "Horse Adrenaline Shot",
+        label = "Haycube",
         weight = 0.1,
         remove = 0,
         description = 'nothing',
@@ -4636,7 +5143,7 @@ SharedItems = {
     },
 
     ['horsemeal'] = {
-        label = "Horse Adrenaline Shot",
+        label = "Horse Meal",
         weight = 0.1,
         remove = 0,
         description = 'nothing',
@@ -4660,7 +5167,7 @@ SharedItems = {
     -- OTHER
     ['crafting_book'] = {
         label = 'Crafting Book',
-        weight = 1.0,
+        weight = 0.3,
         remove = 0,
         description = 'Crafting Recipes',
         action = 'USABLE',
@@ -4669,9 +5176,31 @@ SharedItems = {
         closeInventory = 0
     },
 
+    ['documents_lands'] = {
+        label = 'Real Estate - Lands Document',
+        weight = 0.3,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
     ['alert_book_archives'] = {
         label = 'Job Alerts Book',
-        weight = 1.0,
+        weight = 0.3,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['archives_book'] = {
+        label = 'Police Archives Book',
+        weight = 0.3,
         remove = 0,
         description = 'nothing',
         action = 'USABLE',
@@ -4714,6 +5243,17 @@ SharedItems = {
     },
     ['bowl'] = {
         label = 'Bowl',
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0
+    },
+
+    ['mydog_watering_bowl'] = {
+        label = 'Dog Bowl',
         weight = 0.1,
         remove = 0,
         description = 'nothing',
@@ -5142,7 +5682,7 @@ SharedItems = {
         closeInventory = 0 
     },
 
-    ['heaband6'] = {
+    ['headband6'] = {
         label = "Natives Headband #6",
         weight = 0.7,
         remove = 0,
@@ -5318,6 +5858,39 @@ SharedItems = {
         closeInventory = 0 
     },
 
+    ['paper'] = {
+        label = "Paper",
+        weight = 0.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 1,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['note'] = {
+        label = "Note",
+        weight = 0.1,
+        remove = 0,
+        description = 'nothing',
+        action = 'USABLE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
+    ['pen'] = {
+        label = "Pen",
+        weight = 0.0,
+        remove = 0,
+        description = 'nothing',
+        action = 'NONE',
+        stackable = 0,
+        droppable = 1,
+        closeInventory = 0 
+    },
+
     ['matches_box'] = {
         label = "Matches Box",
         weight = 0.1,
@@ -5406,4 +5979,3 @@ SharedItems = {
         closeInventory = 0
     },
 }
-
