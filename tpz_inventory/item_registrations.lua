@@ -4421,7 +4421,7 @@ SharedItems = {
     },
 
     ['seeds_creeking_thyme'] = { 
-        label = 'Creeking Thyme Seeds',                       
+        label = 'Creeping Thyme Seeds',                       
         weight = 0.01,  
         remove = 0, 
         description = '12°C – 25°C', 
