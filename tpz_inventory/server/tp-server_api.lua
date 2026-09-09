@@ -17,7 +17,7 @@ exports('getInventoryAPI', function()
     self.getContainerIdByName = function(containerName)
         return GetContainerIdByName(containerName)
     end
-
+    
     self.doesContainerExistByName = function(containerName)
         local cb = GetContainerIdByName(containerName) == nil and false or true
         return cb
@@ -91,6 +91,11 @@ exports('getInventoryAPI', function()
     -- end of containers
 
     self.getInventoryContents = function(source)
+
+        if PlayerInventory[source] == nil then 
+            print('Attempted to retrieve player inventory contents - null results.')
+        end
+
         return PlayerInventory[source].inventory
     end
     
@@ -106,13 +111,13 @@ exports('getInventoryAPI', function()
     self.getItemQuantity = function(source, item)
         return getItemQuantity(source, item)
     end
-        
-    self.doesPlayerHaveItemId = function(source, item, itemId)
-        return doesPlayerHaveItemId(source, item, itemId)
-    end
-        
+
     self.getItemWeight = function(item)
         return getItemWeight(item)
+    end
+
+    self.doesPlayerHaveItemId = function(source, item, itemId)
+        return doesPlayerHaveItemId(source, item, itemId)
     end
 
     self.getWeaponWeight = function(weaponName)
@@ -191,7 +196,7 @@ exports('getInventoryAPI', function()
         end
 
     end
-        
+    
     self.setItemDurability = function(source, item, durability, itemId)
         local _source           = source
         local exist             = false
@@ -203,7 +208,7 @@ exports('getInventoryAPI', function()
 
             for index, content in pairs (inventory) do
     
-                if content.item == item and tostring(content.itemId) == tostring(itemId) then
+                if content.item == item and normalizeItemId(content.itemId) == normalizeItemId(itemId) then
 
                     content.metadata.durability = durability
                     exist = true
@@ -234,7 +239,7 @@ exports('getInventoryAPI', function()
 
             for index, content in pairs (inventory) do
     
-                if content.item == item and tostring(content.itemId) == tostring(itemId) then
+                if content.item == item and normalizeItemId(content.itemId) == normalizeItemId(itemId) then
                     currentDurability = tonumber(content.metadata.durability) + durability
 
                     if currentDurability >= 100 then
@@ -268,7 +273,7 @@ exports('getInventoryAPI', function()
 
             for index, content in pairs (inventory) do
     
-                if content.item == item and tostring(content.itemId) == tostring(itemId) then
+                if content.item == item and normalizeItemId(content.itemId) == normalizeItemId(itemId) then
                     content.metadata.durability = tonumber(content.metadata.durability) - durability
 
                     if content.metadata.durability <= 0 then
@@ -328,8 +333,8 @@ exports('getInventoryAPI', function()
             local inventory = PlayerInventory[_source].inventory
 
             for index, content in pairs (inventory) do
-    
-                if content.item == item and tostring(content.itemId) == tostring(itemId) then
+
+                if content.item == item and normalizeItemId(content.itemId) == normalizeItemId(itemId) then
                     currentDurability = content.metadata.durability
                     exist = true
                 end
@@ -362,7 +367,7 @@ exports('getInventoryAPI', function()
 
             for index, content in pairs (inventory) do
     
-                if content.item == item and tostring(content.itemId) == tostring(itemId) then
+                if content.item == item and normalizeItemId(content.itemId) == normalizeItemId(itemId) then
                     currentMetadata = content.metadata
                     exist = true
                 end
@@ -384,7 +389,6 @@ exports('getInventoryAPI', function()
 
     end
 
-
     self.addItemMetadata = function(source, item, itemId, metadata)
 
         local _source           = source
@@ -396,7 +400,7 @@ exports('getInventoryAPI', function()
 
             for index, content in pairs (inventory) do
     
-                if content.item == item and tostring(content.itemId) == tostring(itemId) then
+                if content.item == item and normalizeItemId(content.itemId) == normalizeItemId(itemId) then
                     table.insert(content.metadata, metadata)
                     exist = true
                 end
@@ -427,7 +431,7 @@ exports('getInventoryAPI', function()
 
             for index, content in pairs (inventory) do
     
-                if content.item == item and tostring(content.itemId) == tostring(itemId) then
+                if content.item == item and normalizeItemId(content.itemId) == normalizeItemId(itemId) then
                     content.metadata = metadata
                     exist = true
                 end
@@ -488,7 +492,7 @@ exports('getInventoryAPI', function()
 
             for index, content in pairs (inventory) do
         
-                if content.type == 'weapon' and content.itemId == weaponId then
+                if content.type == 'weapon' and normalizeItemId(content.itemId) == normalizeItemId(weaponId) then
 
                     content.metadata.durability = content.metadata.durability + tonumber(value)
 
@@ -523,7 +527,7 @@ exports('getInventoryAPI', function()
 
             for index, content in pairs (inventory) do
         
-                if content.type == 'weapon' and content.itemId == weaponId then
+                if content.type == 'weapon' and normalizeItemId(content.itemId) == normalizeItemId(weaponId) then
 
                     content.metadata.durability = content.metadata.durability - tonumber(value)
 
@@ -560,7 +564,7 @@ exports('getInventoryAPI', function()
 
             for index, content in pairs (inventory) do
         
-                if content.type == 'weapon' and content.itemId == weaponId then
+                if content.type == 'weapon' and normalizeItemId(content.itemId) == normalizeItemId(weaponId) then
                     currentMetadata = content.metadata
                     exist = true
                 end
@@ -614,7 +618,3 @@ exports('getInventoryAPI', function()
 
     return self
 end)
-
-
-
-
