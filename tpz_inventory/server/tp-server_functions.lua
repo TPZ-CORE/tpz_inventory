@@ -109,7 +109,7 @@ function doesPlayerHaveWeapon(source, item, itemId)
 
         for index, content in pairs (inventory) do
 
-            if content.type == 'weapon' and string.upper(content.item) == string.upper(item) and content.itemId == itemId then
+            if content.type == 'weapon' and string.upper(content.item) == string.upper(item) and normalizeItemId(content.itemId) == normalizeItemId(itemId) then
                 return true
             end
 
@@ -135,7 +135,7 @@ function doesPlayerHaveItemId(source, item, itemId)
 
         for index, content in pairs (inventory) do
 
-            if content.type == 'item' and content.item == item and content.itemId == itemId then
+            if content.type == 'item' and content.item == item and normalizeItemId(content.itemId) == normalizeItemId(itemId) then
                 return true
             end
 
@@ -381,7 +381,7 @@ function removeItem(source, item, quantity, itemId, preventRefresh)
     
                     if tonumber(itemData.stackable) == 0 then -- If the item is not stackable, we check if we want to remove a specific item with its itemId, otherwise we remove the first item if itemId is null.
     
-                        if itemId and tonumber(content.itemId) == tonumber(itemId) then
+                        if itemId and normalizeItemId(content.itemId) == normalizeItemId(itemId) then
     
                             table.remove(inventory, index)
                             
@@ -463,7 +463,7 @@ function removeItemById(source, itemId, preventRefresh)
 
         for index, content in pairs (inventory) do 
 
-            if itemId and tostring(content.itemId) == tostring(itemId) then
+            if itemId and normalizeItemId(content.itemId) == normalizeItemId(itemId) then
 
                 table.remove(inventory, index)
                 
@@ -583,7 +583,7 @@ function removeWeapon(source, weapon, weaponId)
 
                 if string.upper(content.item) == string.upper(_weapon) then
 
-                    if tostring(content.itemId) == tostring(weaponId) then
+                    if normalizeItemId(content.itemId) == normalizeItemId(weaponId) then
         
                         table.remove(inventory, index)
                         exist = true
@@ -638,7 +638,7 @@ function removeWeaponById(source, weaponId)
 
             if content.type == "weapon" then
 
-                if tostring(content.itemId) == tostring(weaponId) then
+                if normalizeItemId(content.itemId) == normalizeItemId(weaponId) then
         
                     table.remove(inventory, index)
                     exist = true
@@ -830,7 +830,7 @@ function removeContainerItem(containerId, item, quantity, itemId)
     
                     if tonumber(itemData.stackable) == 0 then -- If the item is not stackable, we check if we want to remove a specific item with its itemId, otherwise we remove the first item if itemId is null.
     
-                        if itemId and tonumber(content.itemId) == tonumber(itemId) then
+                        if itemId and normalizeItemId(content.itemId) == normalizeItemId(itemId) then
     
                             table.remove(inventory, index)
                             exist = true
@@ -980,7 +980,7 @@ function removeContainerWeapon(containerId, weapon, weaponId)
 
         for index, content in pairs (inventory) do 
 
-            if content.type == "weapon" and tonumber(content.itemId) == tonumber(weaponId) then
+            if content.type == "weapon" and normalizeItemId(content.itemId) == normalizeItemId(weaponId) then
     
                 table.remove(inventory, index)
                 exist = true
