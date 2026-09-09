@@ -1,3 +1,4 @@
+
 local CreatedIds = {}
 
 ---------------------------------------------------------------
@@ -16,6 +17,11 @@ end
 ---------------------------------------------------------------
 --[[ Functions ]]--
 ---------------------------------------------------------------
+
+
+function normalizeItemId(id)
+    return tostring(id):gsub("^0+", "")
+end
 
 function getWeight(source)
     local inventory = PlayerInventory[source].inventory
@@ -900,15 +906,15 @@ function canCarryContainerItem(containerId, item, quantity)
 
         local inventory = Containers[containerId]
 
-        local itemWeight         = SharedItems[item].weight * quantity
+        local itemWeight = SharedItems[item].weight * quantity
 
         local maxInventoryWeight = inventory.maxWeight
-        
+
         if maxInventoryWeight == -1 then 
             return true
         end
 
-        local currentWeight      = getContainerWeight(containerId)
+        local currentWeight = getContainerWeight(containerId)
     
         if (currentWeight + itemWeight) > maxInventoryWeight then return false else return true end
     else
@@ -1081,9 +1087,3 @@ function GetTableLength(T)
     for _ in pairs(T) do count = count + 1 end
     return count
 end
-
-
-
-
-
-
