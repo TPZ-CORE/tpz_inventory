@@ -232,6 +232,8 @@ AddEventHandler("tpz_inventory:registerCustomContainerInventoryContents", functi
 
 end)
 
+
+-- 1.1.3 bug fix on database saving, adding + extra weight
 RegisterServerEvent("tpz_inventory:upgradeContainerInventoryWeight")
 AddEventHandler("tpz_inventory:upgradeContainerInventoryWeight", function(containerId, weight)
     local _source = source
@@ -251,7 +253,7 @@ AddEventHandler("tpz_inventory:upgradeContainerInventoryWeight", function(contai
 
         local Parameters = { 
             ['id']      = tonumber(containerId),
-            ['weight']  = container.maxWeight + weight, 
+            ['weight']  = Containers[containerId].maxWeight, 
         }
     
         Citizen.CreateThread(function()
