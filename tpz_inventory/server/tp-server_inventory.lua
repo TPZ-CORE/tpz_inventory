@@ -59,7 +59,7 @@ end)
 
 -- 1.1.3 Fixed an infinite wait issue in LoadPlayerInventoryContents() when no character record is returned from the database. 
 -- The function now validates the database result and safely exits if the character cannot be found.
-Also added inventory JSON validation to prevent errors when invalid or corrupted inventory data is returned.
+-- Also added inventory JSON validation to prevent errors when invalid or corrupted inventory data is returned.
 function LoadPlayerInventoryContents(source, identifier, charId, newChar)
 	local _source = source
 
