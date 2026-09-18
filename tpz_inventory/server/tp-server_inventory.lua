@@ -55,8 +55,11 @@ end)
 -----------------------------------------------------------
 --[[ Functions  ]]--
 -----------------------------------------------------------
-
 -- Loading player inventory contents
+
+-- 1.1.3 Fixed an infinite wait issue in LoadPlayerInventoryContents() when no character record is returned from the database. 
+-- The function now validates the database result and safely exits if the character cannot be found.
+Also added inventory JSON validation to prevent errors when invalid or corrupted inventory data is returned.
 function LoadPlayerInventoryContents(source, identifier, charId, newChar)
 	local _source = source
 
@@ -64,9 +67,16 @@ function LoadPlayerInventoryContents(source, identifier, charId, newChar)
 
     exports["ghmattimysql"]:execute("SELECT * FROM characters WHERE identifier = @identifier AND charidentifier = @charidentifier", { ['identifier'] = identifier, ['charidentifier'] = tonumber(charId) }, function(result)
 
-		while result == nil or result[1] == nil do
-			Wait(100)
-		end
+        if not result or not result[1] then
+            print(string.format(
+                "[tpz_inventory] Failed to load character inventory. Identifier: %s | CharID: %s",
+                tostring(identifier),
+                tostring(charId)
+            ))
+
+            PlayerInventory[_source] = nil
+            return
+        end
 		
         local res           = result[1]
         local inventoryData = PlayerInventory[_source]
@@ -111,10 +121,28 @@ function LoadPlayerInventoryContents(source, identifier, charId, newChar)
 
         if Config.UseDatabaseItems then
             local decodedInventoryContents  = json.decode(res.inventory)
+
+            if type(decodedInventoryContents) ~= "table" then
+                print(string.format(
+                    "[tpz_inventory] Failed to decode inventory. Identifier: %s | CharID: %s",
+                    tostring(identifier),
+                    tostring(charId)
+                ))
+            
+                inventoryData.inventory = {}
+                TriggerClientEvent(
+                    'tpz_inventory:updatePlayerInventoryContents',
+                    _source,
+                    inventoryData,
+                    true,
+                    true
+                )
+            
+                return
+            end
+
             local updatedInventoryContents  = {}
-    
-            local finished                  = false
-    
+
             for index, content in pairs (decodedInventoryContents) do
     
                 if content.type ~= "weapon" then
@@ -132,13 +160,6 @@ function LoadPlayerInventoryContents(source, identifier, charId, newChar)
     
                 table.insert(updatedInventoryContents, content)
     
-                if next(decodedInventoryContents, index) == nil then
-                    finished = true
-                end
-            end
-    
-            while not finished do
-                Wait(150)
             end
     
             inventoryData.inventory = updatedInventoryContents
