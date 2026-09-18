@@ -495,7 +495,7 @@ RegisterNUICallback('useItem', function(data)
             ClosePlayerInventory()
         end
     
-        if tonumber(data.remove) == 1 and not data.type == "weapon" then
+        if tonumber(data.remove) == 1 and data.type ~= "weapon" then
             TriggerServerEvent("tpz_inventory:removeUsableItem", tonumber(data.itemId), tonumber(data.id), data.item, data.label)
         end
 
@@ -754,7 +754,7 @@ Citizen.CreateThread(function()
 
             end
 
-            if tonumber(data.remove) == 1 and not data.type == "weapon" then
+            if tonumber(data.remove) == 1 and data.type ~= "weapon" then
 
                 TriggerServerEvent("tpz_inventory:removeUsableItem", tonumber(data.itemId), tonumber(data.id), data.item, data.label)
 
