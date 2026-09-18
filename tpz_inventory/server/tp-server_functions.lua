@@ -195,6 +195,8 @@ function getItemQuantity(source, item)
     return tonumber(totalQuantity)
 end
 
+-- @addItem
+-- 1.1.3 fix for not stackables.
 function addItem(source, item, quantity, metadata, itemId, preventRefresh)
     local _source   = source
     local inventory = PlayerInventory[_source].inventory
@@ -231,31 +233,35 @@ function addItem(source, item, quantity, metadata, itemId, preventRefresh)
             if tonumber(itemData.stackable) == 0 then
 
                 for i = 1, tonumber(quantity) do
+
+                    local hours, minutes, seconds = os.date('%H'), os.date('%M'), os.date('%S')
+                    local generatedItemId = tonumber(hours) .. tonumber(minutes) .. tonumber(seconds) .. math.random(1, 9).. math.random(1, 9).. math.random(1, 9)
                     
-                    if itemId == nil or tonumber(quantity) > 1 then
+                    while CreatedIds[generatedItemId] do 
 
-                        local hours, minutes, seconds = os.date('%H'), os.date('%M'), os.date('%S')
-                        
-                        local generatedItemId = tonumber(hours) .. tonumber(minutes) .. tonumber(seconds) .. math.random(1, 9).. math.random(1, 9).. math.random(1, 9)
-                        
-                        while CreatedIds[generatedItemId] do 
-
-                            generatedItemId = tonumber(hours) .. tonumber(minutes) .. tonumber(seconds) .. math.random(1, 9).. math.random(1, 9).. math.random(1, 9)
-                        
-                            if CreatedIds[generatedItemId] == nil then 
-                                break
-                            end
-        
+                        generatedItemId = tonumber(hours) .. tonumber(minutes) .. tonumber(seconds) .. math.random(1, 9).. math.random(1, 9).. math.random(1, 9)
+                    
+                        if CreatedIds[generatedItemId] == nil then 
+                            break
                         end
-
-                        itemId = generatedItemId
-                        CreatedIds[itemId] = 1
+    
                     end
 
+                    CreatedIds[generatedItemId] = 1
+
+                    -- CREATE UNIQUE METADATA FOR THIS ITEM
+                    local itemMetadata = {}
+                
+                    for key, value in pairs(metadata) do
+                        itemMetadata[key] = value
+                    end
+                
+                    itemMetadata.itemId = generatedItemId
+
                     local ItemParameters = {
-                        id = itemId,
+                        id = generatedItemId,
                         item = item, 
-                        itemId = itemId,
+                        itemId = generatedItemId,
                         quantity = 1,
                         count = 1,
                         amount = 1,
@@ -264,8 +270,8 @@ function addItem(source, item, quantity, metadata, itemId, preventRefresh)
                         weight = tonumber(itemData.weight), 
                         remove = tonumber(itemData.remove), 
                         type = "item", 
-                        description = metadata.description, 
-                        metadata = metadata,
+                        description = itemMetadata.description, 
+                        metadata = itemMetadata,
                         action = itemData.action,
                         stackable = itemData.stackable,
                         droppable = itemData.droppable,
@@ -274,7 +280,6 @@ function addItem(source, item, quantity, metadata, itemId, preventRefresh)
 
                     table.insert(PlayerInventory[_source].inventory, ItemParameters)
 
-                    itemId = nil
                 end
 
                 if not preventRefresh then
@@ -359,6 +364,9 @@ function addItem(source, item, quantity, metadata, itemId, preventRefresh)
     end
 end
 
+-- @removeItem
+-- 1.1.3 fix content.quantity > 0 on stackables for preventing bugs.
+-- 1.1.3 fixed infinite loop on shouldLoopForRemoval
 function removeItem(source, item, quantity, itemId, preventRefresh)
     local _source   = source
     local exist     = false
@@ -396,7 +404,7 @@ function removeItem(source, item, quantity, itemId, preventRefresh)
                     end
     
      
-                    if tonumber(itemData.stackable) == 1 then -- If the item is stackable, we remove the quantity from that item.
+                    if tonumber(itemData.stackable) == 1 and content.quantity > 0 then -- If the item is stackable, we remove the quantity from that item.
     
                         content.quantity = content.quantity - quantity
                         content.count    = content.quantity
@@ -424,17 +432,25 @@ function removeItem(source, item, quantity, itemId, preventRefresh)
             -- and we creating a separate loop which checks and breaks it after every 1 until it reaches the max quantity.
             if shouldLoopForRemoval then
 
-                while count ~= tonumber(quantity) do
-                    Wait(50)
-
-                    for _index, _content in pairs (inventory) do 
+                while count < tonumber(quantity) do
+                    local removed = false
+                
+                    for _index, _content in pairs(inventory) do
                         if _content.item == item and tonumber(itemData.stackable) == 0 and not itemId then
                             table.remove(inventory, _index)
+                
                             count = count + 1
+                            removed = true
+                
                             break
                         end
-
                     end
+                
+                    if not removed then
+                        break
+                    end
+                
+                    Wait(50)
                 end
     
             end
@@ -566,6 +582,7 @@ function addWeapon(source, weaponName, weaponItemId, metadata)
     end
 end
 
+-- 1.1.3 fixed small grammar mistake that wouldnt cause any bug but its good to be fixed on second loop.
 function removeWeapon(source, weapon, weaponId)
     local _source   = source
     local exist     = false
@@ -610,7 +627,7 @@ function removeWeapon(source, weapon, weaponId)
 
             for _index, _content in pairs (inventory) do 
 
-                if string.upper(_content.item) == string.upper(_weapon) and content.type == 'weapon' and not weaponId then
+                if string.upper(_content.item) == string.upper(_weapon) and _content.type == 'weapon' and not weaponId then
                     table.remove(inventory, _index)
                     break
                 end
@@ -682,6 +699,9 @@ end
 --[[ Container Functions  ]]--
 -----------------------------------------------------------
 
+
+-- @addContainerItem
+-- 1.1.3 fix for not stackables.
 function addContainerItem(containerId, item, itemId, quantity, metadata)
 
     local inventory = Containers[containerId].inventory
@@ -709,36 +729,40 @@ function addContainerItem(containerId, item, itemId, quantity, metadata)
 
             for i = 1, tonumber(quantity) do
 
-                if itemId == nil or tonumber(quantity) > 1 then
-
-                    local hours, minutes, seconds = os.date('%H'), os.date('%M'), os.date('%S')
-                    
-                    local generatedItemId = tonumber(hours) .. tonumber(minutes) .. tonumber(seconds) .. math.random(1, 9).. math.random(1, 9).. math.random(1, 9)
-                    
-                    while CreatedIds[generatedItemId] do 
-    
-                        generatedItemId = tonumber(hours) .. tonumber(minutes) .. tonumber(seconds) .. math.random(1, 9).. math.random(1, 9).. math.random(1, 9)
-                    
-                        if CreatedIds[generatedItemId] == nil then 
-                            break
-                        end
-    
-                    end
-    
-                    itemId = generatedItemId
-                    CreatedIds[itemId] = 1
-                end
+                local hours, minutes, seconds = os.date('%H'), os.date('%M'), os.date('%S')
+                local generatedItemId = tonumber(hours) .. tonumber(minutes) .. tonumber(seconds) .. math.random(1, 9).. math.random(1, 9).. math.random(1, 9)
                 
+                while CreatedIds[generatedItemId] do 
+
+                    generatedItemId = tonumber(hours) .. tonumber(minutes) .. tonumber(seconds) .. math.random(1, 9).. math.random(1, 9).. math.random(1, 9)
+                
+                    if CreatedIds[generatedItemId] == nil then 
+                        break
+                    end
+
+                end
+
+                CreatedIds[generatedItemId] = 1
+
+                -- CREATE UNIQUE METADATA FOR THIS ITEM
+                local itemMetadata = {}
+            
+                for key, value in pairs(metadata) do
+                    itemMetadata[key] = value
+                end
+            
+                itemMetadata.itemId = generatedItemId
+
                 local ItemParameters = {
                     --id = tonumber(itemData.id), 
                     item = item, 
-                    itemId = itemId,
+                    itemId = generatedItemId,
                     quantity = 1,
                     label = itemData.label, 
                     weight = tonumber(itemData.weight), 
                     remove = tonumber(itemData.remove), 
                     type = "item", 
-                    metadata = metadata,
+                    metadata = itemMetadata,
                     action = itemData.action,
                     stackable = itemData.stackable,
                     droppable = itemData.droppable,
@@ -808,6 +832,9 @@ function addContainerItem(containerId, item, itemId, quantity, metadata)
     end
 end
 
+-- @removeContainerItem
+-- 1.1.3 fix content.quantity > 0 on stackables for preventing bugs.
+-- 1.1.3 fixed infinite loop on shouldLoopForRemoval
 function removeContainerItem(containerId, item, quantity, itemId)
     local finished  = false
     local exist     = false
@@ -844,7 +871,7 @@ function removeContainerItem(containerId, item, quantity, itemId)
                     end
     
      
-                    if tonumber(itemData.stackable) == 1 then -- If the item is stackable, we remove the quantity from that item.
+                    if tonumber(itemData.stackable) == 1 and content.quantiy > 0 then -- If the item is stackable, we remove the quantity from that item.
     
                         content.quantity = content.quantity - quantity
      
@@ -878,17 +905,25 @@ function removeContainerItem(containerId, item, quantity, itemId)
             -- and we creating a separate loop which checks and breaks it after every 1 until it reaches the max quantity.
             if shouldLoopForRemoval then
 
-                while count ~= tonumber(quantity) do
-                    Wait(50)
-
-                    for _index, _content in pairs (inventory) do 
+                while count < tonumber(quantity) do
+                    local removed = false
+                
+                    for _index, _content in pairs(inventory) do
                         if _content.item == item and tonumber(itemData.stackable) == 0 and not itemId then
                             table.remove(inventory, _index)
+                
                             count = count + 1
+                            removed = true
+                
                             break
                         end
-
                     end
+                
+                    if not removed then
+                        break
+                    end
+                
+                    Wait(50)
                 end
     
             end
