@@ -228,10 +228,11 @@ exports('getInventoryAPI', function()
         end
     end
 
+    -- @addItemDurability
+    -- 1.1.3 content.metadata.durability fix, it was actually never added.
     self.addItemDurability = function(source, item, durability, itemId)
         local _source           = source
         local exist             = false
-        local currentDurability = 100
 
         if SharedItems[item] then
 
@@ -240,9 +241,9 @@ exports('getInventoryAPI', function()
             for index, content in pairs (inventory) do
     
                 if content.item == item and normalizeItemId(content.itemId) == normalizeItemId(itemId) then
-                    currentDurability = tonumber(content.metadata.durability) + durability
+                    content.metadata.durability = tonumber(content.metadata.durability) + tonumber(durability)
 
-                    if currentDurability >= 100 then
+                    if content.metadata.durability >= 100 then
                         content.metadata.durability = 100
                     end
 
@@ -552,6 +553,8 @@ exports('getInventoryAPI', function()
     
     end
 
+    -- @getWeaponMetadata
+    -- 1.1.3 fix for weaponName, it was item than weaponName.
     self.getWeaponMetadata = function(source, weaponName, weaponId)
 
         local _source           = source
@@ -575,12 +578,12 @@ exports('getInventoryAPI', function()
                 return currentMetadata
 
             else
-                print(string.format(Locales['WARN_WEAPON_DOES_NOT_EXIST_INV'], item))
+                print(string.format(Locales['WARN_WEAPON_DOES_NOT_EXIST_INV'], weaponName))
                 return nil
             end
 
         else
-            print(string.format(Locales['ERROR_WEAPON_DOES_NOT_EXIST'], item))
+            print(string.format(Locales['ERROR_WEAPON_DOES_NOT_EXIST'], weaponName))
             return nil
         end
 
