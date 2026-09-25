@@ -8,16 +8,17 @@ RegisterNUICallback('equipWeapon', function(data)
 	ClosePlayerInventory()
 
 	WeaponAPI.saveUsedWeaponData()
+
     WeaponAPI.equipWeapon(data.itemId, data.item, data.ammoType, data.ammo, data.label, data.durability, data.metadata)
 end)
 
-RegisterNUICallback('unequipWeapon', function(data)
+RegisterNUICallback('unequipWeapon', function(data) -- 1.1.3
 	local WeaponAPI = exports.tpz_weapons:getWeaponsAPI()
 
     ClosePlayerInventory()
 
-	WeaponAPI.saveUsedWeaponData()
-	WeaponAPI.clearUsedWeaponData(true)
+	WeaponAPI.saveUsedWeaponData(data.itemId)
+	WeaponAPI.clearUsedWeaponData(data.itemId, true)
 end)
 
 -- @param item
@@ -85,6 +86,3 @@ RegisterNUICallback('setAmmoType', function(data)
 	end)
 
 end)
-
-
-
