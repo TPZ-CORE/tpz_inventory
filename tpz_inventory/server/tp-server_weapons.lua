@@ -31,8 +31,8 @@ AddEventHandler("tpz_inventory:removeWeaponByWeaponId", function(weaponId)
 end)
 
 -- We don't mind the specified event to be triggered through devtools or injection, it does not cause anything.
-RegisterServerEvent("tpz_inventory:setDefaultUsedWeapon")
-AddEventHandler("tpz_inventory:setDefaultUsedWeapon", function(weaponId)
+RegisterServerEvent("tpz_inventory:setDefaultUsedWeapons")
+AddEventHandler("tpz_inventory:setDefaultUsedWeapons", function(weaponId)
     local _source = source
     local xPlayer = TPZ.GetPlayer(_source)
 
@@ -40,7 +40,33 @@ AddEventHandler("tpz_inventory:setDefaultUsedWeapon", function(weaponId)
         return
     end
 
-    xPlayer.setDefaultUsedWeapon(weaponId)
+    xPlayer.setDefaultUsedWeapons(weaponId) -- 1.1.3
+    
+end)
+
+RegisterServerEvent("tpz_inventory:removeDefaultUsedWeaponById") -- 1.1.3
+AddEventHandler("tpz_inventory:removeDefaultUsedWeaponById", function(weaponId)
+    local _source = source
+    local xPlayer = TPZ.GetPlayer(_source)
+
+    if not xPlayer.loaded() then
+        return
+    end
+
+    xPlayer.removeDefaultWeaponById(weaponId) -- 1.1.3
+end)
+
+
+RegisterServerEvent("tpz_inventory:clearDefaultWeapons") -- 1.1.3
+AddEventHandler("tpz_inventory:clearDefaultWeapons", function()
+    local _source = source
+    local xPlayer = TPZ.GetPlayer(_source)
+
+    if not xPlayer.loaded() then
+        return
+    end
+
+    xPlayer.clearDefaultWeapons()
 end)
 
 RegisterServerEvent("tpz_inventory:reloadWeapon")
@@ -71,7 +97,6 @@ AddEventHandler("tpz_inventory:reloadWeapon", function(weaponId, item, currentAm
                 removeItem(_source, item, withdrawQuantity )
                 
                 addAmmoQuantity = withdrawQuantity
-
             end
         
             if quantity <= withdrawQuantity then
@@ -217,5 +242,3 @@ exports.tpz_core:getCoreAPI().addNewCallBack("tpz_inventory:callbacks:requestWea
     return cb(weapon_data)
 
 end)
-
-
