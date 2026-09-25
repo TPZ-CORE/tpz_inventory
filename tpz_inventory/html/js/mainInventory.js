@@ -1,27 +1,27 @@
-function initMainInventoryHandlers(inventory){
+function initMainInventoryHandlers(inventory) {
 
     $.each(inventory, function (index, item) {
 
         // Item Hovering Displays.
         $('.item-' + item.item + "-" + item.itemId).hover(
-            
+
             function () {
 
-                if (item.type == "weapon"){
+                if (item.type == "weapon") {
 
-                    let serialDisplay = item.itemId == 'N/A' ? '' : "Serial Number: (" + item.itemId  + ")";
+                    let serialDisplay = item.itemId == 'N/A' ? '' : "Serial Number: (" + item.itemId + ")";
 
                     $("#main_inventory_hovered_weapon_serial_number").text(serialDisplay);
 
-                }else if (item.type == 'item' && item.itemId != 0 && item.itemId != 'N/A' && item.action != 'EATABLE') {
+                } else if (item.type == 'item' && item.itemId != 0 && item.itemId != 'N/A' && item.action != 'EATABLE') {
 
-                    let serialDisplay = item.itemId == 'N/A' ? '' : "Item Id: (" + item.itemId  + ")";
+                    let serialDisplay = item.itemId == 'N/A' ? '' : "Item Id: (" + item.itemId + ")";
                     $("#main_inventory_hovered_weapon_serial_number").text(serialDisplay);
                 }
 
                 $("#main_inventory_hovered_item_label").text(item.label);
 
-                if (item.description != null && item.description != "undefined" && item.description != "nothing"){
+                if (item.description != null && item.description != "undefined" && item.description != "nothing") {
                     $("#main_inventory_hovered_item_description").text(item.description);
                 }
 
@@ -36,11 +36,11 @@ function initMainInventoryHandlers(inventory){
 
         // Item Draggable Actions
 
-        if (HasSecondInventoryOpen){
-            
-            if (item.type != 'slot' && item.type != "money" && item.type != "blackmoney" && item.type != "gold"){
+        if (HasSecondInventoryOpen) {
 
-                if (item.usedType == undefined || item.usedType == null || item.usedType == 0){
+            if (item.type != 'slot' && item.type != "money" && item.type != "blackmoney" && item.type != "gold") {
+
+                if (item.usedType == undefined || item.usedType == null || item.usedType == 0) {
 
                     $('.item-' + item.item + "-" + item.itemId).draggable({
                         helper: 'clone',
@@ -48,59 +48,59 @@ function initMainInventoryHandlers(inventory){
                         zIndex: 99999,
                         revert: 'invalid',
                         start: function (event, ui) {
-        
+
                             FirstDraggedItemData = item;
                             SecondDraggedItemData = null;
-        
-                         //   $("#inventory").fadeOut();
+
+                            //   $("#inventory").fadeOut();
                         },
                         stop: function () {
-        
+
                             FirstDraggedItemData = item;
-                            
-                          //  $("#inventory").fadeIn();
+
+                            //  $("#inventory").fadeIn();
                         }
                     });
                 }
-                    
+
             }
         }
 
         if (!HasSecondInventoryOpen) {
 
             // Item double clicking actions
-            $('.item-' + item.item + "-" + item.itemId).dblclick(function(){
+            $('.item-' + item.item + "-" + item.itemId).dblclick(function () {
 
                 if (item.type == "item") {
-    
+
                     $.post("http://tpz_inventory/useItem", JSON.stringify({
-                        item : item.item,
-                        itemId : item.itemId,
-                        type : item.type,
-                        id : item.id,
-                        quantity : item.quantity,
-                        label : item.label,
-                        weight : item.weight,
-                        metadata : item.metadata,
-                        durability : item.durability,
-                        remove : item.remove,	
-                        closeInventory : item.closeInventory,
+                        item: item.item,
+                        itemId: item.itemId,
+                        type: item.type,
+                        id: item.id,
+                        quantity: item.quantity,
+                        label: item.label,
+                        weight: item.weight,
+                        metadata: item.metadata,
+                        durability: item.durability,
+                        remove: item.remove,
+                        closeInventory: item.closeInventory,
 
                     }));
-    
+
                 }
-                
-                
-            }); 
-            
+
+
+            });
+
             // Dropdown Functions
             $('.item-' + item.item + "-" + item.itemId).data('item', item);
 
             var data = [];
 
-            if (item.action != "NONE" && item.action != "currency"){
-    
-                if (item.type != "weapon"){
+            if (item.action != "NONE" && item.action != "currency") {
+
+                if (item.type != "weapon") {
                     let actionText = Locales['ITEM_ACTION_' + item.action] != null ? Locales['ITEM_ACTION_' + item.action] : Locales['ITEM_ACTION_USABLE'];
 
                     if (item.type == 'slot') {
@@ -111,54 +111,56 @@ function initMainInventoryHandlers(inventory){
                         text: actionText,
                         action: function () {
                             $.post("http://tpz_inventory/useItem", JSON.stringify({
-                                item : item.item,
-                                itemId : item.itemId,
-                                type : item.type,
-                                id : item.id,
-                                quantity : item.quantity,
-                                label : item.label,
-                                weight : item.weight,
-                                metadata : item.metadata,
-                                durability : item.durability,
-                                remove : item.remove,	
-                                closeInventory : item.closeInventory,
-                                action : item.action,
+                                item: item.item,
+                                itemId: item.itemId,
+                                type: item.type,
+                                id: item.id,
+                                quantity: item.quantity,
+                                label: item.label,
+                                weight: item.weight,
+                                metadata: item.metadata,
+                                durability: item.durability,
+                                remove: item.remove,
+                                closeInventory: item.closeInventory,
+                                action: item.action,
 
                             }));
                         }
                     });
-    
-                }else{
-    
-                    if (item.usedType == 0){
+
+                } else {
+
+                    if (item.usedType == 0) {
 
                         data.push({
                             text: Locales['WEAPON_ACTION_DEFAULT_EQUIP'],
                             action: function () {
-        
+
                                 $.post("http://tpz_inventory/equipWeapon", JSON.stringify({
-                                    item : item.item,
-                                    itemId : item.itemId,
-                                    type : item.type,
-                                    id : item.id,
-                                    ammoType : item.ammoType,
-                                    ammo : item.ammo,
-                                    label : item.label,
-                                    weight : item.weight,
-                                    metadata : item.metadata,
-                                    durability : item.durability,
-                                    remove : item.remove,	
-                                    closeInventory : item.closeInventory,
+                                    item: item.item,
+                                    itemId: item.itemId,
+                                    type: item.type,
+                                    id: item.id,
+                                    ammoType: item.ammoType,
+                                    ammo: item.ammo,
+                                    label: item.label,
+                                    weight: item.weight,
+                                    metadata: item.metadata,
+                                    durability: item.durability,
+                                    remove: item.remove,
+                                    closeInventory: item.closeInventory,
                                 }));
                             }
                         });
-    
-                    }else{
+
+                    } else {
 
                         data.push({
                             text: Locales['WEAPON_ACTION_DEFAULT_UNEQUIP'],
                             action: function () {
-                                $.post("http://tpz_inventory/unequipWeapon", JSON.stringify({ }));
+                                $.post("http://tpz_inventory/unequipWeapon", JSON.stringify({
+                                    itemId: item.itemId
+                                }));
                             }
                         });
 
@@ -173,58 +175,59 @@ function initMainInventoryHandlers(inventory){
                             });
 
                         }*/
-                        
+
 
                     }
                 }
             }
-    
-            if (item.usedType == 0 && item.type != 'slot'){
+
+            if (item.usedType == 0 && item.type != 'slot') {
                 data.push({
                     text: Locales['ITEM_ACTION_GIVE'],
                     action: function () {
                         $.post("http://tpz_inventory/give", JSON.stringify({
-                            item : item.item,
-                            itemId : item.itemId,
-                            type : item.type,
-                            id : item.id,
-                            quantity : item.quantity,
-                            label : item.label,
-                            weight : item.weight,
-                            metadata : item.metadata,
-                            durability : item.durability,
-                            remove : item.remove,
+                            item: item.item,
+                            itemId: item.itemId,
+                            type: item.type,
+                            id: item.id,
+                            quantity: item.quantity,
+                            label: item.label,
+                            weight: item.weight,
+                            metadata: item.metadata,
+                            durability: item.durability,
+                            remove: item.remove,
                         }));
 
                     }
                 });
             }
-    
-            if (item.droppable == 1 && item.usedType == 0 ) {
+
+            if (item.droppable == 1 && item.usedType == 0) {
                 data.push({
                     text: Locales['ITEM_ACTION_DROP'],
                     action: function () {
                         $.post("http://tpz_inventory/drop", JSON.stringify({
-                            item : item.item,
-                            itemId : item.itemId,
-                            type : item.type,
-                            id : item.id,
-                            quantity : item.quantity,
-                            label : item.label,
-                            weight : item.weight,
-                            metadata : item.metadata,
-                            durability : item.durability,
-                            remove : item.remove,
+                            item: item.item,
+                            itemId: item.itemId,
+                            type: item.type,
+                            id: item.id,
+                            quantity: item.quantity,
+                            label: item.label,
+                            weight: item.weight,
+                            metadata: item.metadata,
+                            durability: item.durability,
+                            remove: item.remove,
                         }));
                     }
                 });
             }
 
+            /*
             if (item.action != 'NONE' && item.action != "currency" && item.type != 'slot') {
                 data.push({
                     text: Locales['ITEM_ACTION_USABLE_SELECT_SLOT'],
                     action: function () {
-                        
+
                         $.post("http://tpz_inventory/select_slot", JSON.stringify({
                             item: item.item,
                             itemId: item.itemId,
@@ -237,15 +240,15 @@ function initMainInventoryHandlers(inventory){
                             durability: item.durability,
                             remove: item.remove,
                             closeInventory: item.closeInventory,
-                            action : item.action,
+                            action: item.action,
                             ammoType: item.ammoType,
                             ammo: item.ammo,
                         }));
 
                     }
                 });
-            }
-    
+            }*/
+
             let selector = (item.type !== 'slot')
                 ? `.item-${item.item}-${item.itemId}`
                 : `.item-slot-${item.itemId}`;
@@ -275,7 +278,8 @@ function initMainInventoryHandlers(inventory){
                     }
                 });
             }
-            
+
+
         }
 
     });
@@ -288,18 +292,19 @@ function initMainInventoryHandlers(inventory){
             if (FirstDraggedItemData.quantity == 1) { // Do not ask for a dialog prompt.
 
                 $.post("http://tpz_inventory/nui:transferItem", JSON.stringify({
-                    item : FirstDraggedItemData,
-                    inventory : "main",
-                    quantity : 1,
+                    item: FirstDraggedItemData,
+                    inventory: "main",
+                    quantity: 1,
                 }));
 
-            }else{
+            } else {
 
                 HasDialogOpen = true;
 
                 //displayInventory(false);
 
-                dialog.prompt({ title: Locales['TRANSFER'], button: Locales['ACCEPT'], required: true, input: { type: "number", autofocus: "true" },
+                dialog.prompt({
+                    title: Locales['TRANSFER'], button: Locales['ACCEPT'], required: true, input: { type: "number", autofocus: "true" },
 
                     validate: function (value) {
                         if (!value) {
@@ -320,15 +325,15 @@ function initMainInventoryHandlers(inventory){
                             processEventValidation();
 
                             $.post("http://tpz_inventory/nui:transferItem", JSON.stringify({
-                                item : FirstDraggedItemData,
-                                inventory : "main",
-                                quantity : value,
+                                item: FirstDraggedItemData,
+                                inventory: "main",
+                                quantity: value,
                             }));
 
                             FirstDraggedItemData = null;
                             HasDialogOpen = false;
                             dialog.close();
-                            
+
                         }
                     }
                 });
@@ -336,5 +341,3 @@ function initMainInventoryHandlers(inventory){
         }
     })
 }
-
-
