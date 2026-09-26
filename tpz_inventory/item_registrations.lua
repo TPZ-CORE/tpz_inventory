@@ -15,22 +15,6 @@ SharedItems = {} -- DO NOT EDIT
 
 SharedItems = {
 
-    ['slot1']  = {
-        label = '#1 Slot',  
-    },
-
-    ['slot2']  = {
-        label = '#2 Slot',  
-    },
-
-    ['slot3']  = {
-        label = '#3 Slot',  
-    },
-
-    ['slot4']  = {
-        label = '#4 Slot',  
-    },
-
     ['journal_fish'] = {
         label = 'Fish Journal',
         weight = 0.5,
