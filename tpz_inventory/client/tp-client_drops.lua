@@ -54,8 +54,6 @@ AddEventHandler("tpz_inventory:onDroppedItemUpdate", function(cb)
         DroppedItems[cb.dropId] = {}
         DroppedItems[cb.dropId] = cb.data
 
-        RemoveFromSlotByItemData(cb.data)
-
     elseif cb.actionType == "REMOVE" then
 
         if DroppedItems[cb.dropId] == nil then return end 
