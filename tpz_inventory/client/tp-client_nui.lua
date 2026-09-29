@@ -80,7 +80,7 @@ OpenPlayerInventory = function(refresh)
 
         for index, content in pairs (PlayerData.Inventory) do
     
-            if content.type ~= 'slot' and content.type ~= "money" and content.type ~= "blackmoney" and content.type ~= "gold"  then
+            if content.type ~= "money" and content.type ~= "blackmoney" and content.type ~= "gold"  then
 
                 local exist = false 
 
@@ -447,12 +447,6 @@ end)
 
 RegisterNUICallback('give', function(data)
     local _data   = data
-
-    /*
-    if DoesItemExistOnSlot(_data) then 
-        TriggerEvent('tpz_core:sendRightTipNotification', Locales['CANNOT_WHILE_BEING_SET_AS_USABLE_SLOT'], 3000)
-        return 
-    end*/
 
     ClosePlayerInventory()
 
