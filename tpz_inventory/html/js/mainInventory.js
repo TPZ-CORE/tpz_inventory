@@ -38,7 +38,7 @@ function initMainInventoryHandlers(inventory) {
 
         if (HasSecondInventoryOpen) {
 
-            if (item.type != 'slot' && item.type != "money" && item.type != "blackmoney" && item.type != "gold") {
+            if (item.type != "money" && item.type != "blackmoney" && item.type != "gold") {
 
                 if (item.usedType == undefined || item.usedType == null || item.usedType == 0) {
 
@@ -85,6 +85,7 @@ function initMainInventoryHandlers(inventory) {
                         durability: item.durability,
                         remove: item.remove,
                         closeInventory: item.closeInventory,
+                        stackable: item.stackable
 
                     }));
 
@@ -103,10 +104,6 @@ function initMainInventoryHandlers(inventory) {
                 if (item.type != "weapon") {
                     let actionText = Locales['ITEM_ACTION_' + item.action] != null ? Locales['ITEM_ACTION_' + item.action] : Locales['ITEM_ACTION_USABLE'];
 
-                    if (item.type == 'slot') {
-                        actionText = Locales['ITEM_ACTION_USABLE_SLOT'];
-                    }
-
                     data.push({
                         text: actionText,
                         action: function () {
@@ -123,7 +120,7 @@ function initMainInventoryHandlers(inventory) {
                                 remove: item.remove,
                                 closeInventory: item.closeInventory,
                                 action: item.action,
-
+                                stackable: item.stackable
                             }));
                         }
                     });
@@ -181,7 +178,7 @@ function initMainInventoryHandlers(inventory) {
                 }
             }
 
-            if (item.usedType == 0 && item.type != 'slot') {
+            if (item.usedType == 0) {
                 data.push({
                     text: Locales['ITEM_ACTION_GIVE'],
                     action: function () {
@@ -222,36 +219,7 @@ function initMainInventoryHandlers(inventory) {
                 });
             }
 
-            /*
-            if (item.action != 'NONE' && item.action != "currency" && item.type != 'slot') {
-                data.push({
-                    text: Locales['ITEM_ACTION_USABLE_SELECT_SLOT'],
-                    action: function () {
-
-                        $.post("http://tpz_inventory/select_slot", JSON.stringify({
-                            item: item.item,
-                            itemId: item.itemId,
-                            type: item.type,
-                            id: item.id,
-                            quantity: item.quantity,
-                            label: item.label,
-                            weight: item.weight,
-                            metadata: item.metadata,
-                            durability: item.durability,
-                            remove: item.remove,
-                            closeInventory: item.closeInventory,
-                            action: item.action,
-                            ammoType: item.ammoType,
-                            ammo: item.ammo,
-                        }));
-
-                    }
-                });
-            }*/
-
-            let selector = (item.type !== 'slot')
-                ? `.item-${item.item}-${item.itemId}`
-                : `.item-slot-${item.itemId}`;
+            let selector = `.item-${item.item}-${item.itemId}`;
 
             // Apply contextMenu once
             $(selector).contextMenu([data], {
