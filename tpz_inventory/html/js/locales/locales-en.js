@@ -6,8 +6,6 @@ Locales['ITEM_ACTION_DROP']              = 'Drop';
 /* Item Action Texts */
 
 // Default Actions: 'USABLE', 'EATABLE', 'DRINKABLE', 'SMOKABLE', 'NONE'
-Locales['ITEM_ACTION_USABLE_SLOT']        = 'Clear Slot';
-Locales['ITEM_ACTION_USABLE_SELECT_SLOT'] = 'Select Slot';
 Locales['ITEM_ACTION_USABLE']             = 'Use';
 Locales['ITEM_ACTION_EATABLE']            = 'Eat';
 Locales['ITEM_ACTION_DRINKABLE']          = 'Drink';
