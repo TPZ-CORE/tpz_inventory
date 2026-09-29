@@ -2,16 +2,17 @@ local TPZ = exports.tpz_core:getCoreAPI()
 
 local ItemUseCooldown = 0
 
-local EquippedSlot = nil
-
 -----------------------------------------------------------
 --[[ Functions  ]]--
 -----------------------------------------------------------
+
 
 OpenPlayerInventory = function(refresh)
 
     local finished = false
     local MoneyItemParameters, BlackMoneyItemParameters, GoldItemParameters = nil, nil, nil
+
+    local DUPLICATE_NON_STACKABLE_ITEMS_LIST = {}
 
     SendNUIMessage({ action = "clearPlayerInventoryContents" })
 
@@ -19,34 +20,6 @@ OpenPlayerInventory = function(refresh)
 
     TriggerEvent("tpz_core:ExecuteServerCallBack", "tpz_core:getPlayerData", function(account)
             
-        /*
-        ClearSlotsProperly()
-
-        -- Inventory Slot Keys
-
-        local slot1item  = PlayerData.Slots['1'].item
-        local slot1label = PlayerData.Slots['1'].type == 'weapon' and SharedWeapons.Weapons[string.upper(slot1item)].label or SharedItems[slot1item].label
-        local slot1 = { item = slot1item, label = slot1label, type = 'slot', description = '', weight = 0.0, action = 'slot1', droppable = 0, itemId = -1, usedType = 0, quantity = 1 }
-       
-        local slot2item  = PlayerData.Slots['2'].item
-        local slot2label = PlayerData.Slots['2'].type == 'weapon' and SharedWeapons.Weapons[string.upper(slot2item)].label or SharedItems[slot2item].label
-        local slot2 = { item = slot2item, label = slot2label, type = 'slot', description = '', weight = 0.0, action = 'slot2', droppable = 0, itemId = -2, usedType = 0, quantity = 1  }
-       
-        local slot3item  = PlayerData.Slots['3'].item
-        local slot3label = PlayerData.Slots['3'].type == 'weapon' and SharedWeapons.Weapons[string.upper(slot3item)].label or SharedItems[slot3item].label
-        local slot3 = { item = slot3item, label = slot3label, type = 'slot', description = '', weight = 0.0, action = 'slot3', droppable = 0, itemId = -3, usedType = 0, quantity = 1  }
-        
-        local slot4item  = PlayerData.Slots['4'].item
-        local slot4label = PlayerData.Slots['4'].type == 'weapon' and SharedWeapons.Weapons[string.upper(slot4item)].label or SharedItems[slot4item].label
-        local slot4 = { item = slot4item, label = slot4label, type = 'slot', description = '', weight = 0.0, action = 'slot4', droppable = 0, itemId = -4, usedType = 0, quantity = 1  }
-    
-        table.insert(PlayerData.Inventory, slot1)
-        table.insert(PlayerData.Inventory, slot2)
-        table.insert(PlayerData.Inventory, slot3)
-        table.insert(PlayerData.Inventory, slot4)*/
-
-        -- End of Slot Keys
-
         MoneyItemParameters = { 
                 item = "money", 
                 label = Locales['INVENTORY_ACCOUNT_MONEY'], 
@@ -97,19 +70,6 @@ OpenPlayerInventory = function(refresh)
 
         Wait(250)
 
-        /*
-        local _slot1 = { item = 'slot1', label = slot1label, type = 'slot', description = '', weight = 0.0, action = 'slot1', droppable = 0, itemId = -1, usedType = 0, quantity = 1 }
-        local _slot2 = { item = 'slot2', label = slot2label, type = 'slot', description = '', weight = 0.0, action = 'slot2', droppable = 0, itemId = -2, usedType = 0, quantity = 1  }
-        local _slot3 = { item = 'slot3', label = slot3label, type = 'slot', description = '', weight = 0.0, action = 'slot3', droppable = 0, itemId = -3, usedType = 0, quantity = 1  }
-        local _slot4 = { item = 'slot4', label = slot4label, type = 'slot', description = '', weight = 0.0, action = 'slot4', droppable = 0, itemId = -4, usedType = 0, quantity = 1  }
-    
-        -- we run fake slots in order to load their images, somehow they can never be set without loading them first.
-        SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = _slot1, displayImage = true })
-        SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = _slot2, displayImage = true })
-        SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = _slot3, displayImage = true })
-        SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = _slot4, displayImage = true })
-        */
-
         SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = MoneyItemParameters, displayImage = Config.DisplayMoney })
 
         if Config.DisplayBlackMoney then
@@ -152,11 +112,40 @@ OpenPlayerInventory = function(refresh)
                 end
 
                 if exist then
-      
+
+                    local EXIST_ON_DUPLICATE_NON_STACKABLE_ITEMS_LIST = false 
+
                     content.description = content.metadata.description
 
                     content.durability  = content.metadata.durability
                     content.usedType    = 0
+
+                    if content.type ~= "weapon" and content.durability == 100 and content.stackable == 0 then
+
+                        local duplicateKey = content.item .. '-' .. tostring(content.durability)
+
+                        if not DUPLICATE_NON_STACKABLE_ITEMS_LIST[duplicateKey] then
+                    
+                            -- Create a COPY so we never modify PlayerData.Inventory.
+                            DUPLICATE_NON_STACKABLE_ITEMS_LIST[duplicateKey] = {}
+                    
+                            for k, v in pairs(content) do
+                                DUPLICATE_NON_STACKABLE_ITEMS_LIST[duplicateKey][k] = v
+                            end
+                    
+                            -- Always start the displayed quantity at 1.
+                            DUPLICATE_NON_STACKABLE_ITEMS_LIST[duplicateKey].quantity = 1
+                    
+                        else
+                    
+                            -- Only increase the duplicate counter.
+                            DUPLICATE_NON_STACKABLE_ITEMS_LIST[duplicateKey].quantity =
+                                DUPLICATE_NON_STACKABLE_ITEMS_LIST[duplicateKey].quantity + 1
+                    
+                        end
+                    
+                        EXIST_ON_DUPLICATE_NON_STACKABLE_ITEMS_LIST = true
+                    end
     
                     if content.type == "weapon" then
                         
@@ -206,7 +195,16 @@ OpenPlayerInventory = function(refresh)
     
                     end
     
-                    SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = content })
+                    if not EXIST_ON_DUPLICATE_NON_STACKABLE_ITEMS_LIST then
+
+                        local show_quantity = true 
+                        
+                        if tonumber(content.stackable) == 0 then 
+                            show_quantity = false 
+                        end
+                        
+                        SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = content, show_quantity = show_quantity  })
+                    end
 
                 end
 
@@ -214,6 +212,16 @@ OpenPlayerInventory = function(refresh)
     
             if next(PlayerData.Inventory, index) == nil then
                 finished = true
+            end
+
+        end
+
+        for _, dup_content in pairs (DUPLICATE_NON_STACKABLE_ITEMS_LIST) do 
+
+            if dup_content.quantity == 1 then
+                SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = dup_content, show_quantity = false })
+            else
+                SendNUIMessage({ action = "updatePlayerInventoryContents", item_data = dup_content, show_quantity = true })
             end
 
         end
@@ -235,14 +243,6 @@ OpenPlayerInventory = function(refresh)
             SetNUIFocusStatus(true)
 
         end
-        
-        /*
-        -- We are running after loading fake slot images, the real item images.
-        SendNUIMessage({ action = 'updateSlot', slotIndex = "1", result = { item = slot1.item, itemId = tonumber("-1")} })
-        SendNUIMessage({ action = 'updateSlot', slotIndex = "2", result = { item = slot2.item, itemId = tonumber("-2")} })
-        SendNUIMessage({ action = 'updateSlot', slotIndex = "3", result = { item = slot3.item, itemId = tonumber("-3")} })
-        SendNUIMessage({ action = 'updateSlot', slotIndex = "4", result = { item = slot4.item, itemId = tonumber("-4")} })
-        */
 
         SendNUIMessage({ action = "setupPlayerInventoryContents", inventory = PlayerData.Inventory })
 
@@ -297,94 +297,6 @@ SetNUIFocusStatus = function(state)
 
 end 
 
-/*
-DoesItemExistOnSlot = function(data)
-    local PlayerData = GetPlayerData()
-
-    for _, slot in pairs (PlayerData.Slots) do 
-
-        if slot.item == data.item and slot.itemId == data.itemId then 
-            return true
-        end
-
-    end
-
-    return false
-end
-
-RemoveFromSlotByItemData = function(data)
-    local PlayerData = GetPlayerData()
-
-    for _, slot in pairs (PlayerData.Slots) do 
-
-        if slot.item == data.item and slot.itemId == data.itemId then 
-            
-            TriggerServerEvent("tpz_inventory:server:set_slot", _, { item = "slot" .. _, type = 'slot', action = "slot" .. _ })
-
-            PlayerData.Slots[_] = { item = "slot" .. _, type = 'slot', action = "slot" .. _}
-
-            if PlayerData.IsInventoryOpen then
-                SendNUIMessage({ action = 'updateSlot', slotIndex = _, result = { item = "slot" .. _, itemId = tonumber("-" .. _)} })
-            end
-
-            if EquippedSlot and EquippedSlot == _ then
-
-                local equipped_data = PlayerData.Slots[EquippedSlot]
-
-                if equipped_data.type == 'weapon' then 
-                    
-                    local WeaponAPI = exports.tpz_weapons:getWeaponsAPI()
-    
-                    WeaponAPI.saveUsedWeaponData()
-                    WeaponAPI.clearUsedWeaponData(true)
-
-                    EquippedSlot = nil
-
-                else 
-                    
-                    TriggerServerEvent("tpz_inventory:useItem", tonumber(equipped_data.itemId), tonumber(equipped_data.id), equipped_data.item, equipped_data.label, equipped_data.weight, equipped_data.durability, equipped_data.metadata)
-                end
-
-                EquippedSlot = nil
-
-            end
-
-            break
-        end
-
-    end
-
-end
-
-ClearSlotsProperly = function()
-
-    local PlayerData = GetPlayerData()
-
-    for _, slot in pairs (PlayerData.Slots) do 
-
-        local exist = false 
-
-        for index, content in pairs (PlayerData.Inventory) do
-            
-            if content.type ~= 'slot' and content.type ~= "money" and content.type ~= "blackmoney" and content.type ~= "gold"  then
-               
-                if slot.item == content.item and slot.itemId == content.itemId then 
-                    exist = true
-                    break
-                end
-
-            end
-
-        end
-
-        if not exist then 
-            RemoveFromSlotByItemData(slot)
-        end
-
-    end
-
-end
-*/
 -----------------------------------------------------------
 --[[ Local Functions  ]]--
 -----------------------------------------------------------
@@ -420,25 +332,6 @@ function getWeight()
 end
 
 -----------------------------------------------------------
---[[ Events ]]--
------------------------------------------------------------
-
-RegisterNetEvent("tpz_core:isPlayerRespawned")
-AddEventHandler("tpz_core:isPlayerRespawned", function()
-
-    /*
-    TriggerServerEvent("tpz_inventory:server:set_slot", "1", { item = "slot1", type = 'slot', action = "slot1" })
-    TriggerServerEvent("tpz_inventory:server:set_slot", "2", { item = "slot2", type = 'slot', action = "slot2" })
-    TriggerServerEvent("tpz_inventory:server:set_slot", "3", { item = "slot3", type = 'slot', action = "slot3" })
-    TriggerServerEvent("tpz_inventory:server:set_slot", "4", { item = "slot4", type = 'slot', action = "slot4" })
-
-    PlayerData.Slots['1'] = { item = "slot1", type = 'slot', action = "slot1"}
-    PlayerData.Slots['2'] = { item = "slot2", type = 'slot', action = "slot2"}
-    PlayerData.Slots['3'] = { item = "slot3", type = 'slot', action = "slot3"}
-    PlayerData.Slots['4'] = { item = "slot4", type = 'slot', action = "slot4"}*/
-end)
-
------------------------------------------------------------
 --[[ NUI Callbacks  ]]--
 -----------------------------------------------------------
 
@@ -463,43 +356,9 @@ RegisterNUICallback('useItem', function(data)
 
     if ItemUseCooldown == 0 then
 
-        /*
-        if data.type == 'slot' then 
-            local PlayerData = GetPlayerData()
-            local slotId     = string.gsub(data.action, 'slot', "")
-
-            if EquippedSlot and tostring(EquippedSlot) == tostring(slotId) then
-
-                local equipped_data = PlayerData.Slots[EquippedSlot]
-
-                if equipped_data.type == 'weapon' then 
-                    
-                    local WeaponAPI = exports.tpz_weapons:getWeaponsAPI()
-    
-                    WeaponAPI.saveUsedWeaponData()
-                    WeaponAPI.clearUsedWeaponData(true)
-
-                    EquippedSlot = nil
-
-                else 
-                    TriggerServerEvent("tpz_inventory:useItem", tonumber(equipped_data.itemId), tonumber(equipped_data.id), equipped_data.item, equipped_data.label, equipped_data.weight, equipped_data.durability, equipped_data.metadata)
-                end
-
-                EquippedSlot = nil
-
-            end
-
-            TriggerServerEvent("tpz_inventory:server:set_slot", slotId, { item = data.action, type = 'slot', action = data.action })
-
-            PlayerData.Slots[slotId] = { item = data.action, type = 'slot', action = data.action }
- 
-            SendNUIMessage({ action = 'updateSlot', slotIndex = slotId, result = { item = data.action, itemId = tonumber("-" .. slotId)} })
-            return 
-        end*/
-
         ItemUseCooldown = 2 -- adding (2) seconds of cooldown. 
 
-        if tonumber(data.closeInventory) == 1 or data.type == "weapon" then
+        if tonumber(data.closeInventory) == 1 or data.type == "weapon" or tonumber(data.stackable) == 0 then
             ClosePlayerInventory()
         end
     
@@ -523,61 +382,11 @@ RegisterNUICallback('useItem', function(data)
 
 end)
 
-/*
-RegisterNUICallback('select_slot', function(data)
-    local _data      = data
-    local PlayerData = GetPlayerData()
-    
-    local doesItemExist = false
-
-    for _, slot in pairs (PlayerData.Slots) do 
-
-        if slot.item == _data.item then -- and slot.itemId == _data.itemId then 
-            doesItemExist = true
-            break
-        end
-
-    end
-
-    if doesItemExist then 
-        TriggerEvent('tpz_core:sendBottomTipNotification', Locales['SLOT_ALREADY_REGISTERED'], 3000)
-        return 
-    end
-
-    local inputData = {
-        title = Locales['SELECT_SLOT_TITLE'],
-        desc  = Locales['SELECT_SLOT_DESCRIPTION'],
-        buttonparam1 = Locales['SELECT_SLOT_INPUT_ACCEPT'],
-        buttonparam2 = Locales['SELECT_SLOT_INPUT_CANCEL'],
-    
-        options = { '1', '2', '3', '4'} -- <- The list with the name values.
-    }
-        
-    TriggerEvent("tpz_inputs:getSelectedOptionsInput", inputData, function(cb)
-        
-        if cb ~= "DECLINE" then
-           TriggerServerEvent("tpz_inventory:server:set_slot", cb, _data)
-
-           PlayerData.Slots[tostring(cb)] = _data
-
-           SendNUIMessage({ action = 'updateSlot', slotIndex = cb, result = _data })
-        end
-                
-    end)
-
-end)*/
-
 RegisterNUICallback('drop', function(data)
     local _data   = data
 
     local player  = PlayerPedId()
     local coords  = GetEntityCoords(player, true, true)
-
-    /*
-    if DoesItemExistOnSlot(_data) then 
-        TriggerEvent('tpz_core:sendRightTipNotification', Locales['CANNOT_WHILE_BEING_SET_AS_USABLE_SLOT'], 3000)
-        return 
-    end*/
 
     ClosePlayerInventory()
 
@@ -711,107 +520,3 @@ RegisterNUICallback('give', function(data)
     exports.tpz_inventory_trade:StartTradingProcess(playerid, _data, _data.quantity)
 end)
 
-
-/*
-Citizen.CreateThread(function()
-    
-
-    while true do
-
-        Wait(1)
-
-        local PlayerData = GetPlayerData()
-
-        local pressed      = false
-        local pressed_slot = '1'
-
-        if IsControlJustPressed(0, 0xE6F612E4) and PlayerData.Slots['1'].item ~= 'slot1' and not pressed then
-            pressed = true
-            pressed_slot = '1'
-
-        elseif IsControlJustPressed(0, 0x1CE6D9EB) and PlayerData.Slots['2'].item ~= 'slot2' and not pressed then
-            pressed = true
-            pressed_slot = '2'
-
-        elseif IsControlJustPressed(0, 0x4F49CC4C) and PlayerData.Slots['3'].item ~= 'slot3' and not pressed then
-            pressed = true
-            pressed_slot = '3'
-
-        elseif IsControlJustPressed(0, 0x8F9F9E58) and PlayerData.Slots['4'].item ~= 'slot4' and not pressed then
-            pressed = true
-            pressed_slot = '4'
-
-        end
-
-        if pressed then
-
-            local data = PlayerData.Slots[pressed_slot]
-
-            if EquippedSlot and EquippedSlot ~= pressed_slot then
-
-                local equipped_data = PlayerData.Slots[EquippedSlot]
-
-                if equipped_data.type == 'weapon' then 
-                    
-                    local WeaponAPI = exports.tpz_weapons:getWeaponsAPI()
-    
-                    WeaponAPI.saveUsedWeaponData()
-                    WeaponAPI.clearUsedWeaponData(true)
-
-                    EquippedSlot = nil
-
-                else 
-                    
-                    TriggerServerEvent("tpz_inventory:useItem", tonumber(equipped_data.itemId), tonumber(equipped_data.id), equipped_data.item, equipped_data.label, equipped_data.weight, equipped_data.durability, equipped_data.metadata)
-                end
-
-                EquippedSlot = nil
-
-            end
-
-            if tonumber(data.remove) == 1 and data.type ~= "weapon" then
-
-                TriggerServerEvent("tpz_inventory:removeUsableItem", tonumber(data.itemId), tonumber(data.id), data.item, data.label)
-
-                -- remove from slot since item is one time use.
-                TriggerServerEvent("tpz_inventory:server:set_slot", pressed_slot, { item = "slot".. pressed_slot, type = 'slot', action = "slot" .. pressed_slot })
-                
-                PlayerData.Slots[pressed_slot] = { item = "slot".. pressed_slot, type = 'slot', action = "slot" .. pressed_slot }
-                SendNUIMessage({ action = 'updateSlot', slotIndex = pressed_slot, result = { item = "slot" .. pressed_slot, itemId = tonumber("-" .. pressed_slot)} })
-                EquippedSlot = nil
-            end
-    
-            if data.type ~= "weapon" then
-    
-                TriggerServerEvent("tpz_inventory:useItem", tonumber(data.itemId), tonumber(data.id), data.item, data.label, data.weight, data.durability, data.metadata)
-                EquippedSlot = pressed_slot
-
-            elseif data.type == "weapon" then
-    
-                local WeaponAPI = exports.tpz_weapons:getWeaponsAPI()
-
-                WeaponAPI.saveUsedWeaponData()
-
-                if WeaponAPI.getUsedWeaponData() == nil then -- 1.1.3
-
-                    PlayerData.Slots[pressed_slot] = exports.tpz_core:ClientRpcCall().Callback.TriggerAwait("tpz_inventory:callbacks:requestWeaponData", { itemId = data.itemId, item = data.item } )
-                    local data = PlayerData.Slots[pressed_slot]
-
-                    WeaponAPI.equipWeapon(data.itemId, data.item, data.metadata.ammoType, data.metadata.ammo, data.label, data.metadata.durability, data.metadata)
-                    EquippedSlot = pressed_slot
-                else
-                    
-                    WeaponAPI.clearUsedWeaponData(true)
-                    EquippedSlot = nil
-                end
-
-            end
-
-            Wait(500)
-
-        end
-
-
-    end
-
-end)*/
