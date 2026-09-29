@@ -8,6 +8,16 @@ local ConnectedPlayers  = {}
 --[[ General Events  ]]--
 -----------------------------------------------------------
 
+RegisterServerEvent("tpz_inventory:server:received_item") -- 1.1.6
+AddEventHandler("tpz_inventory:server:received_item", function(targetSource, item, label, quantity)
+    -- todo nothing
+end)
+
+RegisterServerEvent("tpz_inventory:server:removed_item") -- 1.1.6
+AddEventHandler("tpz_inventory:server:removed_item", function(targetSource, item, label, quantity)
+    -- todo nothing
+end)
+
 RegisterServerEvent("tpz_inventory:requestPlayerInventoryContents")
 AddEventHandler("tpz_inventory:requestPlayerInventoryContents", function(newChar)
     local _source = source
