@@ -282,6 +282,8 @@ function addItem(source, item, quantity, metadata, itemId, preventRefresh)
 
                 end
 
+                TriggerEvent('tpz_inventory:server:received_item', _source, item, itemData.label, quantity)-- 1.1.6
+
                 if not preventRefresh then
                     Wait(250)
                     TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], true, false)
@@ -302,6 +304,9 @@ function addItem(source, item, quantity, metadata, itemId, preventRefresh)
     
                             finished = true
                             exist    = true
+
+                            TriggerEvent('tpz_inventory:server:received_item', _source, item, itemData.label, quantity)-- 1.1.6
+
                         end
     
                         if next(inventory, index) == nil then
@@ -342,6 +347,8 @@ function addItem(source, item, quantity, metadata, itemId, preventRefresh)
                     }
     
                     table.insert(PlayerInventory[_source].inventory, ItemParameters)
+
+                    TriggerEvent('tpz_inventory:server:received_item', _source, item, itemData.label, quantity)-- 1.1.6
 
                     if not preventRefresh then
                         TriggerClientEvent('tpz_inventory:updatePlayerInventoryContents', _source, PlayerInventory[_source], true, false)
@@ -395,6 +402,8 @@ function removeItem(source, item, quantity, itemId, preventRefresh)
                             
                             exist = true
                             shouldLoopForRemoval = false
+
+                            TriggerEvent('tpz_inventory:server:removed_item', _source, item, itemData.label, 1)-- 1.1.6
                         end
                         
                         if not itemId then
@@ -413,6 +422,8 @@ function removeItem(source, item, quantity, itemId, preventRefresh)
                         if content.quantity <= 0 then
                             table.remove(inventory, index)
                         end
+
+                        TriggerEvent('tpz_inventory:server:removed_item', _source, item, itemData.label, quantity)-- 1.1.6
                         
                         exist = true
                         shouldLoopForRemoval = false
@@ -432,16 +443,20 @@ function removeItem(source, item, quantity, itemId, preventRefresh)
             -- and we creating a separate loop which checks and breaks it after every 1 until it reaches the max quantity.
             if shouldLoopForRemoval then
 
+                local removed_quantity = 0 -- 1.1.6
+
                 while count < tonumber(quantity) do
                     local removed = false
                 
                     for _index, _content in pairs(inventory) do
+
                         if _content.item == item and tonumber(itemData.stackable) == 0 and not itemId then
                             table.remove(inventory, _index)
                 
                             count = count + 1
                             removed = true
-                
+
+                            removed_quantity = removed_quantity + 1 -- 1.1.6
                             break
                         end
                     end
@@ -452,7 +467,9 @@ function removeItem(source, item, quantity, itemId, preventRefresh)
                 
                     Wait(50)
                 end
-    
+
+                TriggerEvent('tpz_inventory:server:removed_item', _source, item, itemData.label, removed_quantity)-- 1.1.6
+        
             end
 
             if not preventRefresh then
@@ -482,7 +499,8 @@ function removeItemById(source, itemId, preventRefresh)
             if itemId and normalizeItemId(content.itemId) == normalizeItemId(itemId) then
 
                 table.remove(inventory, index)
-                
+
+                TriggerEvent('tpz_inventory:server:removed_item', _source, content.item, SharedItems[content.item].label, 1)-- 1.1.6
                 exist = true
             end
                 
@@ -698,7 +716,6 @@ end
 -----------------------------------------------------------
 --[[ Container Functions  ]]--
 -----------------------------------------------------------
-
 
 -- @addContainerItem
 -- 1.1.3 fix for not stackables.
