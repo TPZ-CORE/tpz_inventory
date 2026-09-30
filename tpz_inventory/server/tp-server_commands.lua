@@ -336,7 +336,9 @@ RegisterCommand("clearinventory", function(source, args, rawCommand)
 
                 SendCommandNotification(_source, string.format("You cleared all the inventory contents on the following ID: %s.", target), 'success', 3000)
                 SendCommandNotification(tonumber(target), "All your inventory contents have been removed.", 'info', 3000)
-
+                    
+                tPlayer.clearDefaultWeapons()
+                    
             else
                 SendCommandNotification(_source, Locales['PLAYER_NOT_ONLINE'], 'error', 3000)
             end
