@@ -623,6 +623,20 @@ function removeWeapon(source, weapon, weaponId)
                         table.remove(inventory, index)
                         exist = true
                         shouldLoopForRemoval = false
+
+                        local TPZ     = exports.tpz_core:getCoreAPI()
+                        local xPlayer = TPZ.GetPlayer(_source)
+
+                        if xPlayer.loaded() then 
+
+                            local default_weapons = xPlayer.getDefaultUsedWeaponIds()
+
+                            if default_weapons[content.itemId] then 
+                                xPlayer.removeDefaultWeaponById(content.itemId)
+                            end
+
+                        end
+
                     end
 
                     if not weaponId then
@@ -647,6 +661,20 @@ function removeWeapon(source, weapon, weaponId)
 
                 if string.upper(_content.item) == string.upper(_weapon) and _content.type == 'weapon' and not weaponId then
                     table.remove(inventory, _index)
+
+                    local TPZ     = exports.tpz_core:getCoreAPI()
+                    local xPlayer = TPZ.GetPlayer(_source)
+
+                    if xPlayer.loaded() then 
+
+                        local default_weapons = xPlayer.getDefaultUsedWeaponIds()
+
+                        if default_weapons[_content.itemId] then 
+                            xPlayer.removeDefaultWeaponById(_content.itemId)
+                        end
+
+                    end
+
                     break
                 end
 
@@ -677,6 +705,20 @@ function removeWeaponById(source, weaponId)
         
                     table.remove(inventory, index)
                     exist = true
+
+                    local TPZ     = exports.tpz_core:getCoreAPI()
+                    local xPlayer = TPZ.GetPlayer(_source)
+
+                    if xPlayer.loaded() then 
+
+                        local default_weapons = xPlayer.getDefaultUsedWeaponIds()
+
+                        if default_weapons[content.itemId] then 
+                            xPlayer.removeDefaultWeaponById(content.itemId)
+                        end
+
+                    end
+
                 end
     
             end
