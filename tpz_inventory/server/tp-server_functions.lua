@@ -633,10 +633,12 @@ function removeWeapon(source, weapon, weaponId)
 
                             if default_weapons[content.itemId] then 
                                 xPlayer.removeDefaultWeaponById(content.itemId)
+                                TriggerClientEvent("tpz_weapons:client:removeEquippedWeaponById", _source, content.itemId)
                             end
                             
                             if default_weapons[normalizeItemId(content.itemId)] then 
                                 xPlayer.removeDefaultWeaponById(normalizeItemId(content.itemId))
+                                TriggerClientEvent("tpz_weapons:client:removeEquippedWeaponById", _source, normalizeItemId(content.itemId))
                             end
 
                         end
@@ -675,10 +677,12 @@ function removeWeapon(source, weapon, weaponId)
 
                         if default_weapons[_content.itemId] then 
                             xPlayer.removeDefaultWeaponById(_content.itemId)
+                            TriggerClientEvent("tpz_weapons:client:removeEquippedWeaponById", _source, _content.itemId)
                         end
 
                         if default_weapons[normalizeItemId(_content.itemId)] then 
                             xPlayer.removeDefaultWeaponById(normalizeItemId(_content.itemId))
+                            TriggerClientEvent("tpz_weapons:client:removeEquippedWeaponById", _source, normalizeItemId(_content.itemId))
                         end
 
                     end
@@ -723,10 +727,12 @@ function removeWeaponById(source, weaponId)
 
                         if default_weapons[content.itemId] then 
                             xPlayer.removeDefaultWeaponById(content.itemId)
+                            TriggerClientEvent("tpz_weapons:client:removeEquippedWeaponById", _source, content.itemId)
                         end
 
                         if default_weapons[normalizeItemId(content.itemId)] then 
                             xPlayer.removeDefaultWeaponById(normalizeItemId(content.itemId))
+                            TriggerClientEvent("tpz_weapons:client:removeEquippedWeaponById", _source, normalizeItemId(content.itemId))
                         end
 
                     end
