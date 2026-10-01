@@ -338,7 +338,7 @@ RegisterCommand("clearinventory", function(source, args, rawCommand)
                 SendCommandNotification(tonumber(target), "All your inventory contents have been removed.", 'info', 3000)
                     
                 tPlayer.clearDefaultWeapons()
-                    
+                TriggerClientEvent("tpz_weapons:clearEquippedWeapons", _source)
             else
                 SendCommandNotification(_source, Locales['PLAYER_NOT_ONLINE'], 'error', 3000)
             end
