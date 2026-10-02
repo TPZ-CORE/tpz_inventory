@@ -54,7 +54,7 @@ function canCarryWeight(source, totalWeight)
     local maxInventoryWeight = TPZ.GetPlayer(source).getInventoryWeightCapacity()
     local currentWeight      = getWeight(source)
 
-    if (currentWeight + totalWeight) > maxInventoryWeight then 
+    if ( tonumber(currentWeight) + tonumber(totalWeight) ) > tonumber(maxInventoryWeight) then 
         return false
     else 
         return true
@@ -71,7 +71,7 @@ function canCarryItem(source, item, quantity)
 
         local currentWeight      = getWeight(source)
     
-        if (currentWeight + itemWeight) > maxInventoryWeight then 
+        if ( tonumber(currentWeight) + tonumber(itemWeight)) > tonumber(maxInventoryWeight) then 
             return false 
         else 
             return true 
