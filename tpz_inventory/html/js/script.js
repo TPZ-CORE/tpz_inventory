@@ -317,6 +317,13 @@ $(function () {
 					document.getElementById("main_inventory_current_gold").innerHTML = prod_item.quantity;
 				}
 
+				$("#main_inventory_contents").append(
+					`<div id="primary_content-${prod_item.type}-${prod_item.itemId}" style="position: relative; display: inline-block;">` +
+					`<img class="item-${prod_item.type}-${prod_item.itemId}" 
+					id="main_inventory_item_image_display"
+					src="${getItemIMG(prod_item.item)}">` +
+					`</div>`
+				);
 			}
 
 		}
