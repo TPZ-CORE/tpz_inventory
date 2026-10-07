@@ -948,7 +948,7 @@ function removeContainerItem(containerId, item, quantity, itemId)
                     end
     
      
-                    if tonumber(itemData.stackable) == 1 and content.quantiy > 0 then -- If the item is stackable, we remove the quantity from that item.
+                    if tonumber(itemData.stackable) == 1 and content.quantity > 0 then -- If the item is stackable, we remove the quantity from that item.
     
                         content.quantity = content.quantity - quantity
      
